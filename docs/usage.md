@@ -15,7 +15,7 @@ Erstellt von KarlK
 Stand: Oktober 2020
 
 <br />
-<a href="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/handbuch.pdf">Das Handbuch im PDF-Format kann hier heruntergeladen werden!</a>
+<a href="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/handbuch.pdf">Das Handbuch im PDF-Format kann hier heruntergeladen werden.</a>
 <br /><br />
 
 <h2 id="user-content-inhaltsverzeichnis">Inhaltsverzeichnis</h2>

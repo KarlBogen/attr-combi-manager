@@ -1,7 +1,7 @@
 # Attribut Kombinationen Verwaltung
 
 <br />
-<a href="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/handbuch.pdf">Das Handbuch im PDF-Format kann hier heruntergeladen werden!</a>
+<a href="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/handbuch.pdf">Das Handbuch im PDF-Format kann hier heruntergeladen werden.</a>
 <br /><br />
 
 ## Installation / Update / Deinstallation

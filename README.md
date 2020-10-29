@@ -19,5 +19,5 @@ So ist es auch machbar, dass zum Beispiel `2 Stück` T-Shirts, Größe S, Farbe 
 > Hinweis: Für dieses Modul sind geringe Anpassungen im Template nötig.
 
 <br />
-<a href="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/handbuch.pdf">Das Handbuch im PDF-Format kann hier heruntergeladen werden!</a>
+<a href="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/handbuch.pdf">Das Handbuch im PDF-Format kann hier heruntergeladen werden.</a>
 <br />
