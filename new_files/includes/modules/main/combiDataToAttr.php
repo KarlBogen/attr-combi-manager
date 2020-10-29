@@ -71,7 +71,7 @@ class combiDataToAttr {  //Important same name as filename
 		if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true') {
 
 			if (STOCK_CHECK == 'true' && ATTRIBUTE_STOCK_CHECK == 'true') {
-				require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/autoload.php';
+				require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/karlk/autoload.php';
 				$hascombi = ProductCombi::hasProductCombi((int)$attributes["products_id"]);
 				// Artikel markieren, falls Anzahl im Warenkorb den Bestand überschreitet
 				if ($hascombi != false) {

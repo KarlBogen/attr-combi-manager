@@ -16,7 +16,7 @@ use KarlK\ProductCombiManager\Classes\ProductCombiAdmin;
 // prüfen, ob Systemmodul installiert und Status true ist
 if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true') {
 	// wenn eine Kombinationsliste existiert werden nur die Optionen der Kombi angezeigt
-	require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/autoload.php';
+	require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/karlk/autoload.php';
 	// combi_id und Optionen der Kombinationsliste holen
 	// $combi[0] == combi_id, $combi[1] == Optionen, , $combi[2] == Optionswerte
 	$combi = ProductCombiAdmin::getCombiIDandOptions($_POST['current_product_id']);

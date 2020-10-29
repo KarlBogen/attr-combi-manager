@@ -13,7 +13,7 @@
 
 use KarlK\ProductCombiManager\Classes\ProductCombi;
 
-require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/autoload.php';
+require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/karlk/autoload.php';
 
 	$combi_id = ProductCombi::hasProductCombi($product->pID);
 

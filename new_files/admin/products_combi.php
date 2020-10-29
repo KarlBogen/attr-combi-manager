@@ -18,7 +18,7 @@ require('includes/application_top.php');
 // prüfen, ob Systemmodul installiert und Status true ist
 if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true') {
 
-require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/autoload.php';
+require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/karlk/autoload.php';
 
 // Ajax call für Image-Upload und Bildverknüpfung
 if(isset($_POST['func'])){

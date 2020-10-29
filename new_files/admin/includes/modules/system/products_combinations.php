@@ -14,7 +14,7 @@
 defined( '_VALID_XTC' ) or die( 'Direct Access to this location is not allowed.' );
 
 use KarlK\HookPointManager\Classes\KKHookPointManager;
-require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/autoload.php';
+require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/karlk/autoload.php';
 
 class products_combinations {
 
