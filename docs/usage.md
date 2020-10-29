@@ -1,0 +1,727 @@
+<img alt="logo" style="margin: 0 20px;" width="193" height="193" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_001.png"/>
+
+**Handbuch für**
+
+# Attribut Kombinationen Verwaltung
+
+**Version 1.0.0**
+
+**Ein Systemmodul für die *mod*ified eCommerce Shopsoftware**
+
+
+
+Erstellt von KarlK
+
+Stand: Oktober 2020
+
+<br />
+<a href="https://raw.githubusercontent.com/KarlBogen/test/master/doc/einTestPDF.pdf">Das Handbuch im PDF-Format kann hier heruntergeladen werden!</a>
+<br />
+
+<h2 id="user-content-inhaltsverzeichnis">Inhaltsverzeichnis</h2>
+
+[1\. Einleitung](#user-content-1-einleitung)
+
+[2\. Installation / Update / Deinstallation](#user-content-2-installation--update--deinstallation)
+
+[3\. Artikelmerkmale und Attribute](#user-content-3-artikelmerkmale-und-attribute)
+
+[4\. Kombinationen](#user-content-4-kombinationen)
+
+[4.1 Neue Kombinationen anlegen](#user-content-41-neue-kombinationen-anlegen)
+
+[4.2 Einzelne Kombinationen anlegen](#user-content-42-einzelne-kombinationen-anlegen)
+
+[4.3 Alle Kombinationen anlegen](#user-content-43-alle-kombinationen-anlegen)
+
+[4.4 Kombinationsdaten erfassen](#user-content-44-kombinationsdaten-erfassen)
+
+[4.4.1 Daten eingeben](#user-content-441-daten-eingeben)
+
+[4.4.2 Bilder verknüpfen](#user-content-442-bilder-verknüpfen)
+
+[4.5 Kombinationen editieren](#user-content-45-kombinationen-editieren)
+
+[4.6 Kombinationen löschen](#user-content-46-kombinationen-löschen)
+
+[4.7 Neue Attribute zu Kombinationen hinzufügen](#user-content-47-neue-attribute-zu-kombinationen-hinzufügen)
+
+[5\. Optionen des Systemmoduls ↔ Auswirkung im Shop](#user-content-5-optionen-des-systemmoduls--auswirkung-im-shop)
+
+[Anhang Templateänderungen](#user-content-anhang-templateänderungen)
+
+[Anhang 1: TPL_MODIFIED_RESPONSIVE](#user-content-anhang-1-tpl_modified_responsive)
+
+[Anhang 2: TPL_MODIFIED](#user-content-anhang-2-tpl_modified)
+
+[Anhang 3: BOOTSTRAP4](#user-content-anhang-3-bootstrap4)
+
+[Anhang Löschen / Stornieren einer Bestellung](#user-content-anhang-löschen--stornieren-einer-bestellung)
+
+[Anhang 4: Kombinationsbestand automatisch anpassen](#user-content-anhang-4-kombinationsbestand-automatisch-anpassen)
+
+[Anhang Hilfe / Fehlersuche](#user-content-anhang-hilfe--fehlersuche)
+
+<br /><br />
+
+<h2 id="user-content-1-einleitung">1. Einleitung</h2>
+
+### 1.1 Kurzbeschreibung
+
+Mit der **mod**ified eCommerce Shopsoftware kann man einzelnen Artikeln bestimmte Attribute zuweisen.
+
+Allerdings ist es nicht möglich diese Attribute zu verknüpfen und so Kombinationen bzw. Variationen zu bilden.
+
+Hier greift die **Attribut Kombinationen Verwaltung**, mit ihr ist es möglich Attributkombinationen zu erstellen.
+
+Den einzelnen Kombinationen kann _Bestand, Artikelnummer, EAN_ und _Bild_ zugewiesen werden.
+
+Es kann zum Beispiel ein T-Shirt, Größe S, Farbe rot, Form Rundhals `nicht ausgewählt` werden, weil sich `kein Stück im Lager` befindet.
+
+So ist es auch machbar, dass zum Beispiel `2 Stück` T-Shirts, Größe S, Farbe rot, Form Rundhals `nicht bestellt` werden können, weil sich `nur 1 Stück im Lager` befindet.
+
+> Hinweis: Für dieses Modul sind geringe Anpassungen im Template nötig.
+
+<br /><br />
+
+### 1.2 Version der Shopsoftware
+
+Die **Attribut Kombinationen Verwaltung** wurde entwickelt und getestet mit der aktuellen stabile Version „**Vollversion 2.0.5.1 rev 12725**“ vom 22.04.2020
+
+Diese Anleitung, Bilder und Beschreibungen beziehen sich auf diese Version.
+
+<br />
+
+[↑ zurück zum Inhaltsverzeichnis](#user-content-inhaltsverzeichnis)
+
+<br />
+
+
+<h2 id="user-content-2-installation--update--deinstallation">2. Installation / Update / Deinstallation</h2>
+
+### 2.1 Voraussetzungen
+
+*   PHP 7.0 oder höher
+*   MMLC - Modified Module Loader Client installiert
+
+Hinweise zur Installation sind bei [https://module-loader.de](https://module-loader.de/) zu finden.
+
+### 2.2 Vorbereitung Template
+
+Abhängig vom genutzten Template sind Änderungen in den Dateien durchzuführen:
+
+*   [Anhang 1: tpl_modified_responsive](#user-content-anhang-1-tpl_modified_responsive)
+*   [Anhang 2: tpl_modified](#user-content-anhang-2-tpl_modified)
+*   [Anhang 3: bootstrap4](#user-content-anhang-3-bootstrap4)
+
+> Falls beim Stornieren oder Löschen einer Bestellung im Adminbereich der Lagerbestand der Kombination automatisch angepasst werden soll, dann muss die Datei /inc/xtc_restock_order.inc.php wie nachstehend beschrieben angepasst werden.
+
+*   [Anhang 4: Kombinationsbestand automatisch anpassen](#user-content-anhang-4-kombinationsbestand-automatisch-anpassen)
+
+### 2.3 Installation
+
+Beachte: Erstellen Sie vor der Installation dieses Moduls ein Backup der Datenbank.
+
+1.  Melden Sie sich im MMLC an und suchen Sie im Reiter „Alle“ nach dem Modul **Attribut Kombinationen Verwaltung** (zu finden unter Sonstige Module).
+
+2.  Klicken Sie auf „Download & Install“.
+    _Sie sollten sich jetzt wieder aus dem MMLC ausloggen._
+
+3.  Melden Sie sich im Adminbereich an.
+
+4.  Gehen Sie im Menü zu **Module > System Module**.
+
+5.  Wählen Sie dort das Modul **Attribut Kombinationen Verwaltung** aus und klicken auf **Installieren**.
+
+6.  Klicken Sie auf **Bearbeiten** und konfigurieren Sie das Modul den Bedürfnissen entsprechend.
+
+Hinweis: Mit dem Systemmodul werden **Klassenerweiterungen Module** für „categories, main, order und shopping_card“ mitinstalliert und aktiviert.
+
+### 2.4 Update
+
+**Wichtig: Nach einem Module-Update - Update-Button drücken!**
+
+1.  Melden Sie sich im Adminbereich an.
+
+2.  Gehen Sie im Menü zu **Module > System Module**.
+
+3.  Wählen Sie dort das Modul **Attribut Kombinationen Verwaltung** aus und klicken auf **Update**.
+
+### 2.5 Deinstallation
+
+1.  Melden Sie sich im Adminbereich an.
+
+2.  Gehen Sie im Menü zu **Module > System Module**.
+
+3.  Wählen Sie dort das Modul **Attribut Kombinationen Verwaltung** aus und klicken auf **Deinstallieren**.
+
+4.  Melden Sie sich im MMLC an und suchen Sie im Reiter „Installiert“ nach dem Modul **Attribut Kombinationen Verwaltung**.
+
+5.  Klicken Sie auf „Deinstallieren“.
+
+Bei der Deinstallation werden die neu angelegten Tabellen und Spalten in der Datenbank entfernt.
+
+<br />
+
+[↑ zurück zum Inhaltsverzeichnis](#user-content-inhaltsverzeichnis)
+
+<br />
+
+<h2 id="user-content-3-artikelmerkmale-und-attribute">3. Artikelmerkmale und Attribute</h2>
+
+### 3.1 Artikelmerkmale
+
+Wie der Name vermuten lässt, baut die Attribut Kombinationen Verwaltung auf die Attribute des Shops auf.
+
+Aus diesem Grund müssen Artikelmerkmale und Optionswerte erstellt werden, rufen Sie dazu **Katalog > Artikelmerkmale** auf.
+
+<img alt="screenshot" style="margin: 0 20px;" width="522" height="159" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_002.png"/>
+
+Sie sollten hier eine Sortierung vergeben.
+
+Diese Reihenfolge ist später entscheidend für die Erstellung der Kombinationen.
+
+### 3.2 Attribute
+
+Bevor Kombinationen erstellt werden können müssen den Artikeln Attribute zugeordnet werden.
+
+Das können Sie entweder über die Menüpunkte **Katalog > Attribut Verwaltung,
+Katalog > Kategorien/Artikel** oder direkt beim Artikel.
+
+<img alt="screenshot" style="margin: 0 20px;" width="586" height="187" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_003.png"/>
+
+Wählen Sie Attribute und vergeben eine Reihenfolge.
+
+<img alt="screenshot" style="margin: 0 20px;" width="605" height="246" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_004.png"/>
+
+Hinweis: Alle Eingabefelder können genutzt werden, die Spalte „Lager“ wird von der Kombinationen Verwaltung deaktiviert.
+
+<br />
+
+[↑ zurück zum Inhaltsverzeichnis](#user-content-inhaltsverzeichnis)
+
+<br />
+
+<h2 id="user-content-4-kombinationen">4. Kombinationen</h2>
+
+<h3 id="user-content-41-neue-kombinationen-anlegen">4.1 Neue Kombinationen anlegen</h3>
+
+Kombinationen können auf mehreren Wegen erstellt werden.
+
+> Voraussetzung ist immer, dass **dem Artikel *mindestens zwei Attribute* zugeordnet** wurden.
+
+**Katalog > Artikelmerkmale** – Artikel auswählen
+
+<img alt="screenshot" style="margin: 0 20px;" width="605" height="170" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_005.png"/>
+
+**Katalog > Artikelmerkmale** – ausgewählten Artikel **> Bearbeiten**
+
+<img alt="screenshot" style="margin: 0 20px;" width="605" height="212" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_006.png"/>
+
+Menüpunkt **Katalog > Attribut Kombinationen**
+
+<img alt="screenshot" style="margin: 0 20px;" width="453" height="139" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_007.png"/>
+
+<h3 id="user-content-42-einzelne-kombinationen-anlegen">4.2 Einzelne Kombinationen anlegen</h3>
+
+<img alt="screenshot" style="margin: 0 20px;" width="508" height="174" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_008.png"/>
+
+<img alt="screenshot" style="margin: 0 20px;" width="508" height="323" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_009.png"/>
+
+1.  Kombinationen im Dropdown wählen und hinzufügen
+
+2.  Aktualisieren
+
+Nach dem Aktualisieren ändert sich die Anzeige und es geht weiter bei 4.4.
+
+<h3 id="user-content-43-alle-kombinationen-anlegen">4.3 Alle Kombinationen anlegen</h3>
+
+<img alt="screenshot" style="margin: 0 20px;" width="516" height="168" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_010.png"/>
+
+<img alt="screenshot" style="margin: 0 20px;" width="521" height="609" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_011.png"/>
+
+<br />
+
+[↑ zurück zum Inhaltsverzeichnis](#user-content-inhaltsverzeichnis)
+
+<br />
+
+<h3 id="user-content-44-kombinationsdaten-erfassen">4.4 Kombinationsdaten erfassen</h3>
+
+<img alt="screenshot" style="margin: 0 20px;" width="608" height="571" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_012.png"/>
+
+Die Ansicht der Attribut Kombinationen Verwaltung gliedert sich in 3 Bereiche
+
+*   Datenausgabe / Dateneingabe
+*   Eingabehilfen
+*   Bilder (alle Artikelbilder stehen hier zur Verfügung)
+
+Hinweis: Die Eingabefelder für Artikelnummer und EAN werden nur angezeigt, wenn im Systemmodul die entsprechende Einstellung gemacht wurde.
+
+<h4 id="user-content-441-daten-eingeben">4.4.1 Daten eingeben</h4>
+
+Mit Unterstützung der Eingabehilfen können Datenfelder sehr schnell befüllt werden. Dazu links das Kontrollkästchen der betreffenden Kombination markieren, Vorgabewert eintragen und mit Klick das Feld vorbelegen.
+
+<h4 id="user-content-442-bilder-verknüpfen">4.4.2 Bilder verknüpfen</h4>
+
+<img alt="screenshot" style="margin: 0 20px;" width="605" height="170" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_013.png"/>
+
+<img alt="screenshot" style="margin: 0 20px;" width="605" height="162" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_014.png"/>
+
+<img alt="screenshot" style="margin: 0 20px;" width="605" height="142" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_015.png"/>
+
+<img alt="screenshot" style="margin: 0 20px;" width="605" height="157" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_016.png"/>
+
+<br />
+
+[↑ zurück zum Inhaltsverzeichnis](#user-content-inhaltsverzeichnis)
+
+<br />
+
+<h3 id="user-content-45-kombinationen-editieren">4.5 Kombinationen editieren</h3>
+
+Die Verwaltung kann wieder auf mehreren Wegen aufgerufen werden, hinzugekommen sind die kleinen Icons in der Kategorieübersicht.
+
+<img alt="screenshot" style="margin: 0 20px;" width="605" height="182" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_017.png"/>
+
+<img alt="screenshot" style="margin: 0 20px;" width="598" height="129" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_018.png"/>
+
+<h3 id="user-content-46-kombinationen-löschen">4.6 Kombinationen löschen</h3>
+
+<img alt="screenshot" style="margin: 0 20px;" class="left" width="226" height="288" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_019.png"/>
+
+1.  alle Kombinationen löschen
+
+2.  Speichern oder Aktualisieren.
+
+Einzelne Kombinationen werden mittels der Eingabehilfe gelöscht.
+
+> Hinweis: Gespeichert kann nur werden, wenn mindestens eine Kombination aktiv ist.
+
+<h3 id="user-content-47-neue-attribute-zu-kombinationen-hinzufügen">4.7 Neue Attribute zu Kombinationen hinzufügen</h3>
+
+<img alt="screenshot" style="margin: 0 20px;" width="605" height="207" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_020.png"/>
+
+<img alt="screenshot" style="margin: 0 20px;" width="605" height="642" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_021.png"/>
+
+<br />
+
+[↑ zurück zum Inhaltsverzeichnis](#user-content-inhaltsverzeichnis)
+
+<br />
+
+<h2 id="user-content-5-optionen-des-systemmoduls--auswirkung-im-shop">5. Optionen des Systemmoduls ↔ Auswirkung im Shop</h2>
+
+Hier am Beispiel des Templates „tpl_modified_responsive“
+
+<img alt="screenshot" style="margin: 0 20px;" width="605" height="266" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_022.png"/>
+
+<img alt="screenshot" style="margin: 0 20px;" width="605" height="263" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_023.png"/>
+
+<img alt="screenshot" style="margin: 0 20px;" width="605" height="240" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_024.png"/>
+
+<img alt="screenshot" style="margin: 0 20px;" width="605" height="349" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_025.png"/>
+
+<img alt="screenshot" style="margin: 0 20px;" width="605" height="244" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_026.png"/>
+
+<img alt="screenshot" style="margin: 0 20px;" width="605" height="139" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_027.png"/>
+
+<img alt="screenshot" style="margin: 0 20px;" width="605" height="255" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_028.png"/>
+
+<br />
+
+[↑ zurück zum Inhaltsverzeichnis](#user-content-inhaltsverzeichnis)
+
+<br />
+
+<h2 id="user-content-anhang-templateänderungen">Anhang Templateänderungen</h2>
+
+<h3 id="user-content-anhang-1-tpl_modified_responsive">Anhang 1: TPL_MODIFIED_RESPONSIVE</h3>
+
+**# /javascript/extra/sumoselect.js.php**
+
+*Finde:*
+
+```javascript
+$('select').SumoSelect();
+```
+
+*Ersetze mit:*
+
+```javascript
+/* BOF Module "Attribute Kombination Manager" made by Karl */
+/* Original   $('select').SumoSelect(); */
+  $('select').not('.combi_id').SumoSelect();
+/* EOF Module "Attribute Kombination Manager" made by Karl */
+```
+
+**# /javascript/general_bottom.js.php**
+
+*Finde:*
+
+```php
+$script_min = DIR_TMPL_JS.'tpl_plugins.min.js';
+```
+
+*Füge davor ein:*
+
+```php
+/* BOF Module "Attribute Kombination Manager" made by Karl */
+if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'){
+  $script_array[] = DIR_TMPL_JS .'dependent-dropdown.min.js';
+  if ($_SESSION["language_code"]=='de') $script_array[] = DIR_TMPL_JS .'depdrop_locale_de.js';
+}
+/* EOF Module "Attribute Kombination Manager" made by Karl */
+```
+
+**# /javascript/extra/default.js.php**
+
+*Finde:*
+
+```javascript
+<script>
+```
+
+*Füge dahinter ein:*
+
+```javascript
+/* BOF Module "Attribute Kombination Manager" made by Karl */
+<?php if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'): ?>
+$(document).ready(function(){
+  if (typeof jqueryReady !== 'undefined' && $.isFunction(jqueryReady)) {jqueryReady();}
+  /* alle Dropdowns müssen ausgewählt sein */
+  $("#cart_quantity").submit(function(event) {
+    var failed = false;
+    $(".combi_id option:selected").each(function(){
+      if (!$(this).val()){
+        failed = true;
+      }
+    });
+    if (failed == true){
+      if ($('.combi_stock').length && $('.combi_stock').text() == '0'){
+        alert("<?php echo COMBI_TEXT_CANT_BUY ?>");
+      } else {
+        alert("<?php echo COMBI_TEXT_SEL_ALL_OPTIONS ?>");
+      }
+      event.preventDefault();
+    }
+  });
+});
+<?php endif; ?>
+/* EOF Module "Attribute Kombination Manager" made by Karl */
+```
+
+**# /module/product_info/product_info_tabs_v1.html**<br />
+**# /module/product_info/product_info_v1.html**<br />
+**# /module/product_info/product_info_x_accordion_v1.html**
+
+*Finde:*
+
+```smarty
+   {if isset($MODULE_product_options) && $MODULE_product_options != ''}
+```
+
+*Ersetze mit:*
+
+```smarty
+  {* BOF Module "Attribute Kombination Manager" made by Karl *}
+  {if isset($MODULE_product_combi) && $MODULE_product_combi != ''}{$MODULE_product_combi}{/if}
+  {if isset($MODULE_product_options) && $MODULE_product_options != '' && $MODULE_product_combi == ''}
+  {*if isset($MODULE_product_options) && $MODULE_product_options != ''*}
+  {* EOF Module "Attribute Kombination Manager" made by Karl *}
+```
+
+<br />
+
+[↑ zurück zum Inhaltsverzeichnis](#user-content-inhaltsverzeichnis)
+
+<br />
+
+<h3 id="user-content-anhang-2-tpl_modified">Anhang 2: TPL_MODIFIED</h3>
+
+**# /javascript/general_bottom.js.php**
+
+*Finde:*
+
+```php
+$script_min = DIR_TMPL_JS.'tpl_plugins.min.js';
+```
+
+*Füge davor ein:*
+
+```php
+/* BOF Module "Attribute Kombination Manager" made by Karl */
+if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'){
+  $script_array[] = DIR_TMPL_JS .'dependent-dropdown.min.js';
+  if ($_SESSION["language_code"]=='de') $script_array[] = DIR_TMPL_JS .'depdrop_locale_de.js';
+}
+/* EOF Module "Attribute Kombination Manager" made by Karl */
+```
+
+**# /javascript/extra/default.js.php**
+
+*Finde:*
+
+```javascript
+<script>
+```
+
+*Füge dahinter ein:*
+
+```javascript
+/* BOF Module "Attribute Kombination Manager" made by Karl */
+<?php if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'): ?>
+$(document).ready(function(){
+  if (typeof jqueryReady !== 'undefined' && $.isFunction(jqueryReady)) {jqueryReady();}
+  /* alle Dropdowns müssen ausgewählt sein */
+  $("#cart_quantity").submit(function(event) {
+    var failed = false;
+    $(".combi_id option:selected").each(function(){
+      if (!$(this).val()){
+        failed = true;
+      }
+    });
+    if (failed == true){
+      if ($('.combi_stock').length && $('.combi_stock').text() == '0'){
+        alert("<?php echo COMBI_TEXT_CANT_BUY ?>");
+      } else {
+        alert("<?php echo COMBI_TEXT_SEL_ALL_OPTIONS ?>");
+      }
+      event.preventDefault();
+    }
+  });
+});
+<?php endif; ?>
+/* EOF Module "Attribute Kombination Manager" made by Karl */
+```
+
+**# /module/product_info/product_info_tabs_v1.html**<br />
+**# /module/product_info/product_info_v1.html**<br />
+**# /module/product_info/product_info_x_accordion_v1.html**
+
+*Finde:*
+
+```smarty
+   {if isset($MODULE_product_options) && $MODULE_product_options != ''}
+```
+
+*Ersetze mit:*
+
+```smarty
+   {* BOF Module "Attribute Kombination Manager" made by Karl *}
+  {if isset($MODULE_product_combi) && $MODULE_product_combi != ''}{$MODULE_product_combi}{/if}
+  {if isset($MODULE_product_options) && $MODULE_product_options != '' && $MODULE_product_combi == ''}
+  {*if isset($MODULE_product_options) && $MODULE_product_options != ''*}
+  {* EOF Module "Attribute Kombination Manager" made by Karl *}
+```
+
+<br />
+
+[↑ zurück zum Inhaltsverzeichnis](#user-content-inhaltsverzeichnis)
+
+<br />
+
+<h3 id="user-content-anhang-3-bootstrap4">Anhang 3: BOOTSTRAP4</h3>
+
+**# /javascript/general_bottom.js.php**
+
+*Finde:*
+
+```php
+$script_min = DIR_TMPL_JS.'tpl_plugins.min.js';
+```
+
+*Füge davor ein:*
+
+```php
+/* BOF Module "Attribute Kombination Manager" made by Karl */
+if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'){
+  $script_array[] = DIR_TMPL_JS .'dependent-dropdown.min.js';
+  if ($_SESSION["language_code"]=='de') $script_array[] = DIR_TMPL_JS .'depdrop_locale_de.js';
+}
+/* EOF Module "Attribute Kombination Manager" made by Karl */
+```
+
+**# /javascript/extra/default.js.php**
+
+*Finde:*
+
+```javascript
+<script>
+```
+
+*Füge dahinter ein:*
+
+```javascript
+/* BOF Module "Attribute Kombination Manager" made by Karl */
+<?php if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'): ?>
+$(document).ready(function(){
+  if (typeof jqueryReady !== 'undefined' && $.isFunction(jqueryReady)) {jqueryReady();}
+  /* alle Dropdowns müssen ausgewählt sein */
+  $("#cart_quantity").submit(function(event) {
+    var failed = false;
+    $(".combi_id option:selected").each(function(){
+      if (!$(this).val()){
+        failed = true;
+      }
+    });
+    if (failed == true){
+      if ($('.combi_stock').length && $('.combi_stock').text() == '0'){
+        alert("<?php echo COMBI_TEXT_CANT_BUY ?>");
+      } else {
+        alert("<?php echo COMBI_TEXT_SEL_ALL_OPTIONS ?>");
+      }
+      event.preventDefault();
+    }
+  });
+});
+<?php endif; ?>
+/* EOF Module "Attribute Kombination Manager" made by Karl */
+```
+
+**# /module/product_info/product_info_tabs_v1.html**<br />
+**# /module/product_info/product_info_tabs_v1_3_spaltig.html**<br />
+**# /module/product_info/product_info_v1.html**<br />
+**# /module/product_info/product_info_x_accordion_v1.html**
+
+*Finde:*
+
+```smarty
+{if isset($MODULE_product_options) && $MODULE_product_options != ''}
+```
+
+*Ersetze mit:*
+
+```smarty
+{* BOF Module "Attribute Kombination Manager" made by Karl *}
+{if isset($MODULE_product_combi) && $MODULE_product_combi != ''}
+  <div class="card bg-custom mb-2 p-2">
+    {$MODULE_product_combi}
+  </div>
+{/if}
+{if isset($MODULE_product_options) && $MODULE_product_options != '' && $MODULE_product_combi == ''}
+{*if isset($MODULE_product_options) && $MODULE_product_options != ''*}
+{* EOF Module "Attribute Kombination Manager" made by Karl *}
+```
+
+**Achtung:**
+Bei eingeschaltetem Easyzoom muss im Systemmodul der Wert für "Wird ein Bootstrap-Template mit eingeschaltetem Bilder-Zoomeffekt genutzt?" auf "Ja" gestellt werden!
+
+<br />
+
+[↑ zurück zum Inhaltsverzeichnis](#user-content-inhaltsverzeichnis)
+
+<br />
+
+<h2 id="user-content-anhang-löschen--stornieren-einer-bestellung">Anhang Löschen / Stornieren einer Bestellung</h2>
+
+<h3 id="user-content-anhang-4-kombinationsbestand-automatisch-anpassen">Anhang 4: Kombinationsbestand automatisch anpassen</h3>
+
+Falls beim Stornieren oder Löschen einer Bestellung im Adminbereich der Lagerbestand der Kombination automatisch angepasst werden soll, muss die Datei **/inc/xtc_restock_order.inc.php** wie nachstehend beschrieben angepasst werden.
+
+**# /inc/xtc_restock_order.inc.php**
+
+*Finde:*
+
+```php
+          $products_update = false;
+        }
+      }
+    }
+```
+
+*Ersetzen durch:*
+
+```php
+           $products_update = false;
+        }
+/* BOF - Module "Attribute Kombination Manager" made by Karl */
+/* Original
+      }
+    }
+*/
+/* wird die Bestellung im Adminbereich gelöscht, so wird der Kombinationsbestand wieder hochgesetzt */
+        $combi_attr_id[] = $orders_attributes["orders_products_options_values_id"];
+      }
+    }
+    if (count($combi_attr_id) >= 2) {
+      /* $combi_attr_id zusammenbauen damit wir mit der attribute_id der Kombi vergleichen können */
+      $tmpAttrid = '';
+      $plh = '_';
+      $tmpAttrid = implode($plh, $combi_attr_id);
+
+      $combi_attr_id = array();
+      $new_stock = array();
+
+      $query = "SELECT combi_value_id, stock
+            FROM ".TABLE_PRODUCTS_OPTIONS_COMBI_VALUES_2."
+            WHERE products_id = " . $order['products_id'] . "
+            AND
+              attribute_id = '".$tmpAttrid."'
+            LIMIT 1";
+
+      $result = xtc_db_query($query);
+      if(xtc_db_num_rows($result) > 0) {
+        $tmpdata =xtc_db_fetch_array($result);
+
+        $new_stock["stock"] = $tmpdata["stock"] + $order['products_quantity'];
+
+        /* update stock */
+        xtc_db_perform(TABLE_PRODUCTS_OPTIONS_COMBI_VALUES_2, $new_stock, 'update', 'combi_value_id='.$tmpdata["combi_value_id"]);
+      }
+    }
+/* EOF - Module "Attribute Kombination Manager" made by Karl */
+```
+
+<br />
+
+[↑ zurück zum Inhaltsverzeichnis](#user-content-inhaltsverzeichnis)
+
+<br />
+
+<h2 id="user-content-anhang-hilfe--fehlersuche">Anhang Hilfe / Fehlersuche</h2>
+## Anhang Hilfe / Fehlersuche
+
+Sollte etwas nicht so funktionieren wie gewohnt, dann sollten Sie zuerst diese Dinge prüfen.
+
+1\. **Module > System Module** aufrufen, dort das Modul **Attribut Kombinationen Verwaltung** auswählen und prüfen, ob der Status aktiv (grünes Häkchen) ist.
+
+2\. grünen Button **Update** klicken – hier werden einige Variablen geprüft.
+
+3\. **Module > Klassenerweiterungen Module** aufrufen und Sortierreihenfolge und Status folgender Module prüfen:
+
+*  Tab categories – **combiRemoveProduct**
+*  Tab main – **combiDataToAttr**
+*  Tab order - **combiModelToProduct**
+*  Tab shopping_card – **combiDataToProduct**
+
+Sollte ein anderes Modul dieselbe Sortierreihenfolge haben, dann auf **Bearbeiten** klicken und die Zahl ändern.
+
+4\. Entwicklertools des Browsers aufrufen (meistens Taste F12) und prüfen, ob die Konsole einen Fehler anzeigt.
+
+<img alt="screenshot" style="margin: 0 20px;" width="606" height="93" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_029.png"/>
+
+Das könnte so oder so ähnlich aussehen.
+Geprüft werden sollten mindestens die Ansichten Artikel bearbeiten, Attribute bearbeiten, Kombinationen bearbeiten, Kategorieübersicht.
+
+5\. In der Ansicht **Artikel bearbeiten** muss der Lagerbestand der Kombinationsbestand stehen.
+
+<img alt="screenshot" style="margin: 0 20px;" width="605" height="96" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_030.png"/>
+
+Klickt man auf **Kombinationen editieren** sollte der zusammengezählte Bestand der einzelnen Kombinationen diesen Wert ergeben.
+
+<img alt="screenshot" style="margin: 0 20px;" width="605" height="174" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_031.png"/>
+
+Der Artikelbestand wird automatisch aktualisiert, wenn bei den Kombinationen Änderungen gespeichert werden.
+
+<br /><br /><br />
+
+### Sollten Sie mit einem Problem nicht weiter kommen, finden sich bestimmt Helfer im Modified-Forum
+
+### [Thema: MODUL: Attribute Kombinationen Manager für Shopversion 2.x](https://www.modified-shop.org/forum/index.php?topic=37318.0)
+
+<br />
+
+[↑ zurück zum Inhaltsverzeichnis](#user-content-inhaltsverzeichnis)
+
+<br />
