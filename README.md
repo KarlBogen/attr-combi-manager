@@ -2,8 +2,7 @@
 
 **Ein Systemmodul für die *mod*ified eCommerce Shopsoftware**
 
-Mit der **mod**ified eCommerce Shopsoftware kann man einzelnen Artikeln bestimmte Attribute zuweisen.
-
+Mit der **mod**ified eCommerce Shopsoftware kann man einzelnen Artikeln bestimmte Attribute zuweisen.<br />
 Allerdings ist es nicht möglich diese Attribute zu verknüpfen und so Kombinationen bzw. Variationen zu bilden.
 
 Hier greift die **Attribut Kombinationen Verwaltung**, mit ihr ist es möglich Attributkombinationen zu erstellen.

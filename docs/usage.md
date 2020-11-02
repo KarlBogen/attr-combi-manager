@@ -1,4 +1,4 @@
-<img alt="logo" style="margin: 0 20px;" width="193" height="193" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_001.png"/>
+<img alt="logo" style="margin: 20px 0;" width="193" height="193" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_001.png"/>
 
 **Handbuch für**
 
@@ -12,13 +12,13 @@
 
 Erstellt von KarlK
 
-Stand: Oktober 2020
+Stand: November 2020
 
 <br />
 <a href="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/handbuch.pdf">Das Handbuch im PDF-Format kann hier heruntergeladen werden.</a>
 <br /><br />
 
-<h2 id="user-content-inhaltsverzeichnis">Inhaltsverzeichnis</h2>
+<h2 id="user-content-inhaltsverzeichnis" style="padding-top: 60px; margin-top: -60px;">Inhaltsverzeichnis</h2>
 
 [1\. Einleitung](#user-content-1-einleitung)
 
@@ -48,28 +48,27 @@ Stand: Oktober 2020
 
 [5\. Optionen des Systemmoduls ↔ Auswirkung im Shop](#user-content-5-optionen-des-systemmoduls--auswirkung-im-shop)
 
-[Anhang Templateänderungen](#user-content-anhang-templateänderungen)
+[Anhang Templateänderungen](#user-content-anhang-templateaenderungen)
 
-[Anhang 1: TPL_MODIFIED_RESPONSIVE](#user-content-anhang-1-tpl_modified_responsive)
+[Anhang 1: TPL_MODIFIED_RESPONSIVE](#user-content-anhang-1-tpl-modified-responsive)
 
-[Anhang 2: TPL_MODIFIED](#user-content-anhang-2-tpl_modified)
+[Anhang 2: TPL_MODIFIED](#user-content-anhang-2-tpl-modified)
 
-[Anhang 3: BOOTSTRAP4](#user-content-anhang-3-bootstrap4)
+[Anhang 3: BOOTSTRAP4](#user-content-anhang-3-bootstrap-4)
 
-[Anhang Löschen / Stornieren einer Bestellung](#user-content-anhang-löschen--stornieren-einer-bestellung)
+[Anhang Löschen / Stornieren einer Bestellung](#user-content-anhang-loeschen--stornieren-einer-bestellung)
 
-[Anhang 4: Kombinationsbestand automatisch anpassen](#user-content-anhang-4-kombinationsbestand-automatisch-anpassen)
+[Anhang 4: Kombinationsbestand automatisch anpassen](#user-content-anhang-4-kombinationsbestand)
 
 [Anhang Hilfe / Fehlersuche](#user-content-anhang-hilfe--fehlersuche)
 
 <br /><br />
 
-<h2 id="user-content-1-einleitung">1. Einleitung</h2>
+<h2 id="user-content-1-einleitung" style="padding-top: 60px; margin-top: -60px;">1. Einleitung</h2>
 
 ### 1.1 Kurzbeschreibung
 
-Mit der **mod**ified eCommerce Shopsoftware kann man einzelnen Artikeln bestimmte Attribute zuweisen.
-
+Mit der **mod**ified eCommerce Shopsoftware kann man einzelnen Artikeln bestimmte Attribute zuweisen.<br />
 Allerdings ist es nicht möglich diese Attribute zu verknüpfen und so Kombinationen bzw. Variationen zu bilden.
 
 Hier greift die **Attribut Kombinationen Verwaltung**, mit ihr ist es möglich Attributkombinationen zu erstellen.
@@ -80,7 +79,7 @@ Es kann zum Beispiel ein T-Shirt, Größe S, Farbe rot, Form Rundhals `nicht aus
 
 So ist es auch machbar, dass zum Beispiel `2 Stück` T-Shirts, Größe S, Farbe rot, Form Rundhals `nicht bestellt` werden können, weil sich `nur 1 Stück im Lager` befindet.
 
-> Hinweis: Für dieses Modul sind geringe Anpassungen im Template nötig.
+> Hinweis: Für dieses Modul sind geringe Anpassungen im Template nötig. Diese **Anpassungen können manuell oder per Knopfdruck** gemacht werden.
 
 <br /><br />
 
@@ -97,7 +96,7 @@ Diese Anleitung, Bilder und Beschreibungen beziehen sich auf diese Version.
 <br />
 
 
-<h2 id="user-content-2-installation--update--deinstallation">2. Installation / Update / Deinstallation</h2>
+<h2 id="user-content-2-installation--update--deinstallation" style="padding-top: 60px; margin-top: -60px;">2. Installation / Update / Deinstallation</h2>
 
 ### 2.1 Voraussetzungen
 
@@ -106,19 +105,7 @@ Diese Anleitung, Bilder und Beschreibungen beziehen sich auf diese Version.
 
 Hinweise zur Installation sind bei [https://module-loader.de](https://module-loader.de/) zu finden.
 
-### 2.2 Vorbereitung Template
-
-Abhängig vom genutzten Template sind Änderungen in den Dateien durchzuführen:
-
-*   [Anhang 1: tpl_modified_responsive](#user-content-anhang-1-tpl_modified_responsive)
-*   [Anhang 2: tpl_modified](#user-content-anhang-2-tpl_modified)
-*   [Anhang 3: bootstrap4](#user-content-anhang-3-bootstrap4)
-
-> Falls beim Stornieren oder Löschen einer Bestellung im Adminbereich der Lagerbestand der Kombination automatisch angepasst werden soll, dann muss die Datei /inc/xtc_restock_order.inc.php wie nachstehend beschrieben angepasst werden.
-
-*   [Anhang 4: Kombinationsbestand automatisch anpassen](#user-content-anhang-4-kombinationsbestand-automatisch-anpassen)
-
-### 2.3 Installation
+### 2.2 Installation
 
 Beachte: Erstellen Sie vor der Installation dieses Moduls ein Backup der Datenbank.
 
@@ -135,9 +122,14 @@ Beachte: Erstellen Sie vor der Installation dieses Moduls ein Backup der Datenba
 
 6.  Klicken Sie auf **Bearbeiten** und konfigurieren Sie das Modul den Bedürfnissen entsprechend.
 
+7. **Anpassung Shop- und Templatedateien**<br />
+*Die Anpassung der Dateien kann entweder per Knopfdruck oder manuell erfolgen.*<br /><br />
+`Automatisiert:` Klicken Sie auf den grünen Button **Template und Shopdatei anpassen**.<br /><br />
+`Manuell:` Lesen Sie dazu bitte den Abschnitt weiter unten.
+
 > Hinweis: Mit dem Systemmodul werden **Klassenerweiterungen Module** für „categories, main, order und shopping_card“ mitinstalliert und aktiviert.
 
-### 2.4 Update
+### 2.3 Update
 
 **Wichtig: Nach einem Module-Update - Update-Button drücken!**
 
@@ -147,7 +139,7 @@ Beachte: Erstellen Sie vor der Installation dieses Moduls ein Backup der Datenba
 
 3.  Wählen Sie dort das Modul **Attribut Kombinationen Verwaltung** aus und klicken auf **Update**.
 
-### 2.5 Deinstallation
+### 2.4 Deinstallation
 
 1.  Melden Sie sich im Adminbereich an.
 
@@ -159,7 +151,20 @@ Beachte: Erstellen Sie vor der Installation dieses Moduls ein Backup der Datenba
 
 5.  Klicken Sie auf „Deinstallieren“.
 
-Bei der Deinstallation werden die neu angelegten Tabellen und Spalten in der Datenbank entfernt.
+Bei der Deinstallation werden die neu angelegten Tabellen und Spalten in der Datenbank entfernt.<br />
+Anpassungen am momentan aktiven Shoptemplate werden entfernt.
+
+### 2.5  Anpassung Shop- und Templatedateien
+
+Abhängig vom genutzten Template sind Änderungen in den Dateien durchzuführen:
+
+*   [Anhang 1: tpl_modified_responsive](#user-content-anhang-1-tpl-modified-responsive)
+*   [Anhang 2: tpl_modified](#user-content-anhang-2-tpl-modified)
+*   [Anhang 3: bootstrap4](#user-content-anhang-3-bootstrap-4)
+
+> Falls beim Stornieren oder Löschen einer Bestellung im Adminbereich der Lagerbestand der Kombination automatisch angepasst werden soll, dann muss die Datei /inc/xtc_restock_order.inc.php wie nachstehend beschrieben angepasst werden.
+
+*   [Anhang 4: Kombinationsbestand automatisch anpassen](#user-content-anhang-4-kombinationsbestand)
 
 <br />
 
@@ -167,7 +172,7 @@ Bei der Deinstallation werden die neu angelegten Tabellen und Spalten in der Dat
 
 <br />
 
-<h2 id="user-content-3-artikelmerkmale-und-attribute">3. Artikelmerkmale und Attribute</h2>
+<h2 id="user-content-3-artikelmerkmale-und-attribute" style="padding-top: 60px; margin-top: -60px;">3. Artikelmerkmale und Attribute</h2>
 
 ### 3.1 Artikelmerkmale
 
@@ -175,7 +180,7 @@ Wie der Name vermuten lässt, baut die Attribut Kombinationen Verwaltung auf die
 
 Aus diesem Grund müssen Artikelmerkmale und Optionswerte erstellt werden, rufen Sie dazu **Katalog > Artikelmerkmale** auf.
 
-<img alt="screenshot" style="margin: 0 20px;" width="522" height="159" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_002.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="522" height="159" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_002.png"/>
 
 Sie sollten hier eine Sortierung vergeben.
 
@@ -188,11 +193,11 @@ Bevor Kombinationen erstellt werden können müssen den Artikeln Attribute zugeo
 Das können Sie entweder über die Menüpunkte **Katalog > Attribut Verwaltung,
 Katalog > Kategorien/Artikel** oder direkt beim Artikel.
 
-<img alt="screenshot" style="margin: 0 20px;" width="586" height="187" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_003.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="586" height="187" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_003.png"/>
 
 Wählen Sie Attribute und vergeben eine Reihenfolge.
 
-<img alt="screenshot" style="margin: 0 20px;" width="605" height="246" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_004.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="605" height="246" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_004.png"/>
 
 Hinweis: Alle Eingabefelder können genutzt werden, die Spalte „Lager“ wird von der Kombinationen Verwaltung deaktiviert.
 
@@ -202,9 +207,9 @@ Hinweis: Alle Eingabefelder können genutzt werden, die Spalte „Lager“ wird 
 
 <br />
 
-<h2 id="user-content-4-kombinationen">4. Kombinationen</h2>
+<h2 id="user-content-4-kombinationen" style="padding-top: 60px; margin-top: -60px;">4. Kombinationen</h2>
 
-<h3 id="user-content-41-neue-kombinationen-anlegen">4.1 Neue Kombinationen anlegen</h3>
+<h3 id="user-content-41-neue-kombinationen-anlegen" style="padding-top: 60px; margin-top: -60px;">4.1 Neue Kombinationen anlegen</h3>
 
 Kombinationen können auf mehreren Wegen erstellt werden.
 
@@ -212,21 +217,21 @@ Kombinationen können auf mehreren Wegen erstellt werden.
 
 **Katalog > Artikelmerkmale** – Artikel auswählen
 
-<img alt="screenshot" style="margin: 0 20px;" width="605" height="170" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_005.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="605" height="170" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_005.png"/>
 
 **Katalog > Artikelmerkmale** – ausgewählten Artikel **> Bearbeiten**
 
-<img alt="screenshot" style="margin: 0 20px;" width="605" height="212" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_006.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="605" height="212" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_006.png"/>
 
 Menüpunkt **Katalog > Attribut Kombinationen**
 
-<img alt="screenshot" style="margin: 0 20px;" width="453" height="139" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_007.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="453" height="139" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_007.png"/>
 
-<h3 id="user-content-42-einzelne-kombinationen-anlegen">4.2 Einzelne Kombinationen anlegen</h3>
+<h3 id="user-content-42-einzelne-kombinationen-anlegen" style="padding-top: 60px; margin-top: -60px;">4.2 Einzelne Kombinationen anlegen</h3>
 
-<img alt="screenshot" style="margin: 0 20px;" width="508" height="174" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_008.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="508" height="174" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_008.png"/>
 
-<img alt="screenshot" style="margin: 0 20px;" width="508" height="323" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_009.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="508" height="323" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_009.png"/>
 
 1.  Kombinationen im Dropdown wählen und hinzufügen
 
@@ -234,11 +239,11 @@ Menüpunkt **Katalog > Attribut Kombinationen**
 
 Nach dem Aktualisieren ändert sich die Anzeige und es geht weiter bei 4.4.
 
-<h3 id="user-content-43-alle-kombinationen-anlegen">4.3 Alle Kombinationen anlegen</h3>
+<h3 id="user-content-43-alle-kombinationen-anlegen" style="padding-top: 60px; margin-top: -60px;">4.3 Alle Kombinationen anlegen</h3>
 
-<img alt="screenshot" style="margin: 0 20px;" width="516" height="168" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_010.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="516" height="168" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_010.png"/>
 
-<img alt="screenshot" style="margin: 0 20px;" width="521" height="609" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_011.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="521" height="609" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_011.png"/>
 
 <br />
 
@@ -246,9 +251,9 @@ Nach dem Aktualisieren ändert sich die Anzeige und es geht weiter bei 4.4.
 
 <br />
 
-<h3 id="user-content-44-kombinationsdaten-erfassen">4.4 Kombinationsdaten erfassen</h3>
+<h3 id="user-content-44-kombinationsdaten-erfassen" style="padding-top: 60px; margin-top: -60px;">4.4 Kombinationsdaten erfassen</h3>
 
-<img alt="screenshot" style="margin: 0 20px;" width="608" height="571" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_012.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="608" height="571" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_012.png"/>
 
 Die Ansicht der Attribut Kombinationen Verwaltung gliedert sich in 3 Bereiche
 
@@ -258,19 +263,19 @@ Die Ansicht der Attribut Kombinationen Verwaltung gliedert sich in 3 Bereiche
 
 Hinweis: Die Eingabefelder für Artikelnummer und EAN werden nur angezeigt, wenn im Systemmodul die entsprechende Einstellung gemacht wurde.
 
-<h4 id="user-content-441-daten-eingeben">4.4.1 Daten eingeben</h4>
+<h4 id="user-content-441-daten-eingeben" style="padding-top: 60px; margin-top: -60px;">4.4.1 Daten eingeben</h4>
 
 Mit Unterstützung der Eingabehilfen können Datenfelder sehr schnell befüllt werden. Dazu links das Kontrollkästchen der betreffenden Kombination markieren, Vorgabewert eintragen und mit Klick das Feld vorbelegen.
 
-<h4 id="user-content-442-bilder-verknüpfen">4.4.2 Bilder verknüpfen</h4>
+<h4 id="user-content-442-bilder-verknüpfen" style="padding-top: 60px; margin-top: -60px;">4.4.2 Bilder verknüpfen</h4>
 
-<img alt="screenshot" style="margin: 0 20px;" width="605" height="170" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_013.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="605" height="170" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_013.png"/>
 
-<img alt="screenshot" style="margin: 0 20px;" width="605" height="162" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_014.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="605" height="162" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_014.png"/>
 
-<img alt="screenshot" style="margin: 0 20px;" width="605" height="142" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_015.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="605" height="142" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_015.png"/>
 
-<img alt="screenshot" style="margin: 0 20px;" width="605" height="157" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_016.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="605" height="157" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_016.png"/>
 
 <br />
 
@@ -278,17 +283,17 @@ Mit Unterstützung der Eingabehilfen können Datenfelder sehr schnell befüllt w
 
 <br />
 
-<h3 id="user-content-45-kombinationen-editieren">4.5 Kombinationen editieren</h3>
+<h3 id="user-content-45-kombinationen-editieren" style="padding-top: 60px; margin-top: -60px;">4.5 Kombinationen editieren</h3>
 
 Die Verwaltung kann wieder auf mehreren Wegen aufgerufen werden, hinzugekommen sind die kleinen Icons in der Kategorieübersicht.
 
-<img alt="screenshot" style="margin: 0 20px;" width="605" height="182" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_017.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="605" height="182" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_017.png"/>
 
-<img alt="screenshot" style="margin: 0 20px;" width="598" height="129" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_018.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="598" height="129" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_018.png"/>
 
-<h3 id="user-content-46-kombinationen-löschen">4.6 Kombinationen löschen</h3>
+<h3 id="user-content-46-kombinationen-löschen" style="padding-top: 60px; margin-top: -60px;">4.6 Kombinationen löschen</h3>
 
-<img alt="screenshot" style="margin: 0 20px;" class="left" width="226" height="288" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_019.png"/>
+<img alt="screenshot" style="margin: 20px 0;" class="left" width="226" height="288" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_019.png"/>
 
 1.  alle Kombinationen löschen
 
@@ -298,11 +303,11 @@ Einzelne Kombinationen werden mittels der Eingabehilfe gelöscht.
 
 > Hinweis: Gespeichert kann nur werden, wenn mindestens eine Kombination aktiv ist.
 
-<h3 id="user-content-47-neue-attribute-zu-kombinationen-hinzufügen">4.7 Neue Attribute zu Kombinationen hinzufügen</h3>
+<h3 id="user-content-47-neue-attribute-zu-kombinationen-hinzufügen" style="padding-top: 60px; margin-top: -60px;">4.7 Neue Attribute zu Kombinationen hinzufügen</h3>
 
-<img alt="screenshot" style="margin: 0 20px;" width="605" height="207" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_020.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="605" height="207" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_020.png"/>
 
-<img alt="screenshot" style="margin: 0 20px;" width="605" height="642" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_021.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="605" height="642" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_021.png"/>
 
 <br />
 
@@ -310,23 +315,23 @@ Einzelne Kombinationen werden mittels der Eingabehilfe gelöscht.
 
 <br />
 
-<h2 id="user-content-5-optionen-des-systemmoduls--auswirkung-im-shop">5. Optionen des Systemmoduls ↔ Auswirkung im Shop</h2>
+<h2 id="user-content-5-optionen-des-systemmoduls--auswirkung-im-shop" style="padding-top: 60px; margin-top: -60px;">5. Optionen des Systemmoduls ↔ Auswirkung im Shop</h2>
 
 Hier am Beispiel des Templates „tpl_modified_responsive“
 
-<img alt="screenshot" style="margin: 0 20px;" width="605" height="266" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_022.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="605" height="266" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_022.png"/>
 
-<img alt="screenshot" style="margin: 0 20px;" width="605" height="263" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_023.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="605" height="263" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_023.png"/>
 
-<img alt="screenshot" style="margin: 0 20px;" width="605" height="240" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_024.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="605" height="240" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_024.png"/>
 
-<img alt="screenshot" style="margin: 0 20px;" width="605" height="349" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_025.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="605" height="349" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_025.png"/>
 
-<img alt="screenshot" style="margin: 0 20px;" width="605" height="244" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_026.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="605" height="244" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_026.png"/>
 
-<img alt="screenshot" style="margin: 0 20px;" width="605" height="139" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_027.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="605" height="139" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_027.png"/>
 
-<img alt="screenshot" style="margin: 0 20px;" width="605" height="255" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_028.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="605" height="255" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_028.png"/>
 
 <br />
 
@@ -334,9 +339,9 @@ Hier am Beispiel des Templates „tpl_modified_responsive“
 
 <br />
 
-<h2 id="user-content-anhang-templateänderungen">Anhang Templateänderungen</h2>
+<h2 id="user-content-anhang-templateaenderungen" style="padding-top: 60px; margin-top: -60px;">Anhang Templateänderungen</h2>
 
-<h3 id="user-content-anhang-1-tpl_modified_responsive">Anhang 1: TPL_MODIFIED_RESPONSIVE</h3>
+<h3 id="user-content-anhang-1-tpl-modified-responsive" style="padding-top: 60px; margin-top: -60px;">Anhang 1: TPL_MODIFIED_RESPONSIVE</h3>
 
 **# /javascript/extra/sumoselect.js.php**
 
@@ -437,7 +442,7 @@ $(document).ready(function(){
 
 <br />
 
-<h3 id="user-content-anhang-2-tpl_modified">Anhang 2: TPL_MODIFIED</h3>
+<h3 id="user-content-anhang-2-tpl-modified" style="padding-top: 60px; margin-top: -60px;">Anhang 2: TPL_MODIFIED</h3>
 
 **# /javascript/general_bottom.js.php**
 
@@ -521,7 +526,7 @@ $(document).ready(function(){
 
 <br />
 
-<h3 id="user-content-anhang-3-bootstrap4">Anhang 3: BOOTSTRAP4</h3>
+<h3 id="user-content-anhang-3-bootstrap-4" style="padding-top: 60px; margin-top: -60px;">Anhang 3: BOOTSTRAP4</h3>
 
 **# /javascript/general_bottom.js.php**
 
@@ -613,9 +618,9 @@ Bei eingeschaltetem Easyzoom muss im Systemmodul der Wert für "Wird ein Bootstr
 
 <br />
 
-<h2 id="user-content-anhang-löschen--stornieren-einer-bestellung">Anhang Löschen / Stornieren einer Bestellung</h2>
+<h2 id="user-content-anhang-loeschen--stornieren-einer-bestellung" style="padding-top: 60px; margin-top: -60px;">Anhang Löschen / Stornieren einer Bestellung</h2>
 
-<h3 id="user-content-anhang-4-kombinationsbestand-automatisch-anpassen">Anhang 4: Kombinationsbestand automatisch anpassen</h3>
+<h3 id="user-content-anhang-4-kombinationsbestand" style="padding-top: 60px; margin-top: -60px;">Anhang 4: Kombinationsbestand automatisch anpassen</h3>
 
 Falls beim Stornieren oder Löschen einer Bestellung im Adminbereich der Lagerbestand der Kombination automatisch angepasst werden soll, muss die Datei **/inc/xtc_restock_order.inc.php** wie nachstehend beschrieben angepasst werden.
 
@@ -679,8 +684,7 @@ Falls beim Stornieren oder Löschen einer Bestellung im Adminbereich der Lagerbe
 
 <br />
 
-<h2 id="user-content-anhang-hilfe--fehlersuche">Anhang Hilfe / Fehlersuche</h2>
-## Anhang Hilfe / Fehlersuche
+<h2 id="user-content-anhang-hilfe--fehlersuche" style="padding-top: 60px; margin-top: -60px;">Anhang Hilfe / Fehlersuche</h2>
 
 Sollte etwas nicht so funktionieren wie gewohnt, dann sollten Sie zuerst diese Dinge prüfen.
 
@@ -699,18 +703,18 @@ Sollte ein anderes Modul dieselbe Sortierreihenfolge haben, dann auf **Bearbeite
 
 4\. Entwicklertools des Browsers aufrufen (meistens Taste F12) und prüfen, ob die Konsole einen Fehler anzeigt.
 
-<img alt="screenshot" style="margin: 0 20px;" width="606" height="93" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_029.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="606" height="93" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_029.png"/>
 
 Das könnte so oder so ähnlich aussehen.
 Geprüft werden sollten mindestens die Ansichten Artikel bearbeiten, Attribute bearbeiten, Kombinationen bearbeiten, Kategorieübersicht.
 
 5\. In der Ansicht **Artikel bearbeiten** muss der Lagerbestand der Kombinationsbestand stehen.
 
-<img alt="screenshot" style="margin: 0 20px;" width="605" height="96" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_030.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="605" height="96" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_030.png"/>
 
 Klickt man auf **Kombinationen editieren** sollte der zusammengezählte Bestand der einzelnen Kombinationen diesen Wert ergeben.
 
-<img alt="screenshot" style="margin: 0 20px;" width="605" height="174" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_031.png"/>
+<img alt="screenshot" style="margin: 20px 0;" width="605" height="174" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_031.png"/>
 
 Der Artikelbestand wird automatisch aktualisiert, wenn bei den Kombinationen Änderungen gespeichert werden.
 
