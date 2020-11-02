@@ -1,4 +1,4 @@
-<h1 id="user-content-top" style="padding-top: 60px; margin-top: -60px;">Attribut Kombinationen Verwaltung</h1>
+<h1 id="user-content-attribut-kombinationen-verwaltung" style="padding-top: 60px; margin-top: -60px;">Attribut Kombinationen Verwaltung</h1>
 
 <br />
 <a href="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/handbuch.pdf">Das Handbuch im PDF-Format kann hier heruntergeladen werden.</a>
@@ -54,7 +54,7 @@ Bei der Deinstallation werden die neu angelegten Tabellen und Spalten in der Dat
 Anpassungen am momentan aktiven Shoptemplate werden entfernt.
 
 <br />
-[↑ zurück nach oben](#user-content-top)
+[↑ zurück nach oben](#user-content-attribut-kombinationen-verwaltung)
 <br />
 
 ### Anpassung Shop- und Templatedateien
@@ -70,7 +70,7 @@ Abhängig vom genutzten Template sind Änderungen in den Dateien durchzuführen:
 *   [Anhang 4: Kombinationsbestand automatisch anpassen](#user-content-anhang-4-kombinationsbestand-automatisch-anpassen)
 
 <br />
-[↑ zurück nach oben](#user-content-top)
+[↑ zurück nach oben](#user-content-attribut-kombinationen-verwaltung)
 <br />
 
 <h2 id="user-content-anhang-templateänderungen" style="padding-top: 60px; margin-top: -60px;">Anhang Templateänderungen</h2>
@@ -173,7 +173,7 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
 ```
 
 <br />
-[↑ zurück nach oben](#user-content-top)
+[↑ zurück nach oben](#user-content-attribut-kombinationen-verwaltung)
 <br />
 
 <h3 id="user-content-anhang-2-tpl_modified" style="padding-top: 60px; margin-top: -60px;">Anhang 2: TPL_MODIFIED</h3>
@@ -257,7 +257,7 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
 ```
 
 <br />
-[↑ zurück nach oben](#user-content-top)
+[↑ zurück nach oben](#user-content-attribut-kombinationen-verwaltung)
 <br />
 
 <h3 id="user-content-anhang-3-bootstrap4" style="padding-top: 60px; margin-top: -60px;">Anhang 3: BOOTSTRAP4</h3>
@@ -347,10 +347,10 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
 Bei eingeschaltetem Easyzoom muss im Systemmodul der Wert für "Wird ein Bootstrap-Template mit eingeschaltetem Bilder-Zoomeffekt genutzt?" auf "Ja" gestellt werden!
 
 <br />
-[↑ zurück nach oben](#user-content-top)
+[↑ zurück nach oben](#user-content-attribut-kombinationen-verwaltung)
 <br />
 
-<h3 id="user-content-anhang-4-kombinationsbestand-automatisch-anpassen">Anhang 4: Kombinationsbestand automatisch anpassen</h3>
+<h3 id="user-content-anhang-4-kombinationsbestand-automatisch-anpassen" style="padding-top: 60px; margin-top: -60px;">Anhang 4: Kombinationsbestand automatisch anpassen</h3>
 
 Falls beim Stornieren oder Löschen einer Bestellung im Adminbereich der Lagerbestand der Kombination automatisch angepasst werden soll, muss die Datei **/inc/xtc_restock_order.inc.php** wie nachstehend beschrieben angepasst werden.
 
@@ -409,6 +409,6 @@ Falls beim Stornieren oder Löschen einer Bestellung im Adminbereich der Lagerbe
 ```
 
 <br />
-[↑ zurück nach oben](#user-content-top)
+[↑ zurück nach oben](#user-content-attribut-kombinationen-verwaltung)
 <br />
 
