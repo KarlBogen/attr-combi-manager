@@ -1,10 +1,10 @@
 {
     "name": "Attribut Kombinationen Verwaltung",
-    "archiveName": "karlbogen/attr-combi-manager",
+    "archiveName": "karlk/attr-combi-manager",
     "sourceDir": "new_files",
     "version": "1.0.0",
-    "shortDescription": "</p><div class='h5 clearfix mb-2'>Das Systemmodul <span class='text-primary'>Attribut Kombinationen Verwaltung</span> stellt Funktionen zur Verf&uuml;gung, um die Attribute eines Artikels zu kombinieren.<br /><br />Den einzelnen Kombinationen kann <span class='font-weight-bolder'>Bestand, Artikelnummer, EAN und Bild</span> zugewiesen werden.</div><p>",
-    "description": "</p><div class='mb-3'>Mit der <span class='text-primary'>Attribut Kombinationen Verwaltung</span> ist es m&ouml;glich Attributkombinationen zu erstellen.<br />Den einzelnen Kombinationen kann <strong>Bestand, Artikelnummer, EAN und Bild</strong> zugewiesen werden.</div><div class='mb-3'>Es kann zum Beispiel ein T-Shirt, Gr&ouml;&szlig;e S, Farbe rot, Form Rundhals <span class='text-danger'>nicht ausgew&auml;hlt</span> werden, weil sich <span class='text-danger'>kein St&uuml;ck im Lager</span> befindet (Bild 1).</div><div class='mb-3'>So ist es auch machbar, dass zum Beispiel <span class='text-danger'>2 St&uuml;ck</span> T-Shirts, Gr&ouml;&szlig;e S, Farbe rot, Form Rundhals <span class='text-danger'>nicht bestellt</span> werden k&ouml;nnen, weil sich <span class='text-danger'>nur 1 St&uuml;ck im Lager</span> befindet (Bild 2).</div><div class='small mb-3'>Hinweis: F&uuml;r dieses Modul sind geringe Anpassungen im Template n&ouml;tig.</div><p>",
+    "shortDescription": "<span class='small'>Attribute eines Artikels können kombiniert und der einzelnen Kombinationen kann <span class='font-weight-bolder'>Bestand, Artikelnummer, EAN und Bild</span> zugewiesen werden.</span>",
+    "description": "</p><div class='mb-3'>Mit der <span class='text-danger font-weight-bold'>Attribut Kombinationen Verwaltung</span> ist es m&ouml;glich Attributkombinationen zu erstellen.<br />Den einzelnen Kombinationen kann <strong>Bestand, Artikelnummer, EAN und Bild</strong> zugewiesen werden.</div><div class='mb-3'>Es kann zum Beispiel ein T-Shirt, Gr&ouml;&szlig;e S, Farbe rot, Form Rundhals <span class='text-danger'>nicht ausgew&auml;hlt</span> werden, weil sich <span class='text-danger'>kein St&uuml;ck im Lager</span> befindet (Bild 1).</div><div class='mb-3'>So ist es auch machbar, dass zum Beispiel <span class='text-danger'>2 St&uuml;ck</span> T-Shirts, Gr&ouml;&szlig;e S, Farbe rot, Form Rundhals <span class='text-danger'>nicht bestellt</span> werden k&ouml;nnen, weil sich <span class='text-danger'>nur 1 St&uuml;ck im Lager</span> befindet (Bild 2).</div><div class='small mb-3'>Hinweis: F&uuml;r dieses Modul sind geringe Anpassungen im Template n&ouml;tig. Diese <strong>Anpassungen können manuell oder per Knopfdruck</strong> gemacht werden.</div><p>",
     "developer": "KarlK",
     "developerWebsite": "https://github.com/KarlBogen",
     "website": "",
@@ -15,10 +15,5 @@
     },
     "modifiedCompatibility": [
         "2.0.5.0", "2.0.5.1"
-    ],
-    "autoload": {
-        "psr-4": {
-            "KarlK\\": "/vendor-no-composer/karlk"
-        }
-    }
+    ]
 }
