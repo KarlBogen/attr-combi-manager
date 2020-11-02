@@ -54,7 +54,7 @@ Bei der Deinstallation werden die neu angelegten Tabellen und Spalten in der Dat
 Anpassungen am momentan aktiven Shoptemplate werden entfernt.
 
 <br />
-[↑ nach oben](#user-content-attribut-kombinationen-verwaltung)
+<a href="#user-content-attribut-kombinationen-verwaltung">↑ zurück nach oben</a>
 <br />
 
 ### Anpassung Shop- und Templatedateien
