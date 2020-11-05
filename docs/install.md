@@ -23,14 +23,16 @@ Beachte: Erstellen Sie vor der Installation dieses Moduls ein Backup der Datenba
 
 6. **Anpassung Shop- und Templatedateien**<br />
 *Die Anpassung der Dateien kann entweder per Knopfdruck oder manuell erfolgen.*<br /><br />
-`Automatisiert:` Klicken Sie auf den grünen Button **Template und Shopdatei anpassen**.<br /><br />
+`Automatisiert:` Klicken Sie auf den grünen Button **Templatedateien anpassen**.<br /><br />
 `Manuell:` Lesen Sie dazu bitte den Abschnitt weiter unten.
 
-> Hinweis: Mit dem Systemmodul werden **Klassenerweiterungen Module** für „categories, main, order und shopping_card“ mitinstalliert und aktiviert.
+> <span class="small">Hinweis:<br />
+Mit dem Systemmodul werden **Klassenerweiterungen Module** für „categories, main, order und shopping_card“ mitinstalliert und aktiviert.<br />
+Desweiteren werden einzelne Shopdateien automatisch an das Modul angepasst!</span>
 
 ### Update
 
-**Wichtig: Nach einem Module-Update - Update-Button drücken!**
+**Wichtig: Nach einem Shop- oder Module-Update - Update-Button drücken!**
 
 1.  Melden Sie sich im Adminbereich an.
 
@@ -63,11 +65,8 @@ Abhängig vom genutzten Template sind Änderungen in den Dateien durchzuführen:
 
 *   [Anhang 1: tpl_modified_responsive](#user-content-anhang-1-tpl_modified_responsive)
 *   [Anhang 2: tpl_modified](#user-content-anhang-2-tpl_modified)
-*   [Anhang 3: bootstrap4](#user-content-anhang-3-bootstrap4)
-
-> Falls beim Stornieren oder Löschen einer Bestellung im Adminbereich der Lagerbestand der Kombination automatisch angepasst werden soll, dann muss die Datei /inc/xtc_restock_order.inc.php wie nachstehend beschrieben angepasst werden.
-
-*   [Anhang 4: Kombinationsbestand automatisch anpassen](#user-content-anhang-4-kombinationsbestand-automatisch-anpassen)
+*   [Anhang 3: xtc5](#user-content-anhang-3-xtc5)
+*   [Anhang 4: bootstrap4](#user-content-anhang-4-bootstrap4)
 
 <br />
 <a href="#user-content-attribut-kombinationen-verwaltung">↑ zurück nach oben</a>
@@ -260,7 +259,91 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
 <a href="#user-content-attribut-kombinationen-verwaltung">↑ zurück nach oben</a>
 <br />
 
-<h3 id="user-content-anhang-3-bootstrap4" style="padding-top: 60px; margin-top: -60px;">Anhang 3: BOOTSTRAP4</h3>
+<h3 id="user-content-anhang-3-xtc5" style="padding-top: 60px; margin-top: -60px;">Anhang 3: XTC5</h3>
+
+**# /javascript/general_bottom.js.php**
+
+*Finde:*
+
+```php
+$script_min = DIR_TMPL_JS.'tpl_plugins.min.js';
+```
+
+*Füge davor ein:*
+
+```php
+/* BOF Module "Attribute Kombination Manager" made by Karl */
+if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'){
+  $script_array[] = DIR_TMPL_JS .'dependent-dropdown.min.js';
+  if ($_SESSION["language_code"]=='de') $script_array[] = DIR_TMPL_JS .'depdrop_locale_de.js';
+}
+/* EOF Module "Attribute Kombination Manager" made by Karl */
+```
+
+**# /javascript/extra/default.js.php**
+
+*Finde:*
+
+```javascript
+<script type="text/javascript">
+```
+
+*Füge dahinter ein:*
+
+```javascript
+  /* BOF Module "Attribute Kombination Manager" made by Karl */
+  <?php if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'): ?>
+  $(document).ready(function(){
+    if (typeof jqueryReady !== 'undefined' && $.isFunction(jqueryReady)) {jqueryReady();}
+    /* alle Dropdowns müssen ausgewählt sein */
+    $("#cart_quantity").submit(function(event) {
+      var failed = false;
+      $(".combi_id option:selected").each(function(){
+        if (!$(this).val()){
+          failed = true;
+        }
+      });
+      if (failed == true){
+        if ($('.combi_stock').length && $('.combi_stock').text() == '0'){
+          alert("<?php echo COMBI_TEXT_CANT_BUY ?>");
+        } else {
+          alert("<?php echo COMBI_TEXT_SEL_ALL_OPTIONS ?>");
+        }
+        event.preventDefault();
+      }
+    });
+  });
+  <?php endif; ?>
+  /* EOF Module "Attribute Kombination Manager" made by Karl */
+```
+
+**# /module/product_info/product_info_tabs_v1.html**<br />
+**# /module/product_info/product_info_v1.html**<br />
+**# /module/product_info/product_info_x_accordion_v1.html**
+
+*Finde:*
+
+```smarty
+          {if $MODULE_product_options != ''}
+```
+
+*Ersetze mit:*
+
+```smarty
+          {* BOF Module "Attribute Kombination Manager" made by Karl *}
+          {if isset($MODULE_product_combi) && $MODULE_product_combi != ''}
+              {$MODULE_product_combi}
+          {/if}
+          {if isset($MODULE_product_options) && $MODULE_product_options != '' && $MODULE_product_combi == ''}
+          {*if $MODULE_product_options != ''*}
+          {* EOF Module "Attribute Kombination Manager" made by Karl *}
+```
+
+<br />
+<a href="#user-content-attribut-kombinationen-verwaltung">↑ zurück nach oben</a>
+<br />
+
+<h3 id="user-content-anhang-4-bootstrap4" style="padding-top: 60px; margin-top: -60px;">Anhang 4: BOOTSTRAP4</h3>
 
 **# /javascript/general_bottom.js.php**
 
@@ -349,66 +432,3 @@ Bei eingeschaltetem Easyzoom muss im Systemmodul der Wert für "Wird ein Bootstr
 <br />
 <a href="#user-content-attribut-kombinationen-verwaltung">↑ zurück nach oben</a>
 <br />
-
-<h3 id="user-content-anhang-4-kombinationsbestand-automatisch-anpassen" style="padding-top: 60px; margin-top: -60px;">Anhang 4: Kombinationsbestand automatisch anpassen</h3>
-
-Falls beim Stornieren oder Löschen einer Bestellung im Adminbereich der Lagerbestand der Kombination automatisch angepasst werden soll, muss die Datei **/inc/xtc_restock_order.inc.php** wie nachstehend beschrieben angepasst werden.
-
-**# /inc/xtc_restock_order.inc.php**
-
-*Finde:*
-
-```php
-          $products_update = false;
-        }
-      }
-    }
-```
-
-*Ersetzen durch:*
-
-```php
-           $products_update = false;
-        }
-/* BOF - Module "Attribute Kombination Manager" made by Karl */
-/* Original
-      }
-    }
-*/
-/* wird die Bestellung im Adminbereich gelöscht, so wird der Kombinationsbestand wieder hochgesetzt */
-        $combi_attr_id[] = $orders_attributes["orders_products_options_values_id"];
-      }
-    }
-    if (count($combi_attr_id) >= 2) {
-      /* $combi_attr_id zusammenbauen damit wir mit der attribute_id der Kombi vergleichen können */
-      $tmpAttrid = '';
-      $plh = '_';
-      $tmpAttrid = implode($plh, $combi_attr_id);
-
-      $combi_attr_id = array();
-      $new_stock = array();
-
-      $query = "SELECT combi_value_id, stock
-            FROM ".TABLE_PRODUCTS_OPTIONS_COMBI_VALUES_2."
-            WHERE products_id = " . $order['products_id'] . "
-            AND
-              attribute_id = '".$tmpAttrid."'
-            LIMIT 1";
-
-      $result = xtc_db_query($query);
-      if(xtc_db_num_rows($result) > 0) {
-        $tmpdata =xtc_db_fetch_array($result);
-
-        $new_stock["stock"] = $tmpdata["stock"] + $order['products_quantity'];
-
-        /* update stock */
-        xtc_db_perform(TABLE_PRODUCTS_OPTIONS_COMBI_VALUES_2, $new_stock, 'update', 'combi_value_id='.$tmpdata["combi_value_id"]);
-      }
-    }
-/* EOF - Module "Attribute Kombination Manager" made by Karl */
-```
-
-<br />
-<a href="#user-content-attribut-kombinationen-verwaltung">↑ zurück nach oben</a>
-<br />
-

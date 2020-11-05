@@ -24,7 +24,7 @@ class KKShopInfo
      * Notice: __DIR__ and __FILE__ can not handle symlinks. Both magic constants paths are resolved.
      * That's why we have to test both cases.
      */
-    public static function getShopRoot(): string
+    public static function getShopRoot()
     {
         $fileThatMustExist = '/admin/includes/version.php';
 
@@ -50,16 +50,21 @@ class KKShopInfo
     /**
      * @return string Returns the installed modified version as string.
      */
-    public static function getModifiedVersion(): string
+    public static function getModifiedVersion()
     {
         $path = self::getShopRoot() . '/admin/includes/version.php';
         if (!file_exists($path)) {
             return '';
         }
 
-        $fileStr = file_get_contents($path);
-        $pos = strpos($fileStr, 'MOD_');
-        $version = substr($fileStr, (int) $pos + 4, 7);
+        if (defined('PROJECT_MAJOR_VERSION') && defined('PROJECT_MINOR_VERSION')) {
+            $version = PROJECT_MAJOR_VERSION . '.' . PROJECT_MINOR_VERSION;
+        } else {
+        	$fileStr = file_get_contents($path);
+        	$pos = strpos($fileStr, 'MOD_');
+        	$version = substr($fileStr, (int) $pos + 4, 7);
+        }
+
         return $version;
     }
 }

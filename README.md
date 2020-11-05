@@ -20,3 +20,5 @@ So ist es auch machbar, dass zum Beispiel `2 Stück` T-Shirts, Größe S, Farbe 
 <br />
 <a href="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/handbuch.pdf">Das Handbuch im PDF-Format kann hier heruntergeladen werden.</a>
 <br />
+
+**Das Modul benötigt *mod*ified eCommerce Shopsoftware Version 2.0.1.0 oder höher**

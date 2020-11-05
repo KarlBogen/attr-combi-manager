@@ -54,11 +54,9 @@ Stand: November 2020
 
 [Anhang 2: TPL_MODIFIED](#user-content-anhang-2-tpl-modified)
 
-[Anhang 3: BOOTSTRAP4](#user-content-anhang-3-bootstrap-4)
+[Anhang 3: XTC5](#user-content-anhang-3-xtc-5)
 
-[Anhang Löschen / Stornieren einer Bestellung](#user-content-anhang-loeschen--stornieren-einer-bestellung)
-
-[Anhang 4: Kombinationsbestand automatisch anpassen](#user-content-anhang-4-kombinationsbestand)
+[Anhang 4: BOOTSTRAP4](#user-content-anhang-4-bootstrap-4)
 
 [Anhang Hilfe / Fehlersuche](#user-content-anhang-hilfe--fehlersuche)
 
@@ -85,7 +83,9 @@ So ist es auch machbar, dass zum Beispiel `2 Stück` T-Shirts, Größe S, Farbe 
 
 ### 1.2 Version der Shopsoftware
 
-Die **Attribut Kombinationen Verwaltung** wurde entwickelt und getestet mit der aktuellen stabile Version „**Vollversion 2.0.5.1 rev 12725**“ vom 22.04.2020
+Die **Attribut Kombinationen Verwaltung** benötigt *mod*ified eCommerce Shopsoftware **Version 2.0.1.0 oder höher**.
+
+Getestet wurde das Modul mit den stable Versionen "2.0.1.0", "2.0.2.0", "2.0.2.1", "2.0.2.2", "2.0.3.0", "2.0.4.0", "2.0.4.1", "2.0.4.2", "2.0.5.0", "2.0.5.1".
 
 Diese Anleitung, Bilder und Beschreibungen beziehen sich auf diese Version.
 
@@ -124,14 +124,14 @@ Beachte: Erstellen Sie vor der Installation dieses Moduls ein Backup der Datenba
 
 7. **Anpassung Shop- und Templatedateien**<br />
 *Die Anpassung der Dateien kann entweder per Knopfdruck oder manuell erfolgen.*<br /><br />
-`Automatisiert:` Klicken Sie auf den grünen Button **Template und Shopdatei anpassen**.<br /><br />
+`Automatisiert:` Klicken Sie auf den grünen Button **Templatedateien anpassen**.<br /><br />
 `Manuell:` Lesen Sie dazu bitte den Abschnitt weiter unten.
 
 > Hinweis: Mit dem Systemmodul werden **Klassenerweiterungen Module** für „categories, main, order und shopping_card“ mitinstalliert und aktiviert.
 
 ### 2.3 Update
 
-**Wichtig: Nach einem Module-Update - Update-Button drücken!**
+**Wichtig: Nach einem Shop- oder Module-Update - Update-Button drücken!**
 
 1.  Melden Sie sich im Adminbereich an.
 
@@ -354,10 +354,10 @@ $('select').SumoSelect();
 *Ersetze mit:*
 
 ```javascript
-/* BOF Module "Attribute Kombination Manager" made by Karl */
-/* Original   $('select').SumoSelect(); */
-  $('select').not('.combi_id').SumoSelect();
-/* EOF Module "Attribute Kombination Manager" made by Karl */
+    /* BOF Module "Attribute Kombination Manager" made by Karl */
+    /* Original    $('select').SumoSelect(); */
+    $('select').not('.combi_id').SumoSelect();
+    /* EOF Module "Attribute Kombination Manager" made by Karl */
 ```
 
 **# /javascript/general_bottom.js.php**
@@ -390,30 +390,30 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
 *Füge dahinter ein:*
 
 ```javascript
-/* BOF Module "Attribute Kombination Manager" made by Karl */
-<?php if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'): ?>
-$(document).ready(function(){
-  if (typeof jqueryReady !== 'undefined' && $.isFunction(jqueryReady)) {jqueryReady();}
-  /* alle Dropdowns müssen ausgewählt sein */
-  $("#cart_quantity").submit(function(event) {
-    var failed = false;
-    $(".combi_id option:selected").each(function(){
-      if (!$(this).val()){
-        failed = true;
+  /* BOF Module "Attribute Kombination Manager" made by Karl */
+  <?php if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'): ?>
+  $(document).ready(function(){
+    if (typeof jqueryReady !== 'undefined' && $.isFunction(jqueryReady)) {jqueryReady();}
+    /* alle Dropdowns müssen ausgewählt sein */
+    $("#cart_quantity").submit(function(event) {
+      var failed = false;
+      $(".combi_id option:selected").each(function(){
+        if (!$(this).val()){
+          failed = true;
+        }
+      });
+      if (failed == true){
+        if ($('.combi_stock').length && $('.combi_stock').text() == '0'){
+          alert("<?php echo COMBI_TEXT_CANT_BUY ?>");
+        } else {
+          alert("<?php echo COMBI_TEXT_SEL_ALL_OPTIONS ?>");
+        }
+        event.preventDefault();
       }
     });
-    if (failed == true){
-      if ($('.combi_stock').length && $('.combi_stock').text() == '0'){
-        alert("<?php echo COMBI_TEXT_CANT_BUY ?>");
-      } else {
-        alert("<?php echo COMBI_TEXT_SEL_ALL_OPTIONS ?>");
-      }
-      event.preventDefault();
-    }
   });
-});
-<?php endif; ?>
-/* EOF Module "Attribute Kombination Manager" made by Karl */
+  <?php endif; ?>
+  /* EOF Module "Attribute Kombination Manager" made by Karl */
 ```
 
 **# /module/product_info/product_info_tabs_v1.html**<br />
@@ -423,17 +423,19 @@ $(document).ready(function(){
 *Finde:*
 
 ```smarty
-   {if isset($MODULE_product_options) && $MODULE_product_options != ''}
+          {if isset($MODULE_product_options) && $MODULE_product_options != ''}
 ```
 
 *Ersetze mit:*
 
 ```smarty
-  {* BOF Module "Attribute Kombination Manager" made by Karl *}
-  {if isset($MODULE_product_combi) && $MODULE_product_combi != ''}{$MODULE_product_combi}{/if}
-  {if isset($MODULE_product_options) && $MODULE_product_options != '' && $MODULE_product_combi == ''}
-  {*if isset($MODULE_product_options) && $MODULE_product_options != ''*}
-  {* EOF Module "Attribute Kombination Manager" made by Karl *}
+          {* BOF Module "Attribute Kombination Manager" made by Karl *}
+          {if isset($MODULE_product_combi) && $MODULE_product_combi != ''}
+              {$MODULE_product_combi}
+          {/if}
+          {if isset($MODULE_product_options) && $MODULE_product_options != '' && $MODULE_product_combi == ''}
+          {*if isset($MODULE_product_options) && $MODULE_product_options != ''*}
+          {* EOF Module "Attribute Kombination Manager" made by Karl *}
 ```
 
 <br />
@@ -474,30 +476,30 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
 *Füge dahinter ein:*
 
 ```javascript
-/* BOF Module "Attribute Kombination Manager" made by Karl */
-<?php if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'): ?>
-$(document).ready(function(){
-  if (typeof jqueryReady !== 'undefined' && $.isFunction(jqueryReady)) {jqueryReady();}
-  /* alle Dropdowns müssen ausgewählt sein */
-  $("#cart_quantity").submit(function(event) {
-    var failed = false;
-    $(".combi_id option:selected").each(function(){
-      if (!$(this).val()){
-        failed = true;
+  /* BOF Module "Attribute Kombination Manager" made by Karl */
+  <?php if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'): ?>
+  $(document).ready(function(){
+    if (typeof jqueryReady !== 'undefined' && $.isFunction(jqueryReady)) {jqueryReady();}
+    /* alle Dropdowns müssen ausgewählt sein */
+    $("#cart_quantity").submit(function(event) {
+      var failed = false;
+      $(".combi_id option:selected").each(function(){
+        if (!$(this).val()){
+          failed = true;
+        }
+      });
+      if (failed == true){
+        if ($('.combi_stock').length && $('.combi_stock').text() == '0'){
+          alert("<?php echo COMBI_TEXT_CANT_BUY ?>");
+        } else {
+          alert("<?php echo COMBI_TEXT_SEL_ALL_OPTIONS ?>");
+        }
+        event.preventDefault();
       }
     });
-    if (failed == true){
-      if ($('.combi_stock').length && $('.combi_stock').text() == '0'){
-        alert("<?php echo COMBI_TEXT_CANT_BUY ?>");
-      } else {
-        alert("<?php echo COMBI_TEXT_SEL_ALL_OPTIONS ?>");
-      }
-      event.preventDefault();
-    }
   });
-});
-<?php endif; ?>
-/* EOF Module "Attribute Kombination Manager" made by Karl */
+  <?php endif; ?>
+  /* EOF Module "Attribute Kombination Manager" made by Karl */
 ```
 
 **# /module/product_info/product_info_tabs_v1.html**<br />
@@ -507,17 +509,19 @@ $(document).ready(function(){
 *Finde:*
 
 ```smarty
-   {if isset($MODULE_product_options) && $MODULE_product_options != ''}
+          {if isset($MODULE_product_options) && $MODULE_product_options != ''}
 ```
 
 *Ersetze mit:*
 
 ```smarty
-   {* BOF Module "Attribute Kombination Manager" made by Karl *}
-  {if isset($MODULE_product_combi) && $MODULE_product_combi != ''}{$MODULE_product_combi}{/if}
-  {if isset($MODULE_product_options) && $MODULE_product_options != '' && $MODULE_product_combi == ''}
-  {*if isset($MODULE_product_options) && $MODULE_product_options != ''*}
-  {* EOF Module "Attribute Kombination Manager" made by Karl *}
+          {* BOF Module "Attribute Kombination Manager" made by Karl *}
+          {if isset($MODULE_product_combi) && $MODULE_product_combi != ''}
+              {$MODULE_product_combi}
+          {/if}
+          {if isset($MODULE_product_options) && $MODULE_product_options != '' && $MODULE_product_combi == ''}
+          {*if isset($MODULE_product_options) && $MODULE_product_options != ''*}
+          {* EOF Module "Attribute Kombination Manager" made by Karl *}
 ```
 
 <br />
@@ -526,7 +530,93 @@ $(document).ready(function(){
 
 <br />
 
-<h3 id="user-content-anhang-3-bootstrap-4" style="padding-top: 60px; margin-top: -60px;">Anhang 3: BOOTSTRAP4</h3>
+<h3 id="user-content-anhang-3-xtc-5" style="padding-top: 60px; margin-top: -60px;">Anhang 3: XTC5</h3>
+
+**# /javascript/general_bottom.js.php**
+
+*Finde:*
+
+```php
+$script_min = DIR_TMPL_JS.'tpl_plugins.min.js';
+```
+
+*Füge davor ein:*
+
+```php
+/* BOF Module "Attribute Kombination Manager" made by Karl */
+if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'){
+  $script_array[] = DIR_TMPL_JS .'dependent-dropdown.min.js';
+  if ($_SESSION["language_code"]=='de') $script_array[] = DIR_TMPL_JS .'depdrop_locale_de.js';
+}
+/* EOF Module "Attribute Kombination Manager" made by Karl */
+```
+
+**# /javascript/extra/default.js.php**
+
+*Finde:*
+
+```javascript
+<script type="text/javascript">
+```
+
+*Füge dahinter ein:*
+
+```javascript
+  /* BOF Module "Attribute Kombination Manager" made by Karl */
+  <?php if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'): ?>
+  $(document).ready(function(){
+    if (typeof jqueryReady !== 'undefined' && $.isFunction(jqueryReady)) {jqueryReady();}
+    /* alle Dropdowns müssen ausgewählt sein */
+    $("#cart_quantity").submit(function(event) {
+      var failed = false;
+      $(".combi_id option:selected").each(function(){
+        if (!$(this).val()){
+          failed = true;
+        }
+      });
+      if (failed == true){
+        if ($('.combi_stock').length && $('.combi_stock').text() == '0'){
+          alert("<?php echo COMBI_TEXT_CANT_BUY ?>");
+        } else {
+          alert("<?php echo COMBI_TEXT_SEL_ALL_OPTIONS ?>");
+        }
+        event.preventDefault();
+      }
+    });
+  });
+  <?php endif; ?>
+  /* EOF Module "Attribute Kombination Manager" made by Karl */
+```
+
+**# /module/product_info/product_info_tabs_v1.html**<br />
+**# /module/product_info/product_info_v1.html**<br />
+**# /module/product_info/product_info_x_accordion_v1.html**
+
+*Finde:*
+
+```smarty
+          {if $MODULE_product_options != ''}
+```
+
+*Ersetze mit:*
+
+```smarty
+          {* BOF Module "Attribute Kombination Manager" made by Karl *}
+          {if isset($MODULE_product_combi) && $MODULE_product_combi != ''}
+              {$MODULE_product_combi}
+          {/if}
+          {if isset($MODULE_product_options) && $MODULE_product_options != '' && $MODULE_product_combi == ''}
+          {*if isset($MODULE_product_options) && $MODULE_product_options != ''*}
+          {* EOF Module "Attribute Kombination Manager" made by Karl *}
+```
+
+<br />
+
+[↑ zurück zum Inhaltsverzeichnis](#user-content-inhaltsverzeichnis)
+
+<br />
+
+<h3 id="user-content-anhang-4-bootstrap-4" style="padding-top: 60px; margin-top: -60px;">Anhang 4: BOOTSTRAP4</h3>
 
 **# /javascript/general_bottom.js.php**
 
@@ -558,30 +648,30 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
 *Füge dahinter ein:*
 
 ```javascript
-/* BOF Module "Attribute Kombination Manager" made by Karl */
-<?php if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'): ?>
-$(document).ready(function(){
-  if (typeof jqueryReady !== 'undefined' && $.isFunction(jqueryReady)) {jqueryReady();}
-  /* alle Dropdowns müssen ausgewählt sein */
-  $("#cart_quantity").submit(function(event) {
-    var failed = false;
-    $(".combi_id option:selected").each(function(){
-      if (!$(this).val()){
-        failed = true;
+  /* BOF Module "Attribute Kombination Manager" made by Karl */
+  <?php if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'): ?>
+  $(document).ready(function(){
+    if (typeof jqueryReady !== 'undefined' && $.isFunction(jqueryReady)) {jqueryReady();}
+    /* alle Dropdowns müssen ausgewählt sein */
+    $("#cart_quantity").submit(function(event) {
+      var failed = false;
+      $(".combi_id option:selected").each(function(){
+        if (!$(this).val()){
+          failed = true;
+        }
+      });
+      if (failed == true){
+        if ($('.combi_stock').length && $('.combi_stock').text() == '0'){
+          alert("<?php echo COMBI_TEXT_CANT_BUY ?>");
+        } else {
+          alert("<?php echo COMBI_TEXT_SEL_ALL_OPTIONS ?>");
+        }
+        event.preventDefault();
       }
     });
-    if (failed == true){
-      if ($('.combi_stock').length && $('.combi_stock').text() == '0'){
-        alert("<?php echo COMBI_TEXT_CANT_BUY ?>");
-      } else {
-        alert("<?php echo COMBI_TEXT_SEL_ALL_OPTIONS ?>");
-      }
-      event.preventDefault();
-    }
   });
-});
-<?php endif; ?>
-/* EOF Module "Attribute Kombination Manager" made by Karl */
+  <?php endif; ?>
+  /* EOF Module "Attribute Kombination Manager" made by Karl */
 ```
 
 **# /module/product_info/product_info_tabs_v1.html**<br />
@@ -592,91 +682,25 @@ $(document).ready(function(){
 *Finde:*
 
 ```smarty
-{if isset($MODULE_product_options) && $MODULE_product_options != ''}
+          {if isset($MODULE_product_options) && $MODULE_product_options != ''}
 ```
 
 *Ersetze mit:*
 
 ```smarty
-{* BOF Module "Attribute Kombination Manager" made by Karl *}
-{if isset($MODULE_product_combi) && $MODULE_product_combi != ''}
-  <div class="card bg-custom mb-2 p-2">
-    {$MODULE_product_combi}
-  </div>
-{/if}
-{if isset($MODULE_product_options) && $MODULE_product_options != '' && $MODULE_product_combi == ''}
-{*if isset($MODULE_product_options) && $MODULE_product_options != ''*}
-{* EOF Module "Attribute Kombination Manager" made by Karl *}
+          {* BOF Module "Attribute Kombination Manager" made by Karl *}
+          {if isset($MODULE_product_combi) && $MODULE_product_combi != ''}
+            <div class="card bg-custom mb-2 p-2">
+              {$MODULE_product_combi}
+            </div>
+          {/if}
+          {if isset($MODULE_product_options) && $MODULE_product_options != '' && $MODULE_product_combi == ''}
+          {*if isset($MODULE_product_options) && $MODULE_product_options != ''*}
+          {* EOF Module "Attribute Kombination Manager" made by Karl *}
 ```
 
 **Achtung:**
 Bei eingeschaltetem Easyzoom muss im Systemmodul der Wert für "Wird ein Bootstrap-Template mit eingeschaltetem Bilder-Zoomeffekt genutzt?" auf "Ja" gestellt werden!
-
-<br />
-
-[↑ zurück zum Inhaltsverzeichnis](#user-content-inhaltsverzeichnis)
-
-<br />
-
-<h2 id="user-content-anhang-loeschen--stornieren-einer-bestellung" style="padding-top: 60px; margin-top: -60px;">Anhang Löschen / Stornieren einer Bestellung</h2>
-
-<h3 id="user-content-anhang-4-kombinationsbestand" style="padding-top: 60px; margin-top: -60px;">Anhang 4: Kombinationsbestand automatisch anpassen</h3>
-
-Falls beim Stornieren oder Löschen einer Bestellung im Adminbereich der Lagerbestand der Kombination automatisch angepasst werden soll, muss die Datei **/inc/xtc_restock_order.inc.php** wie nachstehend beschrieben angepasst werden.
-
-**# /inc/xtc_restock_order.inc.php**
-
-*Finde:*
-
-```php
-          $products_update = false;
-        }
-      }
-    }
-```
-
-*Ersetzen durch:*
-
-```php
-           $products_update = false;
-        }
-/* BOF - Module "Attribute Kombination Manager" made by Karl */
-/* Original
-      }
-    }
-*/
-/* wird die Bestellung im Adminbereich gelöscht, so wird der Kombinationsbestand wieder hochgesetzt */
-        $combi_attr_id[] = $orders_attributes["orders_products_options_values_id"];
-      }
-    }
-    if (count($combi_attr_id) >= 2) {
-      /* $combi_attr_id zusammenbauen damit wir mit der attribute_id der Kombi vergleichen können */
-      $tmpAttrid = '';
-      $plh = '_';
-      $tmpAttrid = implode($plh, $combi_attr_id);
-
-      $combi_attr_id = array();
-      $new_stock = array();
-
-      $query = "SELECT combi_value_id, stock
-            FROM ".TABLE_PRODUCTS_OPTIONS_COMBI_VALUES_2."
-            WHERE products_id = " . $order['products_id'] . "
-            AND
-              attribute_id = '".$tmpAttrid."'
-            LIMIT 1";
-
-      $result = xtc_db_query($query);
-      if(xtc_db_num_rows($result) > 0) {
-        $tmpdata =xtc_db_fetch_array($result);
-
-        $new_stock["stock"] = $tmpdata["stock"] + $order['products_quantity'];
-
-        /* update stock */
-        xtc_db_perform(TABLE_PRODUCTS_OPTIONS_COMBI_VALUES_2, $new_stock, 'update', 'combi_value_id='.$tmpdata["combi_value_id"]);
-      }
-    }
-/* EOF - Module "Attribute Kombination Manager" made by Karl */
-```
 
 <br />
 
@@ -717,6 +741,21 @@ Klickt man auf **Kombinationen editieren** sollte der zusammengezählte Bestand 
 <img alt="screenshot" style="margin: 20px 0;" width="605" height="174" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_031.png"/>
 
 Der Artikelbestand wird automatisch aktualisiert, wenn bei den Kombinationen Änderungen gespeichert werden.
+
+6\. Prüfen, ob diese Dateien
+
+*   admin/includes/modules/categories_view.php
+*   admin/includes/modules/new_product.php
+*   inc/xtc_restock_order.inc.php
+*   includes/classes/main.php (nur wenn Shopversion < 2.0.5.0)
+
+Änderungen enthalten.<br />
+Änderungen können mit einer dieser Zeilen
+*   /\* BOF Module "Attribute Kombination Manager" made by Karl \*/
+*   /\* \*\*\* robinthehood/hook-point-manager START \*\*\*
+beginnen.
+
+7\. Bei Problemen im Shopfrontend - prüfen, ob die Konsole einen Fehler anzeigt (siehe Nummer 4.) oder Templateänderungen fehlerhaft durchgeführt wurden (Anhang 1-4).
 
 <br /><br /><br />
 

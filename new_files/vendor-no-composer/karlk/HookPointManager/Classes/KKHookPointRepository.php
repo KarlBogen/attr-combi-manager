@@ -35,7 +35,7 @@ class KKHookPointRepository
         $query = xtc_db_query($sql);
     }
 
-    public function addHookPoint(array $hookPoint): void
+    public function addHookPoint(array $hookPoint)
     {
         $version = isset($hookPoint['version']) ? $hookPoint['version'] : '';
         $module = isset($hookPoint['module']) ? $hookPoint['module'] : '';
@@ -81,7 +81,7 @@ class KKHookPointRepository
         $query = xtc_db_query($sql);
     }
 
-    public function getHookPointByNameAndVersion(string $name, string $version): ?array
+    public function getHookPointByNameAndVersion(string $name, string $version)
     {
         $sql = "SELECT * FROM kk_hook_point WHERE name='$name' AND version='$version';";
         $query = xtc_db_query($sql);
@@ -90,7 +90,7 @@ class KKHookPointRepository
         return $row;
     }
 
-    public function getAllHookPointsByVersion(string $version): array
+    public function getAllHookPointsByVersion(string $version)
     {
         $sql = "SELECT * FROM kk_hook_point WHERE version='$version';";
         $query = xtc_db_query($sql);

@@ -11,7 +11,7 @@
 	Released under the GNU General Public License
 
 	The original class is part of https://github.com/RobinTheHood/hook-point-manager.
-	This class is adapted to the needs of this module.
+	This class is modified to the needs of this module.
 -------------------------------------------------------------- */
 
 namespace KarlK\HookPointManager\Classes;
@@ -155,7 +155,7 @@ class KKHookPointManager
         }
     }
 
-    public function createAutoIncludeCode(array $hookPoint, string $orgFilePath): string
+    public function createAutoIncludeCode(array $hookPoint, string $orgFilePath)
     {
         $name = isset($hookPoint['name']) ? $hookPoint['name'] : 'unknown-hook-point-name';
         $module = isset($hookPoint['module']) ? $hookPoint['module'] : 'unknown-hook-point-module';
@@ -171,6 +171,76 @@ class KKHookPointManager
         $code .= "foreach(auto_include(DIR_FS_CATALOG . '$includePath','php') as \$file) require (\$file);" . "\n";
         $code .= "/* robinthehood/hook-point-manager END */" . "\n";
         return $code;
+    }
+
+    public function modifyFilesBySelection($selection = 'shop')
+    {
+        $modifiedVersion = KKShopInfo::getModifiedVersion();
+		if ($selection != 'shop') {
+	        $modifyDatas = (new DefaultHookPoints\KKDefaultTplModifications)->getModifyData($modifiedVersion);
+		}
+		else {
+	        $modifyDatas = (new DefaultHookPoints\KKDefaultShopModifications)->getModifyData($modifiedVersion);
+		}
+
+        foreach($modifyDatas as $modifyData) {
+			$res = '';
+			if (file_exists($modifyData['TPLFILE'])) {
+		        $fileContent = file_get_contents($modifyData['TPLFILE']);
+				if(strpos($fileContent, 'BOF Module "Attribute Kombination Manager"') === false){
+					$needle = $modifyData['SEARCHSTRING'];
+			        $lines = explode("\n", $fileContent);
+					$i = 0;
+					foreach($lines as $key => $val )
+					{
+						if ((is_array($needle) && in_array(trim($val), $needle)) || (is_string($needle) && $needle == trim($val))) {
+							$lines[$key + $modifyData['KEYPLUS']] = $modifyData['REPLACESTRING'];
+							$i++;
+							break;
+						}
+					}
+					$newFileContent = implode("\n", $lines);
+					$res = file_put_contents($modifyData['TPLFILE'], $newFileContent);
+		        	if (isset($res) && $res > 0 && $i > 0) {
+		            	$this->addMessage(sprintf(COMBI_HOOKPOINT_MANAGER_TPLFILE_MODIFIED, $modifyData['TPLFILE']), 'success');
+		        	}
+					else {
+	            		$this->addMessage(sprintf(COMBI_HOOKPOINT_MANAGER_TPLFILE_SEARCHSTRING_NOTFOUND, $modifyData['TPLFILE']), 'warning');
+					}
+				}
+	        	else {
+	            	$this->addMessage(sprintf(COMBI_HOOKPOINT_MANAGER_TPLFILE_ISALREADY_MODIFIED, $modifyData['TPLFILE']), 'success');
+	        	}
+			}
+        	else {
+            	$this->addMessage(sprintf(COMBI_HOOKPOINT_MANAGER_TPLFILE_NOTEXISTS, $modifyData['TPLFILE']), 'error');
+        	}
+        }
+    }
+
+    public function restoreAllFiles()
+    {
+        $restoreDatas = (new DefaultHookPoints\KKDefaultRestore)->getRestoreData();
+
+        foreach($restoreDatas as $restoreData) {
+			$res = '';
+			if (file_exists($restoreData['TPLFILE'])) {
+		        $fileContent = file_get_contents($restoreData['TPLFILE']);
+				if(strpos($fileContent, 'BOF Module "Attribute Kombination Manager') !== false){
+					$newFileContent = preg_replace($restoreData['SEARCHPATTERN'], $restoreData['REPLACESTRING'], $fileContent);
+					$res = file_put_contents($restoreData['TPLFILE'], $newFileContent);
+				}
+	        	else {
+	            	$this->addMessage(sprintf(COMBI_HOOKPOINT_MANAGER_TPLFILE_NOTMODIFIED, $restoreData['TPLFILE']), 'warning');
+	        	}
+			}
+        	else {
+            	$this->addMessage(sprintf(COMBI_HOOKPOINT_MANAGER_TPLFILE_NOTEXISTS, $restoreData['TPLFILE']), 'warning');
+        	}
+        	if (isset($res) && $res > 0) {
+            	$this->addMessage(sprintf(COMBI_HOOKPOINT_MANAGER_TPLFILE_RESTORED, $restoreData['TPLFILE']), 'success');
+        	}
+        }
     }
 
     public function addMessage($message, $type = 'error')

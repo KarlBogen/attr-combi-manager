@@ -29,11 +29,20 @@ class products_combinations {
 		$this->code = 'products_combinations';
 		$this->title = MODULE_PRODUCTS_COMBINATIONS_TEXT_TITLE;
 		$this->description = '';
-		if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS')) $this->description .= '<a class="button btnbox but_green" style="text-align:center;" onclick="this.blur();" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=update') . '">Update</a><br /><br />';
-		if (!$this->isMmlcInstalled()) {
-			$this->description .= '<a class="button btnbox but_red" style="text-align:center;" onclick="return confirmLink(\''. MODULE_PRODUCTS_COMBINATIONS_REMOVE .'\', \'\' ,this);" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=custom') . '">'.ICON_DELETE.'</a><br />';
-		}
 		$this->description .= MODULE_PRODUCTS_COMBINATIONS_TEXT_DESCRIPTION;
+		if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS')) {
+			$this->description .= '<a class="button btnbox but_green" style="text-align:center;" onclick="this.blur();" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=update') . '">Update</a><br /><br />';
+			// Button xtc_restock und Template ändern
+			$this->description .= '<a class="button btnbox but_green" style="text-align:center;" onclick="return confirmLink(\''. MODULE_PRODUCTS_COMBINATIONS_BUTTON_MODIFYTPL_CONFIRM .'\', \'\' ,this);" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=custom&func=moddifytpl') . '">'.MODULE_PRODUCTS_COMBINATIONS_BUTTON_MODIFYTPL.'</a><br />';
+			$this->description .= MODULE_PRODUCTS_COMBINATIONS_BUTTON_MODIFYTPL_DESC;
+			// Button xtc_restock und Template wiederherstellen
+			$this->description .= '<a class="button btnbox but_red" style="text-align:center;" onclick="return confirmLink(\''. MODULE_PRODUCTS_COMBINATIONS_BUTTON_RESTORETPL_CONFIRM .'\', \'\' ,this);" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=custom&func=restoretpl') . '">'.MODULE_PRODUCTS_COMBINATIONS_BUTTON_RESTORETPL.'</a><br />';
+			$this->description .= MODULE_PRODUCTS_COMBINATIONS_BUTTON_RESTORETPL_DESC;
+		}
+		if (!$this->isMmlcInstalled()) {
+			$this->description .= '<a class="button btnbox but_red" style="text-align:center;" onclick="return confirmLink(\''. MODULE_PRODUCTS_COMBINATIONS_REMOVE .'\', \'\' ,this);" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=custom&func=delfiles') . '">'.MODULE_PRODUCTS_COMBINATIONS_BUTTON_DELETE.'</a><br />';
+			$this->description .= MODULE_PRODUCTS_COMBINATIONS_BUTTON_DELETE_DESC;
+		}
 		$this->sort_order = defined('MODULE_PRODUCTS_COMBINATIONS_SORT_ORDER') ? MODULE_PRODUCTS_COMBINATIONS_SORT_ORDER : 0;
 		$this->enabled = MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true' ? true : false;
 
@@ -134,6 +143,7 @@ class products_combinations {
 	}
 
 	public function update() {
+
 		// Eintrag löschen
 		$options_select_exists = xtc_db_num_rows(xtc_db_query("SHOW COLUMNS FROM ".TABLE_PRODUCTS_OPTIONS_COMBI." WHERE Field='options_select'"));
 		if($options_select_exists) {
@@ -204,6 +214,10 @@ class products_combinations {
 		$shop_path = DIR_FS_CATALOG;
 		$dirs_and_files = array();
 		$dirs_and_files[] = $shop_path.'products_combi_data.php';
+		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/footer/products_combi.php';
+		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/modules/new_product/combi_new_product.php';
+		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/modules/product_combi_functions.php';
+		$dirs_and_files[] = $shop_path.'includes/modules/product_combi_functions.php';
 		// Dateien löschen
 		foreach ($dirs_and_files as $dir_or_file) {
 			$this->rrmdir($dir_or_file);
@@ -238,15 +252,23 @@ class products_combinations {
 
 		// Klassenerweiterungsmodul wird zeitgleich deinstalliert
 		xtc_db_query("delete from " . TABLE_CONFIGURATION . " where configuration_key LIKE 'MODULE_SHOPPING_CART_COMBIDATATOPRODUCT%'");
-
 	}
 
 	public function custom() {
 
-		// Systemmodule deinstallieren
-		$this->remove();
-
-		if (!$this->isMmlcInstalled()) {
+		// Dateien anpassen
+		if (isset($_GET['func']) && strip_tags($_GET['func']) == 'moddifytpl') {
+			$this->modifyCurrentTemplate();
+		}
+		// Anpassungen entfernen
+		if (isset($_GET['func']) && strip_tags($_GET['func']) == 'restoretpl') {
+			$this->restoreAllFiles();
+		}
+		// alle Eintragungen und Dateien löschen - nur bei Installation ohne MMLC
+		if (isset($_GET['func']) && strip_tags($_GET['func']) == 'delfiles') {
+			// Systemmodule deinstallieren
+			$this->remove();
+			$this->restoreAllFiles();
 			$this->removeAllFiles();
 		}
 
@@ -391,7 +413,7 @@ class products_combinations {
 	// prüfen, ob ModifiedModuleLoaderClient installiert ist
     protected function isMmlcInstalled()
     {
-        if (file_exists(__DIR__ . '/ModifiedModuleLoaderClient')) {
+        if (file_exists(DIR_FS_CATALOG . '/ModifiedModuleLoaderClient')) {
             return true;
         }
         return false;
@@ -401,15 +423,30 @@ class products_combinations {
 		$hookPointManager = new KKHookPointManager();
 		$hookPointManager->registerDefault();
 		$hookPointManager->update();
+		$hookPointManager->modifyFilesBySelection();
 		$msgs = $hookPointManager->getMessage();
 		$this->setMessage($msgs);
 	}
 
-	protected function setMessage($msgs) {
+	protected function modifyCurrentTemplate() {
+		$hookPointManager = new KKHookPointManager();
+		$hookPointManager->modifyFilesBySelection('tpl');
+		$msgs = $hookPointManager->getMessage();
+		$this->setMessage($msgs, COMBI_HOOKPOINT_MANAGER_TPL_MODIFIER);
+	}
+
+	protected function restoreAllFiles() {
+		$hookPointManager = new KKHookPointManager();
+		$hookPointManager->restoreAllFiles();
+		$msgs = $hookPointManager->getMessage();
+		$this->setMessage($msgs, COMBI_HOOKPOINT_MANAGER_TPL_MODIFIER);
+	}
+
+	protected function setMessage($msgs, $com = 'HookPointManager: ') {
 		global $messageStack;
 
 		foreach ($msgs as $msg) {
-			$messageStack->add_session('HookPointManager: ' . $msg['text'], $msg['type']);
+			$messageStack->add_session($com . $msg['text'], $msg['type']);
 		}
 	}
 
@@ -424,10 +461,10 @@ class products_combinations {
 		$dirs_and_files[] = $shop_path.DIR_ADMIN.'images/icons/kombi.psd';
 		$dirs_and_files[] = $shop_path.DIR_ADMIN.'images/icons/kombi.png';
 		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/filenames/products_combi.php';
+		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/hpm/categories_view/side_buttons/product_combi_button.php';
+		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/hpm/new_product/buttons/combi_new_product.php';
 		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/javascript/products_combi.js.php';
 		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/menu/40_products_combi.php';
-		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/modules/hpm/categories_view/side_buttons/product_combi_button.php';
-		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/modules/hpm/new_product/buttons/combi_new_product.php';
 		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/modules/new_attributes/new_attributes_include_th/combi_attributes.php';
 		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/modules/new_attributes/new_attributes_include_td/combi_attributes.php';
 		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/modules/new_product/combi_new_product.php';
@@ -449,7 +486,6 @@ class products_combinations {
 		$dirs_and_files[] = $shop_path.'includes/modules/order/combiModelToProduct.php';
 		$dirs_and_files[] = $shop_path.'includes/modules/shopping_cart/combiDataToProduct.php';
 		$dirs_and_files[] = $shop_path.'includes/modules/product_combi.php';
-		$dirs_and_files[] = $shop_path.'includes/modules/product_combi_functions.php';
 
 		$dirs_and_files[] = $shop_path.'lang/english/admin/products_combi.php';
 		$dirs_and_files[] = $shop_path.'lang/english/extra/admin/products_combi.php';
@@ -460,6 +496,10 @@ class products_combinations {
 		$dirs_and_files[] = $shop_path.'lang/german/extra/admin/products_combi.php';
 		$dirs_and_files[] = $shop_path.'lang/german/extra/products_combi.php';
 		$dirs_and_files[] = $shop_path.'lang/german/modules/system/products_combinations.php';
+
+		$dirs_and_files[] = $shop_path.'templates/bootstrap4/javascript/depdrop_locale_de.js';
+		$dirs_and_files[] = $shop_path.'templates/bootstrap4/javascript/dependent-dropdown.js';
+		$dirs_and_files[] = $shop_path.'templates/bootstrap4/javascript/dependent-dropdown.min.js';
 
 		$dirs_and_files[] = $shop_path.'templates/tpl_modified/javascript/depdrop_locale_de.js';
 		$dirs_and_files[] = $shop_path.'templates/tpl_modified/javascript/dependent-dropdown.js';
