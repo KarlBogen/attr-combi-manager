@@ -127,7 +127,9 @@ Beachte: Erstellen Sie vor der Installation dieses Moduls ein Backup der Datenba
 `Automatisiert:` Klicken Sie auf den grünen Button **Templatedateien anpassen**.<br /><br />
 `Manuell:` Lesen Sie dazu bitte den Abschnitt weiter unten.
 
-> Hinweis: Mit dem Systemmodul werden **Klassenerweiterungen Module** für „categories, main, order und shopping_card“ mitinstalliert und aktiviert.
+> <span class="small">Hinweis:<br />
+Mit dem Systemmodul werden **Klassenerweiterungen Module** für „categories, main, order und shopping_card“ mitinstalliert und aktiviert.<br />
+Desweiteren werden einzelne Shopdateien automatisch an das Modul angepasst!</span>
 
 ### 2.3 Update
 
@@ -160,11 +162,8 @@ Abhängig vom genutzten Template sind Änderungen in den Dateien durchzuführen:
 
 *   [Anhang 1: tpl_modified_responsive](#user-content-anhang-1-tpl-modified-responsive)
 *   [Anhang 2: tpl_modified](#user-content-anhang-2-tpl-modified)
-*   [Anhang 3: bootstrap4](#user-content-anhang-3-bootstrap-4)
-
-> Falls beim Stornieren oder Löschen einer Bestellung im Adminbereich der Lagerbestand der Kombination automatisch angepasst werden soll, dann muss die Datei /inc/xtc_restock_order.inc.php wie nachstehend beschrieben angepasst werden.
-
-*   [Anhang 4: Kombinationsbestand automatisch anpassen](#user-content-anhang-4-kombinationsbestand)
+*	[Anhang 3: XTC5](#user-content-anhang-3-xtc-5)
+*   [Anhang 4: bootstrap4](#user-content-anhang-4-bootstrap-4)
 
 <br />
 
