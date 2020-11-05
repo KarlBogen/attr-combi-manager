@@ -751,7 +751,7 @@ Der Artikelbestand wird automatisch aktualisiert, wenn bei den Kombinationen Än
 Änderungen enthalten.<br />
 Änderungen können mit einer dieser Zeilen
 *   /\* BOF Module "Attribute Kombination Manager" made by Karl \*/
-*   /\* \*\*\* robinthehood/hook-point-manager START \*\*\*
+*   /\* \*\*\* robinthehood/hook-point-manager START \*\*\*<br />
 beginnen.
 
 7\. Bei Problemen im Shopfrontend - prüfen, ob die Konsole einen Fehler anzeigt (siehe Nummer 4.) oder Templateänderungen fehlerhaft durchgeführt wurden (Anhang 1-4).
