@@ -87,7 +87,7 @@ Die **Attribut Kombinationen Verwaltung** benötigt *mod*ified eCommerce Shopsof
 
 Getestet wurde das Modul mit den stable Versionen "2.0.1.0", "2.0.2.0", "2.0.2.1", "2.0.2.2", "2.0.3.0", "2.0.4.0", "2.0.4.1", "2.0.4.2", "2.0.5.0", "2.0.5.1".
 
-Diese Anleitung, Bilder und Beschreibungen beziehen sich auf diese Version.
+Diese Anleitung, Bilder und Beschreibungen beziehen sich auf die Version 2.0.5.1.
 
 <br />
 
@@ -122,7 +122,7 @@ Beachte: Erstellen Sie vor der Installation dieses Moduls ein Backup der Datenba
 
 6.  Klicken Sie auf **Bearbeiten** und konfigurieren Sie das Modul den Bedürfnissen entsprechend.
 
-7. **Anpassung Shop- und Templatedateien**<br />
+7. **Anpassung Templatedateien**<br />
 *Die Anpassung der Dateien kann entweder per Knopfdruck oder manuell erfolgen.*<br /><br />
 `Automatisiert:` Klicken Sie auf den grünen Button **Templatedateien anpassen**.<br /><br />
 `Manuell:` Lesen Sie dazu bitte den Abschnitt weiter unten.
@@ -156,7 +156,7 @@ Desweiteren werden einzelne Shopdateien automatisch an das Modul angepasst!</spa
 Bei der Deinstallation werden die neu angelegten Tabellen und Spalten in der Datenbank entfernt.<br />
 Anpassungen am momentan aktiven Shoptemplate werden entfernt.
 
-### 2.5  Anpassung Shop- und Templatedateien
+### 2.5  Anpassung Templatedateien
 
 Abhängig vom genutzten Template sind Änderungen in den Dateien durchzuführen:
 
