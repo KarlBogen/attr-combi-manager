@@ -59,7 +59,7 @@ Anpassungen am momentan aktiven Shoptemplate werden entfernt.
 <a href="#user-content-attribut-kombinationen-verwaltung">↑ zurück nach oben</a>
 <br />
 
-### Anpassung Shop- und Templatedateien
+### Anpassung Templatedateien
 
 Abhängig vom genutzten Template sind Änderungen in den Dateien durchzuführen:
 

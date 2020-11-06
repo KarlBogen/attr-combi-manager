@@ -462,12 +462,12 @@ class products_combinations {
 		$dirs_and_files[] = $shop_path.DIR_ADMIN.'images/icons/kombi.png';
 		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/filenames/products_combi.php';
 		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/hpm/categories_view/side_buttons/product_combi_button.php';
+		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/hpm/categories_view/small_buttons/product_combi_button.php';
 		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/hpm/new_product/buttons/combi_new_product.php';
 		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/javascript/products_combi.js.php';
 		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/menu/40_products_combi.php';
 		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/modules/new_attributes/new_attributes_include_th/combi_attributes.php';
 		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/modules/new_attributes/new_attributes_include_td/combi_attributes.php';
-		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/extra/modules/new_product/combi_new_product.php';
 		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/javascript/dropdowncontent.js';
 		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/javascript/products_combi.js.php';
 		$dirs_and_files[] = $shop_path.DIR_ADMIN.'includes/modules/categories/combiRemoveProduct.php';
@@ -484,8 +484,8 @@ class products_combinations {
 		$dirs_and_files[] = $shop_path.'includes/extra/modules/wishlist_content/combiImageToProduct.php';
 		$dirs_and_files[] = $shop_path.'includes/modules/main/combiDataToAttr.php';
 		$dirs_and_files[] = $shop_path.'includes/modules/order/combiModelToProduct.php';
-		$dirs_and_files[] = $shop_path.'includes/modules/shopping_cart/combiDataToProduct.php';
 		$dirs_and_files[] = $shop_path.'includes/modules/product_combi.php';
+		$dirs_and_files[] = $shop_path.'includes/modules/shopping_cart/combiDataToProduct.php';
 
 		$dirs_and_files[] = $shop_path.'lang/english/admin/products_combi.php';
 		$dirs_and_files[] = $shop_path.'lang/english/extra/admin/products_combi.php';
