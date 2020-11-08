@@ -1,7 +1,6 @@
 <?php
 /* ------------------------------------------------------------
 	Module "Attribute Kombination Manager" made by Karl
-	Version: 0.0.1
 
 	inspired by Products Matrix Module (c) Timo Doerr <timo.doerr@work-less.de>
 
