@@ -67,78 +67,84 @@ class products_combinations {
 	}
     
 	public function install() {
-		// Einträge in Konfigurationstabelle
-    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_STATUS', 'true',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
-    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_OWN_MODEL_AND_EAN', 'true',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
-    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_CHECK_COMBI_STOCK', 'true',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
-    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_SHOW_EMPTY_COMBI_OPTION', 'true',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
-    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_CHANGE_IMAGE', 'true',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
-    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_BOOTSTRAP', 'false',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
-		// Preisupdater
-    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_PRICEUPDATER_ON', 'true',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
-    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_ADDITIONAL', 'true',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
-    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_UPDATE_PRICE', 'false',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
+		defined('PROJECT_VERSION_NO') or define('PROJECT_VERSION_NO', PROJECT_MAJOR_VERSION . '.' . PROJECT_MINOR_VERSION);
+		// #webald - 2020-11-24 - Prüfung Mindestversion, sonst keine Installation
+		if (version_compare(PROJECT_VERSION_NO,'2.0.1') >= 0) {
+			// Einträge in Konfigurationstabelle
+	    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_STATUS', 'true',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
+	    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_OWN_MODEL_AND_EAN', 'true',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
+	    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_CHECK_COMBI_STOCK', 'true',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
+	    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_SHOW_EMPTY_COMBI_OPTION', 'true',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
+	    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_CHANGE_IMAGE', 'true',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
+	    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_BOOTSTRAP', 'false',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
+			// Preisupdater
+	    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_PRICEUPDATER_ON', 'true',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
+	    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_ADDITIONAL', 'true',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
+	    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_UPDATE_PRICE', 'false',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
 
-		// Klassenerweiterungsmodul wird mitinstalliert - wird eine Kategorie oder ein Produkt gelöscht wird gleichzeitig die Kombination entfernt
-		xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, set_function, date_added) values ('MODULE_CATEGORIES_COMBIREMOVEPRODUCT_STATUS', 'true','6', '1','xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
-		xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_CATEGORIES_COMBIREMOVEPRODUCT_SORT_ORDER', '11','6', '2', now())");
+			// Klassenerweiterungsmodul wird mitinstalliert - wird eine Kategorie oder ein Produkt gelöscht wird gleichzeitig die Kombination entfernt
+			xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, set_function, date_added) values ('MODULE_CATEGORIES_COMBIREMOVEPRODUCT_STATUS', 'true','6', '1','xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
+			xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_CATEGORIES_COMBIREMOVEPRODUCT_SORT_ORDER', '11','6', '2', now())");
 
-		// Klassenerweiterungsmodul wird mitinstalliert - hat der Artikel eine Kombination wird der Attributbestand erhöht, damit ein Checkout möglich ist
-		xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, set_function, date_added) values ('MODULE_MAIN_COMBIDATATOATTR_STATUS', 'true','6', '1','xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
-		xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_MAIN_COMBIDATATOATTR_SORT_ORDER', '11','6', '2', now())");
+			// Klassenerweiterungsmodul wird mitinstalliert - hat der Artikel eine Kombination wird der Attributbestand erhöht, damit ein Checkout möglich ist
+			xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, set_function, date_added) values ('MODULE_MAIN_COMBIDATATOATTR_STATUS', 'true','6', '1','xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
+			xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_MAIN_COMBIDATATOATTR_SORT_ORDER', '11','6', '2', now())");
 
-		// Klassenerweiterungsmodul wird mitinstalliert - hat eine Kombination eine eigene Artikelnummer, EAN oder Bild, dann werden diese Nummern dem bestellten Produkt zugeordnet
-		xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, set_function, date_added) values ('MODULE_ORDER_COMBIMODELTOPRODUCT_STATUS', 'true','6', '1','xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
-		xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_ORDER_COMBIMODELTOPRODUCT_SORT_ORDER', '11','6', '2', now())");
+			// Klassenerweiterungsmodul wird mitinstalliert - hat eine Kombination eine eigene Artikelnummer, EAN oder Bild, dann werden diese Nummern dem bestellten Produkt zugeordnet
+			xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, set_function, date_added) values ('MODULE_ORDER_COMBIMODELTOPRODUCT_STATUS', 'true','6', '1','xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
+			xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_ORDER_COMBIMODELTOPRODUCT_SORT_ORDER', '11','6', '2', now())");
 
-		// Klassenerweiterungsmodul wird mitinstalliert - hat eine Kombination eine eigene Artikelnummer, EAN oder Bild, dann werden diese Nummern dem bestellten Produkt zugeordnet
-		xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, set_function, date_added) values ('MODULE_SHOPPING_CART_COMBIDATATOPRODUCT_STATUS', 'true','6', '1','xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
-		xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_SHOPPING_CART_COMBIDATATOPRODUCT_SORT_ORDER', '11','6', '2', now())");
+			// Klassenerweiterungsmodul wird mitinstalliert - hat eine Kombination eine eigene Artikelnummer, EAN oder Bild, dann werden diese Nummern dem bestellten Produkt zugeordnet
+			xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, set_function, date_added) values ('MODULE_SHOPPING_CART_COMBIDATATOPRODUCT_STATUS', 'true','6', '1','xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
+			xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, date_added) values ('MODULE_SHOPPING_CART_COMBIDATATOPRODUCT_SORT_ORDER', '11','6', '2', now())");
 
-		// Tabellen für Kombinations Verwaltung erzeugen
-		xtc_db_query("CREATE TABLE IF NOT EXISTS ".TABLE_PRODUCTS_OPTIONS_COMBI." (
-					`combi_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-					`products_id` int(11) NOT NULL,
-					`options_ids` varchar(255) NOT NULL,
-					`options_values_ids` varchar(255) NOT NULL,
-					PRIMARY KEY (`combi_id`)
-					);");
+			// Tabellen für Kombinations Verwaltung erzeugen
+			xtc_db_query("CREATE TABLE IF NOT EXISTS ".TABLE_PRODUCTS_OPTIONS_COMBI." (
+						`combi_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+						`products_id` int(11) NOT NULL,
+						`options_ids` varchar(255) NOT NULL,
+						`options_values_ids` varchar(255) NOT NULL,
+						PRIMARY KEY (`combi_id`)
+						);");
 
-		xtc_db_query("CREATE TABLE IF NOT EXISTS ".TABLE_PRODUCTS_OPTIONS_COMBI_VALUES_2." (
-					`combi_value_id` int(11) NOT NULL AUTO_INCREMENT,
-					`combi_id` int(11) NOT NULL,
-					`products_id` int(11) NOT NULL,
-					`status` int(1) NOT NULL,
-					`attribute_name` varchar(255) NOT NULL,
-					`attribute_id` varchar(128) NOT NULL,
-					`model` varchar(64) NOT NULL,
-					`ean` varchar(128) NOT NULL,
-					`stock` int(4) NOT NULL,
-					`image` varchar(255) NOT NULL,
-					`combi_sort` int(11) NOT NULL,
-					PRIMARY KEY (`combi_value_id`)
-					);");
+			xtc_db_query("CREATE TABLE IF NOT EXISTS ".TABLE_PRODUCTS_OPTIONS_COMBI_VALUES_2." (
+						`combi_value_id` int(11) NOT NULL AUTO_INCREMENT,
+						`combi_id` int(11) NOT NULL,
+						`products_id` int(11) NOT NULL,
+						`status` int(1) NOT NULL,
+						`attribute_name` varchar(255) NOT NULL,
+						`attribute_id` varchar(128) NOT NULL,
+						`model` varchar(64) NOT NULL,
+						`ean` varchar(128) NOT NULL,
+						`stock` int(4) NOT NULL,
+						`image` varchar(255) NOT NULL,
+						`combi_sort` int(11) NOT NULL,
+						PRIMARY KEY (`combi_value_id`)
+						);");
 
-		// Einträge in admin_access
-		$admin_access_products_combi_exists = xtc_db_num_rows(xtc_db_query("SHOW COLUMNS FROM ".TABLE_ADMIN_ACCESS." WHERE Field='products_combi'"));
-		if(!$admin_access_products_combi_exists) {
-			xtc_db_query("ALTER TABLE ".TABLE_ADMIN_ACCESS." ADD `products_combi` INT(1) DEFAULT '0' NOT NULL");
+			// Einträge in admin_access
+			$admin_access_products_combi_exists = xtc_db_num_rows(xtc_db_query("SHOW COLUMNS FROM ".TABLE_ADMIN_ACCESS." WHERE Field='products_combi'"));
+			if(!$admin_access_products_combi_exists) {
+				xtc_db_query("ALTER TABLE ".TABLE_ADMIN_ACCESS." ADD `products_combi` INT(1) DEFAULT '0' NOT NULL");
+			}
+			xtc_db_query("UPDATE ".TABLE_ADMIN_ACCESS." SET products_combi = '9' WHERE customers_id = 'groups' LIMIT 1");
+			xtc_db_query("UPDATE ".TABLE_ADMIN_ACCESS." SET products_combi = '1' WHERE customers_id = '1' LIMIT 1");
+			if ($_SESSION['customer_id'] > 1) {
+				xtc_db_query("UPDATE ".TABLE_ADMIN_ACCESS." SET products_combi = '1' WHERE customers_id = '".$_SESSION['customer_id']."' LIMIT 1") ;
+			}
+			if (version_compare(PROJECT_VERSION_NO,'2.0.3') <= 0)
+			{
+				// fehlende Spalte ergänzen
+				// #GTB - 2018-03-16 - new products attributes handling
+				xtc_db_query("ALTER TABLE ".TABLE_PRODUCTS_OPTIONS_VALUES." ADD products_options_values_sortorder INT(11) NOT NULL AFTER products_options_values_name;");
+			}
+			// Klassenerweiterungsmodule in Konfigurationstabelle?
+			$this->checkClassExtensionModules();
+			// Hookpoints setzen
+			$this->installHookpoints();
+		} else {
+			trigger_error('Module "Attribute Kombination Manager" cannot be installed. Minimum version must be 2.0.1.',E_USER_ERROR);
 		}
-		xtc_db_query("UPDATE ".TABLE_ADMIN_ACCESS." SET products_combi = '9' WHERE customers_id = 'groups' LIMIT 1");
-		xtc_db_query("UPDATE ".TABLE_ADMIN_ACCESS." SET products_combi = '1' WHERE customers_id = '1' LIMIT 1");
-		if ($_SESSION['customer_id'] > 1) {
-			xtc_db_query("UPDATE ".TABLE_ADMIN_ACCESS." SET products_combi = '1' WHERE customers_id = '".$_SESSION['customer_id']."' LIMIT 1") ;
-		}
-		if (version_compare(PROJECT_VERSION_NO,'2.0.3') <= 0)
-		{
-			// fehlende Spalte ergänzen
-			// #GTB - 2018-03-16 - new products attributes handling
-			xtc_db_query("ALTER TABLE ".TABLE_PRODUCTS_OPTIONS_VALUES." ADD products_options_values_sortorder INT(11) NOT NULL AFTER products_options_values_name;");
-		}
-		// Klassenerweiterungsmodule in Konfigurationstabelle?
-		$this->checkClassExtensionModules();
-		// Hookpoints setzen
-		$this->installHookpoints();
 	}
 
 	public function update() {
