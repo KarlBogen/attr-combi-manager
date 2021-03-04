@@ -4,7 +4,7 @@
 
 # Attribut Kombinationen Verwaltung
 
-**Version 1.0.0**
+**Version 1.0.1**
 
 **Ein Systemmodul für die *mod*ified eCommerce Shopsoftware**
 
@@ -181,7 +181,7 @@ Aus diesem Grund müssen Artikelmerkmale und Optionswerte erstellt werden, rufen
 
 <img alt="screenshot" style="margin: 20px 0;" width="522" height="159" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_002.png"/>
 
-Sie sollten hier eine Sortierung vergeben.
+Legen Sie hier eine Sortierung fest (**fehlende Sortierung kann zu Fehlern in der Kombinationen Verwaltung führen**).
 
 Diese Reihenfolge ist später entscheidend für die Erstellung der Kombinationen.
 
@@ -194,7 +194,7 @@ Katalog > Kategorien/Artikel** oder direkt beim Artikel.
 
 <img alt="screenshot" style="margin: 20px 0;" width="586" height="187" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_003.png"/>
 
-Wählen Sie Attribute und vergeben eine Reihenfolge.
+Wählen Sie Attribute und vergeben eine Reihenfolge (**achten Sie auf die Vergabe der Reihenfolge**).
 
 <img alt="screenshot" style="margin: 20px 0;" width="605" height="246" src="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/images/Image_004.png"/>
 
@@ -708,6 +708,8 @@ Bei eingeschaltetem Easyzoom muss im Systemmodul der Wert für "Wird ein Bootstr
 <br />
 
 <h2 id="user-content-anhang-hilfe--fehlersuche" style="padding-top: 60px; margin-top: -60px;">Anhang Hilfe / Fehlersuche</h2>
+
+Sollten seltsame Kombinationen (z.B. gelb /L / blau) erzeugt werden, die Detailansicht im Shop falsche Attribute (z.B. Farbe / Größe / Farbe) anzeigen, prüfen Sie bitte zuerst, ob Sie für Artikelmerkmale eine **Sortierreihenfolge** vergeben haben.
 
 Sollte etwas nicht so funktionieren wie gewohnt, dann sollten Sie zuerst diese Dinge prüfen.
 
