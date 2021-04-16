@@ -603,7 +603,9 @@ class ProductCombiAdmin
 
 		// Speichern des Zählers als Produktanzahl
 		// zusammenzählen für Produktanzahl gesamt
-		$stock = array_sum($_POST["stock"]);
+		$stock = 0;
+		if (isset($_POST["stock"])) $stock = array_sum($_POST["stock"]);
+
 		xtc_db_perform(TABLE_PRODUCTS, array ('products_quantity' => $stock), 'update', 'products_id='.(int)$_POST["current_product_id"]);
 	}
 

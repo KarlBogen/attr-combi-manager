@@ -51,10 +51,10 @@ if (isset ($_REQUEST['pID'])){
 if (isset($_POST['current_product_id'])) $backhidden .= xtc_draw_hidden_field('current_product_id',$_POST['current_product_id']);
 
 if ($backlink <> '') {
-	if (isset ($_REQUEST['oldaction']) && $_REQUEST['oldaction'] == 'new_product') {
-        $backlink .= 'oldaction=new_product&current_product_id='.$_POST['current_product_id'].'&';
+	if (isset($_REQUEST['oldaction']) && $_REQUEST['oldaction'] == 'new_product') {
+        $backlink .= 'action=new_product&current_product_id='.$_POST['current_product_id'].'&';
 		$backhidden .= xtc_draw_hidden_field('oldaction', $_REQUEST['oldaction']);
-		$backfile = FILENAME_NEW_ATTRIBUTES;
+		$backfile = FILENAME_CATEGORIES;
 	} else {
 		$backfile = FILENAME_CATEGORIES;
 	}

@@ -43,7 +43,7 @@ class products_combinations {
 			$this->description .= MODULE_PRODUCTS_COMBINATIONS_BUTTON_DELETE_DESC;
 		}
 		$this->sort_order = defined('MODULE_PRODUCTS_COMBINATIONS_SORT_ORDER') ? MODULE_PRODUCTS_COMBINATIONS_SORT_ORDER : 0;
-		$this->enabled = MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true' ? true : false;
+		$this->enabled = (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true') ? true : false;
 
 		$this->properties['remove'] = array( 'text' => MODULE_PRODUCTS_COMBINATIONS_REMOVE);
  	}
@@ -239,12 +239,12 @@ class products_combinations {
 		xtc_db_query("DELETE FROM ".TABLE_CONFIGURATION." WHERE configuration_key in ('" . implode("', '", $this->keys()) . "')");
 		xtc_db_query("ALTER TABLE ".TABLE_ADMIN_ACCESS." DROP `products_combi`");
 
-		xtc_db_query("DROP TABLE `products_options_combi`");
-		xtc_db_query("DROP TABLE `products_options_combi_values`");
-		xtc_db_query("DROP TABLE `products_options_combi_values_2`");
+		xtc_db_query("DROP TABLE IF EXISTS `products_options_combi`");
+		xtc_db_query("DROP TABLE IF EXISTS `products_options_combi_values`");
+		xtc_db_query("DROP TABLE IF EXISTS `products_options_combi_values_2`");
 
 		// KKHookpointManager
-		xtc_db_query("DROP TABLE `kk_hook_point`");
+		xtc_db_query("DROP TABLE IF EXISTS `kk_hook_point`");
 
 		// Klassenerweiterungsmodul wird zeitgleich deinstalliert
 		xtc_db_query("delete from " . TABLE_CONFIGURATION . " where configuration_key LIKE 'MODULE_CATEGORIES_COMBIREMOVEPRODUCT_%'");
@@ -280,28 +280,28 @@ class products_combinations {
 	}
 
 	public function keys() {
-		if (defined(MODULE_CATEGORIES_COMBIREMOVEPRODUCT_STATUS))
+		if (defined('MODULE_CATEGORIES_COMBIREMOVEPRODUCT_STATUS'))
 		{
 			if ($this->enabled == false && MODULE_CATEGORIES_COMBIREMOVEPRODUCT_STATUS == 'true')
 	    		xtc_db_query("update " . TABLE_CONFIGURATION . " set configuration_value = 'false' where configuration_key = 'MODULE_CATEGORIES_COMBIREMOVEPRODUCT_STATUS'");
 			if ($this->enabled == true && MODULE_CATEGORIES_COMBIREMOVEPRODUCT_STATUS == 'false')
 	    		xtc_db_query("update " . TABLE_CONFIGURATION . " set configuration_value = 'true' where configuration_key = 'MODULE_CATEGORIES_COMBIREMOVEPRODUCT_STATUS'");
 		}
-		if (defined(MODULE_MAIN_COMBIDATATOATTR_STATUS))
+		if (defined('MODULE_MAIN_COMBIDATATOATTR_STATUS'))
 		{
 			if ($this->enabled == false && MODULE_MAIN_COMBIDATATOATTR_STATUS == 'true')
 	    		xtc_db_query("update " . TABLE_CONFIGURATION . " set configuration_value = 'false' where configuration_key = 'MODULE_MAIN_COMBIDATATOATTR_STATUS'");
 			if ($this->enabled == true && MODULE_MAIN_COMBIDATATOATTR_STATUS == 'false')
 	    		xtc_db_query("update " . TABLE_CONFIGURATION . " set configuration_value = 'true' where configuration_key = 'MODULE_MAIN_COMBIDATATOATTR_STATUS'");
 		}
-		if (defined(MODULE_ORDER_COMBIMODELTOPRODUCT_STATUS))
+		if (defined('MODULE_ORDER_COMBIMODELTOPRODUCT_STATUS'))
 		{
 			if ($this->enabled == false && MODULE_ORDER_COMBIMODELTOPRODUCT_STATUS == 'true')
 	    		xtc_db_query("update " . TABLE_CONFIGURATION . " set configuration_value = 'false' where configuration_key = 'MODULE_ORDER_COMBIMODELTOPRODUCT_STATUS'");
 			if ($this->enabled == true && MODULE_ORDER_COMBIMODELTOPRODUCT_STATUS == 'false')
 	    		xtc_db_query("update " . TABLE_CONFIGURATION . " set configuration_value = 'true' where configuration_key = 'MODULE_ORDER_COMBIMODELTOPRODUCT_STATUS'");
 		}
-		if (defined(MODULE_SHOPPING_CART_COMBIDATATOPRODUCT_STATUS))
+		if (defined('MODULE_SHOPPING_CART_COMBIDATATOPRODUCT_STATUS'))
 		{
 			if ($this->enabled == false && MODULE_SHOPPING_CART_COMBIDATATOPRODUCT_STATUS == 'true')
 	    		xtc_db_query("update " . TABLE_CONFIGURATION . " set configuration_value = 'false' where configuration_key = 'MODULE_SHOPPING_CART_COMBIDATATOPRODUCT_STATUS'");
@@ -518,16 +518,41 @@ class products_combinations {
 		$dirs_and_files[] = $shop_path.'templates/xtc5/javascript/dependent-dropdown.js';
 		$dirs_and_files[] = $shop_path.'templates/xtc5/javascript/dependent-dropdown.min.js';
 
-		$dirs_and_files[] = $shop_path.'vendor-no-composer/karlk/HookPointManager';
-		$dirs_and_files[] = $shop_path.'vendor-no-composer/karlk/ProductCombiManager';
+		$dirs_and_files[] = $shop_path.'vendor/composer/KKClassLoader.php';
+
+		$dirs_and_files[] = $shop_path.'vendor-no-composer/karlk';
 
 		// Dateien löschen
 		foreach ($dirs_and_files as $dir_or_file) {
 			$this->rrmdir($dir_or_file);
 		}
 
+		$dirs[] = $shop_path.'vendor/composer';
+		$dirs[] = $shop_path.'vendor';
+		$dirs[] = $shop_path.'vendor-no-composer';
+
+		foreach ($dirs as $dir) {
+			$this->RemoveEmptyDirs($dir);
+		}
+
 		// Datei selbst löschen
         unlink($shop_path.DIR_ADMIN.'includes/modules/system/products_combinations.php');
+	}
+
+	// Leere Verzeichnisse löschen
+	protected function RemoveEmptyDirs($dir)
+	{
+		if (is_dir($dir)) {
+			foreach (scandir($dir) as $file){
+				if (!in_array($file, array('.','..'))) {
+					echo $dir . ' ist nicht leer!<br>';
+					return false;
+				}
+			}
+			echo $dir . ' ist leer!<br>';
+			rmdir($dir);
+			return true;
+		}
 	}
 
 	// Funktion stellt sicher, dass die Klassenerweiterungsmodule in der Datenbank eingetragen sind

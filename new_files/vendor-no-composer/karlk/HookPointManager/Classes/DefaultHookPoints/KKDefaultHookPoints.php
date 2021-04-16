@@ -28,6 +28,15 @@ class KKDefaultHookPoints
             'name' => 'hpm-default-admin-categories-view-small-buttons',
             'module' => 'robinthehood/hook-point-manager',
             'file' => '/admin/includes/modules/categories_view.php',
+            'hash' => '3e93faae7d5d1af9ab367bc822f9fbe9',
+            'line' => 661,
+            'include' => '/admin/includes/extra/hpm/categories_view/small_buttons/'
+        ], ['2.0.6.0']);
+
+        $hookPointManager->registerHookPoint([
+            'name' => 'hpm-default-admin-categories-view-small-buttons',
+            'module' => 'robinthehood/hook-point-manager',
+            'file' => '/admin/includes/modules/categories_view.php',
             'hash' => '68617ac9e3f07e2cffbb68adfd9b4d9f',
             'line' => 665,
             'include' => '/admin/includes/extra/hpm/categories_view/small_buttons/'
@@ -91,6 +100,15 @@ class KKDefaultHookPoints
             'name' => 'hpm-default-admin-categories-view-side-buttons',
             'module' => 'robinthehood/hook-point-manager',
             'file' => '/admin/includes/modules/categories_view.php',
+            'hash' => '3e93faae7d5d1af9ab367bc822f9fbe9',
+            'line' => 1001,
+            'include' => '/admin/includes/extra/hpm/categories_view/side_buttons/'
+        ], ['2.0.6.0']);
+
+        $hookPointManager->registerHookPoint([
+            'name' => 'hpm-default-admin-categories-view-side-buttons',
+            'module' => 'robinthehood/hook-point-manager',
+            'file' => '/admin/includes/modules/categories_view.php',
             'hash' => '68617ac9e3f07e2cffbb68adfd9b4d9f',
             'line' => 1008,
             'include' => '/admin/includes/extra/hpm/categories_view/side_buttons/'
@@ -149,6 +167,15 @@ class KKDefaultHookPoints
             'line' => 974,
             'include' => '/admin/includes/extra/hpm/categories_view/side_buttons/'
         ], ['2.0.0.0']);
+
+        $hookPointManager->registerHookPoint([
+            'name' => 'hpm-default-admin-new-product-buttons',
+            'module' => 'robinthehood/hook-point-manager',
+            'file' => '/admin/includes/modules/new_product.php',
+            'hash' => '007e9af6ec2cfa8c384d914d4edcae22',
+            'line' => 254,
+            'include' => '/admin/includes/extra/hpm/new_product/buttons/'
+        ], ['2.0.6.0']);
 
         $hookPointManager->registerHookPoint([
             'name' => 'hpm-default-admin-new-product-buttons',

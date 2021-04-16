@@ -219,7 +219,8 @@ class KKHookPointManager
 
     public function restoreAllFiles()
     {
-        $restoreDatas = (new DefaultHookPoints\KKDefaultRestore)->getRestoreData();
+        $modifiedVersion = KKShopInfo::getModifiedVersion();
+        $restoreDatas = (new DefaultHookPoints\KKDefaultRestore)->getRestoreData($modifiedVersion);
 
         foreach($restoreDatas as $restoreData) {
 			$res = '';

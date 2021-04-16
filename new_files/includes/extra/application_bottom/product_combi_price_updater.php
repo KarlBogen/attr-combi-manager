@@ -70,22 +70,21 @@ function CombiPriceUpdater() {
         }
       }
       if (updateOrgPrice) {
-        <?php if (strpos(CURRENT_TEMPLATE, '_modified') !== false) { ?>
-        $('.pd_summarybox .pd_price .standard_price').html(symbolLeft + newPrice + symbolRight);
-        $('.pd_summarybox .pd_price .new_price').html(data.onlytext + symbolLeft + newPrice + symbolRight);
-        $('.pd_summarybox .pd_price .old_price').html(data.insteadtext + symbolLeft + oldPrice + symbolRight);
-        if (data.vpevalue !== false) {
-          $('.pd_summarybox .pd_vpe').html(symbolLeft + newVpePrice + symbolRight + data.protext + data.vpetext);
-        }
-
-        <?php } else { ?>
+<?php if (strpos(CURRENT_TEMPLATE, 'xtc') !== false) { ?>
         $('.productprice .standard_price').html(symbolLeft + newPrice + symbolRight);
         $('.productprice .productNewPrice').html(data.onlytext + symbolLeft + newPrice + symbolRight);
         $('.productprice .productOldPrice').html(data.insteadtext + symbolLeft + oldPrice + symbolRight);
         if (data.vpevalue !== false) {
           $('#productVpePrice').html(symbolLeft + newVpePrice + symbolRight + data.protext + data.vpetext);
         }
-        <?php } ?>
+<?php } else { ?>
+        $('.pd_summarybox .pd_price .standard_price').html(symbolLeft + newPrice + symbolRight);
+        $('.pd_summarybox .pd_price .new_price').html(data.onlytext + symbolLeft + newPrice + symbolRight);
+        $('.pd_summarybox .pd_price .old_price').html(data.insteadtext + symbolLeft + oldPrice + symbolRight);
+        if (data.vpevalue !== false) {
+          $('.pd_summarybox .pd_vpe').html(symbolLeft + newVpePrice + symbolRight + data.protext + data.vpetext);
+        }
+<?php } ?>
       }
     }
     function calculateAll() {

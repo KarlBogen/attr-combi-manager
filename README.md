@@ -15,7 +15,7 @@ So ist es auch machbar, dass zum Beispiel `2 Stück` T-Shirts, Größe S, Farbe 
 
 <br />
 
-> Hinweis: Für dieses Modul sind geringe Anpassungen im Template nötig.
+> Hinweis: Für dieses Modul sind geringe Anpassungen im Template nötig. Diese **Anpassungen können manuell oder per Knopfdruck** gemacht werden.
 
 <br />
 <a href="https://raw.githubusercontent.com/KarlBogen/manuals/master/acm/handbuch.pdf">Das Handbuch im PDF-Format kann hier heruntergeladen werden.</a>
@@ -24,3 +24,5 @@ So ist es auch machbar, dass zum Beispiel `2 Stück` T-Shirts, Größe S, Farbe 
 <br />
 
 **Das Modul benötigt *mod*ified eCommerce Shopsoftware Version 2.0.1.0 oder höher**
+
+Getestet wurde das Modul mit den stable Versionen "2.0.1.0", "2.0.2.0", "2.0.2.1", "2.0.2.2", "2.0.3.0", "2.0.4.0", "2.0.4.1", "2.0.4.2", "2.0.5.0", "2.0.5.1", "2.0.6.0".

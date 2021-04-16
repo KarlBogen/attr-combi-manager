@@ -10,11 +10,24 @@ namespace KarlK\HookPointManager\Classes\DefaultHookPoints;
 class KKDefaultRestore
 {
 
-    public function getRestoreData()
+    public function getRestoreData($modifiedVersion)
     {
 		$ResData = array();
 		$ResData[] = $this->getXtcRestockData();
-		$ResData[] = $this->getMainClassData();
+
+		switch ($modifiedVersion) {
+			case '2.0.1.0':
+			case '2.0.2.0':
+			case '2.0.2.1':
+			case '2.0.2.2':
+			case '2.0.3.0':
+			case '2.0.4.0':
+			case '2.0.4.1':
+			case '2.0.4.2':
+				$ResData[] = $this->getMainClassData();
+				break;
+		}
+
 		$ResData[] = $this->getSumoselectData();
 		$ResData[] = $this->getGeneralBottomData();
 		$ResData[] = $this->getDefaultData();

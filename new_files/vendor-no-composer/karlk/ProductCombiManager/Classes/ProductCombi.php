@@ -356,8 +356,10 @@ public function getCombinationsListfromTable($combi_id=0, $prod_data = array()){
 			if (MODULE_PRODUCTS_COMBINATIONS_CHANGE_IMAGE == 'true') {
 				$output .= '					var newhref = "'.DIR_WS_BASE.'images/product_images/popup_images/";'.PHP_EOL;
 				$output .= '					var newsrc = "'.DIR_WS_BASE.'images/product_images/info_images/";'.PHP_EOL;
-				$output .= '					$("#product_details .pd_big_image a").attr("href", newhref+data.image);'.PHP_EOL;
-				$output .= '					$("#product_details .pd_big_image img").attr("src", newsrc+data.image);'.PHP_EOL;
+				$output .= '					if (data.image) {'.PHP_EOL;
+				$output .= '						$("#product_details .pd_big_image a").attr("href", newhref+data.image);'.PHP_EOL;
+				$output .= '						$("#product_details .pd_big_image img").attr("src", newsrc+data.image);'.PHP_EOL;
+				$output .= '					}'.PHP_EOL;
 			} else {
 				$output .= '					if (data.image) content += "<div class=\"combi_img\"><img src=\"'.DIR_WS_BASE.'images/product_images/thumbnail_images/"+data.image+"\" alt=\"image\" style=\"padding:10px;border:0;\"\/><\/div>";'.PHP_EOL;
 			}
