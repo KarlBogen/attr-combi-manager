@@ -4,8 +4,9 @@ UNRELEASED
 1.0.2 [16.04.2021]
 
 - Anpassung an Shopversion 2.0.6.0
+- Probleme beim Preisupdaten von Nicht-Standard-Templates behoben
 - automatische Hookpoints neu gesetzt
-
+- PHP-Notizen behandelt
 
 1.0.1 [04.03.2021]
 
