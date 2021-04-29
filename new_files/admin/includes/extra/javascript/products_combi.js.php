@@ -13,7 +13,7 @@
 // prüfen, ob Systemmodul installiert und Status true ist
 if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true') {
 
-	if(strpos($_SERVER['PHP_SELF'], 'new_attributes.php') == true){
+	if(strpos($_SERVER['PHP_SELF'], 'products_attributes.php') !== false){
 ?>
 	<script type="text/javascript">
 		$(document).ready(function(){

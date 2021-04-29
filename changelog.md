@@ -1,6 +1,10 @@
 UNRELEASED
 
 
+1.0.3 [29.04.2021]
+
+- Fehler in Javascript-Datei admin/includes/extra/javascript/products_combi.js.php behoben
+
 1.0.2 [16.04.2021]
 
 - Anpassung an Shopversion 2.0.6.0
