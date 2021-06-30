@@ -1,5 +1,6 @@
 UNRELEASED
 
+- Fehler Adminumbenennung behoben - wurde der Adminordner umbenannt, konnten automatische Dateianpassungen nicht ausgeführt werden.
 
 1.0.3 [29.04.2021]
 

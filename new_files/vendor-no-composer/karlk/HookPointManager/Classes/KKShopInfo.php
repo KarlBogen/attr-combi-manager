@@ -19,13 +19,13 @@ class KKShopInfo
 {
     /**
      * Returns the path of the shop root directory
-     * 
+     *
      * Notice: __DIR__ and __FILE__ can not handle symlinks. Both magic constants paths are resolved.
      * That's why we have to test both cases.
      */
     public static function getShopRoot()
     {
-        $fileThatMustExist = '/admin/includes/version.php';
+        $fileThatMustExist = '/' . DIR_ADMIN . 'includes/version.php';
 
         // Check if file is installed as copy
         // .../SHOP-ROOT/vendor-no-composer/robinthehood/HookPointManager/Classes/"
@@ -51,7 +51,7 @@ class KKShopInfo
      */
     public static function getModifiedVersion()
     {
-        $path = self::getShopRoot() . '/admin/includes/version.php';
+        $path = self::getShopRoot() . '/' . DIR_ADMIN . 'includes/version.php';
         if (!file_exists($path)) {
             return '';
         }
