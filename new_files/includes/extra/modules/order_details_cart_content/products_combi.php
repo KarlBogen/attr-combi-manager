@@ -25,8 +25,9 @@ if (STOCK_CHECK == 'true') {
 		}
 		else {
 			require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/karlk/autoload.php';
+            $ProductCombi = new ProductCombi();
 			// Artikel markieren, falls Anzahl im Warenkorb den Bestand überschreitet
-			$hascombi = ProductCombi::hasProductCombi(intval($products[$i]['id']));
+			$hascombi = $ProductCombi->hasProductCombi(intval($products[$i]['id']));
 			if ($hascombi) {
 				$tmpAttrid = '';
 				$plh = '_';
@@ -39,7 +40,7 @@ if (STOCK_CHECK == 'true') {
 					$tmpAttrid .= $tmpList[$a].$plh;
 				}
 				$combi_out_of_stock = 0;
-				$combi_stock = ProductCombi::getCombiStock($tmpPid, $tmpAttrid);
+				$combi_stock = $ProductCombi->getCombiStock($tmpPid, $tmpAttrid);
 				if ((int)$combi_stock - $products[$i]['quantity'] < 0) {
 					$module_content[$i]['PRODUCTS_NAME'] = $products[$i]['name'].'<span class="markProductOutOfStock">' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . '</span>';
 					$_SESSION['any_out_of_stock'] = 1;

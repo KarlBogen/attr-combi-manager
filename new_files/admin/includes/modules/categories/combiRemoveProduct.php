@@ -67,8 +67,9 @@ class combiRemoveProduct {  //Important same name as filename
 		if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true') {
 			// Kombinationsliste und Bilder löschen, wenn Produkt gelöscht wird
 			require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/karlk/autoload.php';
-			$combi_id = ProductCombiAdmin::hasProductCombi((int)$product_id);
-			ProductCombiAdmin::deleteCombinationsList($combi_id);
+            $ProductCombiAdmin = new ProductCombiAdmin();
+			$combi_id = $ProductCombiAdmin->hasProductCombi((int)$product_id);
+			$ProductCombiAdmin->deleteCombinationsList($combi_id);
 		}
 	}
 }

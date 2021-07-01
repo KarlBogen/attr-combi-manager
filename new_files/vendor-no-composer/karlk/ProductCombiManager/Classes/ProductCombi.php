@@ -126,7 +126,7 @@ public function getCombinationsListfromTable($combi_id=0, $prod_data = array()){
 	for($i=0;$tmpdata = xtc_db_fetch_array($tmpresult);$i++){
 
 		// Optionspreisangabe zusammensetzen
-		$price = '';
+		$price = 0;
 		$opt_price_name = '';
 		$opt_price = $tmpdata['options_values_price'];
 		$opt_prefix = $tmpdata['price_prefix'];
@@ -135,7 +135,7 @@ public function getCombinationsListfromTable($combi_id=0, $prod_data = array()){
 				// $price = '';
 			} else {
 			    $CalculateCurr = ($tax_id == 0) ? true : false; //FIX several currencies on product attributes
-			    $price = $xtPrice->xtcFormat($opt_price, false, $tax_id, $CalculateCurr);
+			    $price = $xtPrice->xtcFormat(floatval($opt_price), false, $tax_id, $CalculateCurr);
 			}
 			//BOF PRICE PREFIX
 			if ($_SESSION['customers_status']['customers_status_discount_attributes'] == 1 && $opt_prefix != '-') {
@@ -190,7 +190,7 @@ public function getCombinationsListfromTable($combi_id=0, $prod_data = array()){
 	}
 
 	$sel_dat_1 = array();
-	$sel_dat_1 = self::unique_multidim_array($new_array,'name');
+	$sel_dat_1 = $this->unique_multidim_array($new_array,'name');
 
 	// Selectfeld 1 - Option vorbelegen, wenn Attribute in products_id vorhanden (Beispiel: "product_info.php?products_id=664{4}9{1}5")
 	if (strpos($_GET['products_id'], '{') !== false) {
@@ -390,7 +390,7 @@ protected function unique_multidim_array($array, $key) {
 			if(in_array($val['id'], $val_array)){
 				// ist id schon mit Bestand 0 vorhanden, dann aus dem Ergebnisarray entfernen
 				if($val['any_stock'] != 0){
-					$temp_array = self::removeElementWithValue($temp_array, "id", $val['id']);
+					$temp_array = $this->removeElementWithValue($temp_array, "id", $val['id']);
             		$val_array[] = $val['id'];
             		$key_array[] = $val[$key];
             		$temp_array[] = $val;

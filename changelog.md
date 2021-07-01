@@ -1,5 +1,9 @@
 UNRELEASED
 
+
+1.0.4 [01.07.2021]
+
+- PHP8 fixed
 - Fehler Adminumbenennung behoben - wurde der Adminordner umbenannt, konnten automatische Dateianpassungen nicht ausgeführt werden.
 
 1.0.3 [29.04.2021]

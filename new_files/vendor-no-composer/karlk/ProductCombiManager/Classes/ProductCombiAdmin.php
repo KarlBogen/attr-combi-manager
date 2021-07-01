@@ -113,7 +113,7 @@ class ProductCombiAdmin
 	public function createCombinationsList($prod_ID=0, $single = false)
 	{
 		// mögliche Kombinationen / Variationen erzeugen
-		$combis = self::getCombiVariations($prod_ID);
+		$combis = $this->getCombiVariations($prod_ID);
 
 		$options_ids = implode(",", $combis[3]);
 		unset($combis[3]);
@@ -123,7 +123,7 @@ class ProductCombiAdmin
 		$options_select = json_encode($combis[2]);
 
 		// neue combi_id erzeugen und options_select sowie options_ids in Datenbank speichern
-		$combinationsID = self::saveCombinationsID($prod_ID, $options_ids, $options_values_ids);
+		$combinationsID = $this->saveCombinationsID($prod_ID, $options_ids, $options_values_ids);
 
 			// Variationen zerlegen
 			foreach ($combis[0] as $combi){
@@ -254,7 +254,7 @@ class ProductCombiAdmin
 	}
 
 	// bestehende Liste aus Datenbank laden
-	function getCombinationsListfromTable($combi_id=0)
+	public function getCombinationsListfromTable($combi_id=0)
 	{
 
 		$tmpquery = xtc_db_query("SELECT * FROM ".TABLE_PRODUCTS_OPTIONS_COMBI_VALUES_2." WHERE combi_id = ".(int)$combi_id." ORDER BY combi_sort, combi_value_id");
@@ -327,7 +327,7 @@ class ProductCombiAdmin
 			$output .= '</table>'.PHP_EOL;
 
 			// Optionen für Dropdown aus Datenbank holen
-			$combis = self::getCombiOptionsSelect((int)$tmpdata[0]["products_id"]);
+			$combis = $this->getCombiOptionsSelect((int)$tmpdata[0]["products_id"]);
 			// Kombinationendropdown zusammenbauen
 			$options_select='';
 			if (is_array($combis)){
@@ -432,10 +432,13 @@ class ProductCombiAdmin
 			";
 			$tmpresult = xtc_db_query($tmpquery);
 			$tmpdata = xtc_db_fetch_array($tmpresult);
-			$CombinationsID = $tmpdata['combi_id'];
-			$options_ids = $tmpdata['options_ids'];
-			$options_values_ids = $tmpdata['options_values_ids'];
-		    return array($CombinationsID, $options_ids, $options_values_ids);
+			if($tmpdata){
+				$CombinationsID = $tmpdata['combi_id'];
+				$options_ids = $tmpdata['options_ids'];
+				$options_values_ids = $tmpdata['options_values_ids'];
+		    	return array($CombinationsID, $options_ids, $options_values_ids);
+			}
+			return array();
 		}
 	}
 
@@ -563,7 +566,7 @@ class ProductCombiAdmin
 				)";
 		xtc_db_query($tmpquery);
 
-		$CombinationsID = self::getCombinationsID($prod_ID);
+		$CombinationsID = $this->getCombinationsID($prod_ID);
 	    return $CombinationsID;
 	}
 
@@ -612,9 +615,9 @@ class ProductCombiAdmin
 	// Kominationsliste löschen
 	public function deleteCombinationsList($combi_id=0)
 	{
-	// nur bei upload	self::deleteCombinationsImages($combi_id);
-		self::deleteCombinationsTableValues($combi_id);
-		self::deleteCombinationsTable($combi_id);
+	// nur bei upload	$this->deleteCombinationsImages($combi_id);
+		$this->deleteCombinationsTableValues($combi_id);
+		$this->deleteCombinationsTable($combi_id);
 	}
 
 	// Bilder löschen - wird nur bei Upload genutzt

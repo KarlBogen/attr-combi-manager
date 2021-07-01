@@ -19,9 +19,10 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
 
 require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/karlk/autoload.php';
 
+$ProductCombiAdmin = new ProductCombiAdmin();
 // Ajax call für Image-Upload und Bildverknüpfung
 if(isset($_POST['func'])){
-	ProductCombiAdmin::CombiAjaxCall($_POST);
+	$ProductCombiAdmin->CombiAjaxCall($_POST);
 }
 
 $newTable = false;
@@ -67,12 +68,12 @@ if(isset($_POST['action'])){
 	switch($_POST['action']) {
 		// Speichern beim Verlassen - Kombiliste vorher noch nie gespeichert
 		case 'save_redirect':
-		    ProductCombiAdmin::saveCombinationsList();
+		    $ProductCombiAdmin->saveCombinationsList();
     		xtc_redirect(xtc_href_link($backfile, $backlink),'NONSSL');
 			break;
 		// Nicht speichern beim Verlassen - Kombiliste vorher noch nie gespeichert
 		case 'del_redirect':
-            ProductCombiAdmin::deleteCombinationsTable($_POST["combi_id"]);
+            $ProductCombiAdmin->deleteCombinationsTable($_POST["combi_id"]);
     		xtc_redirect(xtc_href_link($backfile, $backlink),'NONSSL');
 			break;
 		// Nicht Speichern beim Verlassen - Kombiliste editieren
@@ -81,7 +82,7 @@ if(isset($_POST['action'])){
 			break;
 		// Speichern beim Verlassen - Kombiliste editieren
 		case 'save_list':
-		    ProductCombiAdmin::saveCombinationsList();
+		    $ProductCombiAdmin->saveCombinationsList();
 			break;
 	}
 }
@@ -127,7 +128,7 @@ require('includes/javascript/products_combi.js.php');
 					<tr>
 						<td class="boxCenter">
 							<div class="pageHeadingImage"><?php echo xtc_image(DIR_WS_ICONS.'kombi.png'); ?></div>
-							<div class="pageHeading pdg2"><?php echo PROD_COMBI_HEADER_TITLE; if (isset($_POST['current_product_id'])) echo ProductCombiAdmin::getCombiProductName ($_POST['current_product_id'], $_SESSION['languages_id'])?></div>
+							<div class="pageHeading pdg2"><?php echo PROD_COMBI_HEADER_TITLE; if (isset($_POST['current_product_id'])) echo $ProductCombiAdmin->getCombiProductName ($_POST['current_product_id'], $_SESSION['languages_id'])?></div>
 <?php //hier gehts Los ?>
 							<table class="tableCenter">
 								<tr>
@@ -138,7 +139,7 @@ require('includes/javascript/products_combi.js.php');
 											echo xtc_draw_hidden_field(xtc_session_name(), xtc_session_id());
 
 											// hole alle Produkte
-    										$result = ProductCombiAdmin::getCombiProductsWithAttributes();
+    										$result = $ProductCombiAdmin->getCombiProductsWithAttributes();
 											$matches = xtc_db_num_rows($result);
 
 											if ($matches) {
@@ -146,7 +147,7 @@ require('includes/javascript/products_combi.js.php');
 												while ($line = xtc_db_fetch_array($result)) {
 													// getCombiDiffAttributes => Anzahl der Attribute zählen (bei mehr als 1 Attribut wird Produkt in Auswahl übernommen)
 													//$current_product_id = $line['products_id'];
-													if (ProductCombiAdmin::getCombiDiffAttributes($line['products_id']) <> 0) {
+													if ($ProductCombiAdmin->getCombiDiffAttributes($line['products_id']) <> 0) {
 														$diff_attribute = 1;
 														$SelectValues[]=array('id'=>$line['products_id'],'text'=>$line['products_name'] .' [' .$line['products_model'] . ']' .' [PID: ' .$line['products_id'] . ']');
 													}
@@ -173,21 +174,21 @@ require('includes/javascript/products_combi.js.php');
 														// Kombinationenliste wird berechnet und combi_id in Datenbank eingetragen
             											$single = false;
             											if (isset($_POST['btn_single'])) $single = true;
-														$createTable = ProductCombiAdmin::createCombinationsList($_POST['current_product_id'], $single);
+														$createTable = $ProductCombiAdmin->createCombinationsList($_POST['current_product_id'], $single);
 														$newTable = true;
 													} else {
 														if (isset($_POST['del_list'])){
 															// löscht die Liste
-															ProductCombiAdmin::deleteCombinationsList($_POST['combi_id']);
+															$ProductCombiAdmin->deleteCombinationsList($_POST['combi_id']);
 														} else {
 															// speichert die erste Auswahlliste und holt alle Daten aus der Value-Tabelle
-															ProductCombiAdmin::saveCombinationsList();
+															$ProductCombiAdmin->saveCombinationsList();
 														}
   													}
 
 												case 'edit':
 													// checken, ob combi_id existiert
-													$combi_id = ProductCombiAdmin::hasProductCombi($_POST['current_product_id']);
+													$combi_id = $ProductCombiAdmin->hasProductCombi($_POST['current_product_id']);
 													if(!$combi_id){ ?>
 														<br />
 														<div style="float:left" class="main"><?php echo PROD_COMBI_NOT_SELECTED_MSG; ?></div>
@@ -195,7 +196,7 @@ require('includes/javascript/products_combi.js.php');
 													} else {
 														// gespeicherte Liste aus Datenbank holen
 														if (!$newTable && $combi_id) {
-															$createTable = ProductCombiAdmin::getCombinationsListfromTable($combi_id);
+															$createTable = $ProductCombiAdmin->getCombinationsListfromTable($combi_id);
 														}
 														echo xtc_draw_form('SAVE_COMBI', FILENAME_PRODUCTS_COMBI, '', 'post', 'id="variations"');
 														echo xtc_draw_hidden_field('action','save');
@@ -278,7 +279,7 @@ require('includes/javascript/products_combi.js.php');
 																	<td>
 																		<?php
 																		// Produktbilder verlinken
-                    													$products_images = ProductCombiAdmin::getCombiProductsImages($_POST['current_product_id']);
+                    													$products_images = $ProductCombiAdmin->getCombiProductsImages($_POST['current_product_id']);
 																		foreach ($products_images as $img) {
 																			if ($img == '' || !is_file(DIR_FS_CATALOG_THUMBNAIL_IMAGES.$img)) $img = 'noimage.gif';
                             												echo '<button class="image_select flt-l mrg5" type="button">' . xtc_image(DIR_WS_CATALOG_THUMBNAIL_IMAGES.$img, $img) . '</button>';
@@ -303,7 +304,7 @@ require('includes/javascript/products_combi.js.php');
 														echo xtc_draw_hidden_field('action','create');
 														echo xtc_draw_hidden_field('current_product_id', $_POST['current_product_id']);
 
-														$tmpresult = ProductCombiAdmin::getCombiProductsOptions($_POST['current_product_id']);
+														$tmpresult = $ProductCombiAdmin->getCombiProductsOptions($_POST['current_product_id']);
 
 														if(xtc_db_num_rows($tmpresult) < 1) {
 															die (PROD_COMBI_MSQL_ERR);

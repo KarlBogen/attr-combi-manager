@@ -13,8 +13,9 @@
 use KarlK\ProductCombiManager\Classes\ProductCombi;
 
 require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/karlk/autoload.php';
+$ProductCombi = new ProductCombi();
 
-	$combi_id = ProductCombi::hasProductCombi($product->pID);
+	$combi_id = $ProductCombi->hasProductCombi($product->pID);
 
 	// Änderung Preisupdater
 	$prod_data = array(	'pid'			=> (int)$product->data['products_id'],
@@ -26,7 +27,7 @@ require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/karlk/autoload.php';
 						);
 
 	if($combi_id) {
-		$output = ProductCombi::getCombinationsListfromTable($combi_id, $prod_data);
+		$output = $ProductCombi->getCombinationsListfromTable($combi_id, $prod_data);
 		$info_smarty->assign('MODULE_product_combi', $output);
 	}
 

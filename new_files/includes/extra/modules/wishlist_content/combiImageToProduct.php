@@ -55,7 +55,7 @@
 			}
 		}
 
-		if ($new_image != '') $module_data[$i]["PRODUCTS_IMAGE"] = $new_image;
+		if (isset($new_image) && $new_image != '') $module_data[$i]["PRODUCTS_IMAGE"] = $new_image;
 
     }
 

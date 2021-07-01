@@ -15,7 +15,7 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
 
 	// Werte kommen aus admin/includes/extra/modules/new_attributes_include_th
 	// $combi[0] == combi_id, $combi[1] == Optionen, , $combi[2] == Optionswerte
-	if ($combi[2]) {
+	if (isset($combi[2]) && $combi[2]) {
 		$combis = explode(',', $combi[2]);
 		// fügt einen unsichtbaren td mit class als Identifizierer in der Attributverwaltung ein
 		// diese class wird von Javascript benutzt um Kombioptionen auszublenden

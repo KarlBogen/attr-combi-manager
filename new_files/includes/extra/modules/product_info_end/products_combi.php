@@ -18,8 +18,8 @@ use KarlK\ProductCombiManager\Classes\ProductCombi;
 	if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true') {
 
 		require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/karlk/autoload.php';
-
-		if (ProductCombi::hasProductCombi($product->pID)) {
+        $ProductCombi = new ProductCombi();
+		if ($ProductCombi->hasProductCombi($product->pID)) {
 			include (DIR_WS_MODULES.'product_combi.php');
 		}
 

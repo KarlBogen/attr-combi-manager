@@ -167,7 +167,7 @@ function getData($datas){
 			if ($search == $datas) {
 
 				// Optionspreisangabe zusammensetzen
-				$price = '';
+				$price = 0;
 				$opt_price_name = '';
 				$opt_price = $opt_vals[$val_ids[$data_size]]['options_values_price'];
 				$opt_prefix = $opt_vals[$val_ids[$data_size]]['price_prefix'];
@@ -176,7 +176,7 @@ function getData($datas){
 						// $price = '';
 					} else {
 				        $CalculateCurr = ($tax_id == 0) ? true : false; //FIX several currencies on product attributes
-				        $price = $xtPrice->xtcFormat($opt_price, false, $tax_id, $CalculateCurr);
+				        $price = $xtPrice->xtcFormat(floatval($opt_price), false, $tax_id, $CalculateCurr);
 					}
                     //BOF PRICE PREFIX
                     if ($_SESSION['customers_status']['customers_status_discount_attributes'] == 1 && $opt_prefix != '-') {

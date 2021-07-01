@@ -19,8 +19,8 @@ use KarlK\ProductCombiManager\Classes\ProductCombiAdmin;
 if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true') {
 
 	require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/karlk/autoload.php';
-
-	$combi_id = ProductCombiAdmin::hasProductCombi($pInfo->products_id);
+	$ProductCombiAdmin = new ProductCombiAdmin();
+	$combi_id = $ProductCombiAdmin->hasProductCombi($pInfo->products_id);
 	if($combi_id){
 		$hidden = xtc_draw_hidden_field('products_quantity', $pInfo->products_quantity);
     	echo '&nbsp;&nbsp;<a class="button" href="'.xtc_href_link(FILENAME_PRODUCTS_COMBI, "cPath=". $cPath . $catfunc->page_parameter.'action=edit&oldaction=new_product&pID='.$pInfo->products_id).'">' . PRODUCTS_COMBI_EDIT . '</a>';
@@ -35,7 +35,7 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
 <?php
 	}
 	// wenn noch keine Kombination angelegt ist, aber das Produkt mehr als 1 Attribut hat
-	elseif (ProductCombiAdmin::getCombiDiffAttributes($pInfo->products_id) > 1)
+	elseif ($ProductCombiAdmin->getCombiDiffAttributes($pInfo->products_id) > 1)
 	{
     	echo '&nbsp;&nbsp;<a class="button but_green" href="'.xtc_href_link(FILENAME_PRODUCTS_COMBI, "cPath=". $cPath . $catfunc->page_parameter.'action=edit&oldaction=new_product&pID='.$pInfo->products_id).'">' . PRODUCTS_COMBI_NEW . '</a>';
 	}

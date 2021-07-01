@@ -20,7 +20,8 @@ use KarlK\ProductCombiManager\Classes\ProductCombi;
 
 		if (STOCK_CHECK != 'true' && !isset($hascombi)) {
 			require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/karlk/autoload.php';
-			$hascombi = ProductCombi::hasProductCombi(intval($products[$i]['id']));
+            $ProductCombi = new ProductCombi();
+			$hascombi = $ProductCombi->hasProductCombi(intval($products[$i]['id']));
 		}
 
 		// Artikel markieren, falls Anzahl im Warenkorb den Bestand überschreitet
