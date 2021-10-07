@@ -22,7 +22,7 @@ define('PROD_COMBI_CREATE_SINGLE_BTN', "Create single variations");
 define('PROD_COMBI_TH_ACTIVE', "Active");
 define('PROD_COMBI_TH_COMBI', "Combination");
 define('PROD_COMBI_TH_MODEL', "Model");
-define('PROD_COMBI_TH_EAN', "EAN");
+define('PROD_COMBI_TH_EAN', "GTIN/EAN");
 define('PROD_COMBI_TH_STOCK', "Stock");
 define('PROD_COMBI_TH_IMAGE', "Image");
 define('PROD_COMBI_DELETE_BTN', "delete all combinations");

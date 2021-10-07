@@ -1,6 +1,14 @@
 UNRELEASED
 
 
+
+1.0.5 [07.10.2021]
+
+- wurde der Adminordner nach Installation des Modules umbenannt traten Fehler auf - behoben
+- Ajax-Funktion getImage() übermittelt jetzt auch Kombi-Artikelnummer und Kombi-EAN
+- wurde nachträglich die Sortierreihenfolge der Attribute verändert, konnte es zu Fehler kommen - behoben
+- bei verändertem Kombinationspreis wird jetzt auch der Meta-Content des Artikelpreises per Javascript angepasst
+
 1.0.4 [01.07.2021]
 
 - PHP8 fixed

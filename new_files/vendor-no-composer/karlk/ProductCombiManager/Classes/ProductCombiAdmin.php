@@ -353,6 +353,14 @@ class ProductCombiAdmin
 	protected function getCombiOptionsSelect($prodID = 0)
 	{
 
+		// prüft, ob eine alte Sortierreihenfolge besteht
+		$old_sort = 0;
+		$tmpquery = "SELECT combi_id,options_ids FROM ".TABLE_PRODUCTS_OPTIONS_COMBI." WHERE products_id = " .(int)$prodID . " LIMIT 1";
+		$tmpresult = xtc_db_query($tmpquery);
+		$tmpdata = xtc_db_fetch_array($tmpresult);
+		if(xtc_db_num_rows($tmpresult) != 0) $old_sort = $tmpdata['options_ids'];
+		$sort = $old_sort != 0 ? "field(products_options_id, ".$old_sort.")" : "po.products_options_sortorder";
+
 		// hole Attribute und Optionen aus der Datenbank
 		$tmpquery = "
 			SELECT
@@ -372,7 +380,7 @@ class ProductCombiAdmin
 			AND
 				pa.options_values_id = pov.products_options_values_id
 			ORDER BY
-				po.products_options_sortorder, pa.sortorder, pov.products_options_values_sortorder
+				".$sort.", pa.sortorder, pov.products_options_values_sortorder
 			";
 		$tmpresult = xtc_db_query($tmpquery);
 

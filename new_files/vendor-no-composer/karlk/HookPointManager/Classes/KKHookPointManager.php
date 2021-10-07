@@ -65,7 +65,7 @@ class KKHookPointManager
         $groupedHookPoints = $this->groupHookPointsByFile($hookPoints);
 
         foreach ($groupedHookPoints as $fileHookPoints) {
-            $relativeFilePath = $fileHookPoints[0]['file'];
+            $relativeFilePath = '/' . DIR_ADMIN . $fileHookPoints[0]['file'];
             $hash = $fileHookPoints[0]['hash'];
             $this->createBackupFile($relativeFilePath, $hash);
             $this->insertHookPointsToFile($relativeFilePath, $fileHookPoints);
@@ -167,7 +167,7 @@ class KKHookPointManager
         $code .= " * From Module: $module" . "\n";
         $code .= " * HookPointName: $name" . "\n";
         $code .= " */" . "\n";
-        $code .= "foreach(auto_include(DIR_FS_CATALOG . '$includePath','php') as \$file) require (\$file);" . "\n";
+        $code .= "foreach(auto_include(DIR_FS_CATALOG . '/' . DIR_ADMIN . '$includePath','php') as \$file) require (\$file);" . "\n";
         $code .= "/* robinthehood/hook-point-manager END */" . "\n";
         return $code;
     }

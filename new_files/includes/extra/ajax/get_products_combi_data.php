@@ -72,7 +72,7 @@ function getImage($prod_id, $attribute_id){
 
 	$tmpquery =	xtc_db_query("
 		SELECT
-			 stock, image
+			 model, ean, stock, image
 		FROM
 			 ".TABLE_PRODUCTS_OPTIONS_COMBI_VALUES_2."
 		WHERE
@@ -82,11 +82,15 @@ function getImage($prod_id, $attribute_id){
 		LIMIT 1");
 	$tmpdata = xtc_db_fetch_array($tmpquery);
 
+	$model = $tmpdata["model"] != '' ? $tmpdata["model"] : '';
+	$ean = $tmpdata["ean"] != '' ? $tmpdata["ean"] : '';
 	$stock = $tmpdata["stock"] != '' ? $tmpdata["stock"] : '';
 	$image = $tmpdata["image"] != '' ? $tmpdata["image"] : '';
 
 			$res =  array(
 				"options_ids"	=>  $options_ids,
+				"model"			=>  $model,
+				"ean"			=>  $ean,
 				"stock"			=>  $stock,
 				"image"			=>  $image
 			);

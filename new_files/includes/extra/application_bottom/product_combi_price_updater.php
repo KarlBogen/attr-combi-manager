@@ -77,6 +77,7 @@ function CombiPriceUpdater() {
         if (data.vpevalue !== false) {
           $('#productVpePrice').html(symbolLeft + newVpePrice + symbolRight + data.protext + data.vpetext);
         }
+        $('.productprice meta[itemprop="price"]').attr("content", newPrice.replace(",", "."));
 <?php } else { ?>
         $('.pd_summarybox .pd_price .standard_price').html(symbolLeft + newPrice + symbolRight);
         $('.pd_summarybox .pd_price .new_price').html(data.onlytext + symbolLeft + newPrice + symbolRight);
@@ -84,6 +85,7 @@ function CombiPriceUpdater() {
         if (data.vpevalue !== false) {
           $('.pd_summarybox .pd_vpe').html(symbolLeft + newVpePrice + symbolRight + data.protext + data.vpetext);
         }
+        $('.pd_summarybox .pd_price meta[itemprop="price"]').attr("content", newPrice.replace(",", "."));
 <?php } ?>
       }
     }
