@@ -1,6 +1,9 @@
 UNRELEASED
 
 
+1.0.6 [23.12.2021]
+
+- Fehler: Bestellung über Kombibestand möglich, sobald der letzte Kombiartikel im Warenkorb bestellbar ist - behoben
 
 1.0.5 [07.10.2021]
 
