@@ -28,7 +28,7 @@ class KKDefaultRestore
 				break;
 		}
 
-		$ResData[] = $this->getSumoselectData();
+		$ResData[] = $this->getSumoselectData($modifiedVersion);
 		$ResData[] = $this->getGeneralBottomData();
 		$ResData[] = $this->getDefaultData();
 		$TplResData = $this->getProductInfoData();
@@ -38,11 +38,11 @@ class KKDefaultRestore
 
     }
 
-	protected function getSumoselectData() {
+	protected function getSumoselectData($modifiedVersion) {
 
 		$data =	array(	'TPLFILE' => DIR_FS_CATALOG . 'templates/' . CURRENT_TEMPLATE . '/javascript/extra/sumoselect.js.php',
 						'SEARCHPATTERN' => $this->getSearchpatternPHP(),
-						'REPLACESTRING' => '$(\'select\').SumoSelect();'."\n",
+						'REPLACESTRING' => ($modifiedVersion == '2.0.7.0' ? '$(\'select:not([name=country])\').SumoSelect();' : '$(\'select\').SumoSelect();')."\n",
 				);
         return $data;
 

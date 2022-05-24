@@ -21,7 +21,7 @@ $ProductCombi = new ProductCombi();
 	$prod_data = array(	'pid'			=> (int)$product->data['products_id'],
                         'gprice'    	=> isset($products_price) ? $products_price : 0,
         				'tax_id'		=> isset($product->data['products_tax_class_id']) ? $product->data['products_tax_class_id'] : 0,
-                        'products_vpe'	=> $json_vpetext = isset($product->data['products_vpe']) ? (xtc_get_vpe_name($product->data['products_vpe']) ? htmlentities(xtc_get_vpe_name($product->data['products_vpe'])) : COMBI_TEXT_PRODUCTS_VPE) : '',
+                        'products_vpe'	=> $product->data['products_vpe'] != '0' ? (xtc_get_vpe_name($product->data['products_vpe']) ? htmlentities(xtc_get_vpe_name($product->data['products_vpe'])) : COMBI_TEXT_PRODUCTS_VPE) : '',
                         'vpe_status'    => isset($product->data['products_vpe_status']) ? $product->data['products_vpe_status'] : 0,
                         'vpe_value'		=> isset($product->data['products_vpe_value']) ? $product->data['products_vpe_value'] : ''
 						);

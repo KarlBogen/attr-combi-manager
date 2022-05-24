@@ -1,6 +1,11 @@
 UNRELEASED
 
 
+1.0.7 [24.05.2022]
+
+- Update für Shopversion 2.0.7.0
+
+
 1.0.6 [23.12.2021]
 
 - Fehler: Bestellung über Kombibestand möglich, sobald der letzte Kombiartikel im Warenkorb bestellbar ist - behoben

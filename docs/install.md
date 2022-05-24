@@ -30,6 +30,7 @@ Beachte: Erstellen Sie vor der Installation dieses Moduls ein Backup der Datenba
 Mit dem Systemmodul werden **Klassenerweiterungen Module** für „categories, main, order und shopping_card“ mitinstalliert und aktiviert.<br />
 Desweiteren werden einzelne Shopdateien automatisch an das Modul angepasst!</span>
 
+
 ### Update
 
 **Wichtig: Nach einem Shop- oder Module-Update - Update-Button drücken!**
@@ -38,7 +39,12 @@ Desweiteren werden einzelne Shopdateien automatisch an das Modul angepasst!</spa
 
 2.  Gehen Sie im Menü zu **Module > System Module**.
 
-3.  Wählen Sie dort das Modul **Attribut Kombinationen Verwaltung** aus und klicken auf **Update**.
+3.  Wählen Sie dort das Modul **Attribut Kombinationen Verwaltung** aus.
+
+4.  Falls ihr Template noch Änderungen der Vorgängerversion enthält klicken auf **Template und Shopdatei - Anpassungen entfernen**.
+
+3.  Anschließend nacheinander klicken auf **Update** und **Templatedateien anpassen**.
+
 
 ### Deinstallation
 
@@ -81,15 +87,15 @@ Abhängig vom genutzten Template sind Änderungen in den Dateien durchzuführen:
 *Finde:*
 
 ```javascript
-$('select').SumoSelect();
+$('select:not([name=country])').SumoSelect();
 ```
 
 *Ersetze mit:*
 
 ```javascript
     /* BOF Module "Attribute Kombination Manager" made by Karl */
-    /* Original    $('select').SumoSelect(); */
-    $('select').not('.combi_id').SumoSelect();
+    /* Original    $('select:not([name=country])').SumoSelect(); */
+    $('select').not('[name=country], .combi_id').SumoSelect();
     /* EOF Module "Attribute Kombination Manager" made by Karl */
 ```
 

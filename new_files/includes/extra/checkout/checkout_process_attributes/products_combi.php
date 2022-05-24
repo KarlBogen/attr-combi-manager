@@ -17,7 +17,7 @@
 
 		// nach dem Checkout Bestand ändern
         if ($update_attr_stock === true) {
-        	if(sizeof($order->products[$i]['attributes']) >= 2 && !$order->products[$i]['checked_out']) {
+        	if(sizeof($order->products[$i]['attributes']) >= 2 && !isset($order->products[$i]['checked_out'])) {
 
 				$tmpquery = "SELECT combi_id FROM ".TABLE_PRODUCTS_OPTIONS_COMBI." WHERE products_id = " . xtc_get_prid($order->products[$i]['id']) . " LIMIT 1";
 				$tmpresult = xtc_db_query($tmpquery);

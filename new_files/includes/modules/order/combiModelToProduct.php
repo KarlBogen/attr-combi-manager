@@ -102,6 +102,7 @@ class combiModelToProduct {  //Important same name as filename
 					// Artikelbild ersetzen
 					if (defined('MODULE_PRODUCTS_COMBINATIONS_CHANGE_IMAGE') && MODULE_PRODUCTS_COMBINATIONS_CHANGE_IMAGE == 'true') {
 						if ($tmpdata['image'] != '') {
+							require_once(DIR_FS_INC . 'xtc_get_products_image.inc.php');
 							$org_image = xtc_get_products_image($pID);
 							$products_data['image'] = str_replace($org_image, $tmpdata['image'], $products_data['image']);
 						}
