@@ -143,7 +143,7 @@ Desweiteren werden einzelne Shopdateien automatisch an das Modul angepasst!</spa
 
 4.  Falls ihr Template noch Änderungen der Vorgängerversion enthält klicken auf **Template und Shopdatei - Anpassungen entfernen**.
 
-3.  Anschließend nacheinander klicken auf **Update** und **Templatedateien anpassen**.
+5.  Anschließend nacheinander klicken auf **Update** und **Templatedateien anpassen**.
 
 ### 2.4 Deinstallation
 
