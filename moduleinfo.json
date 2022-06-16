@@ -2,7 +2,7 @@
     "name": "Attribut Kombinationen Verwaltung",
     "archiveName": "karlk/attr-combi-manager",
     "sourceDir": "new_files",
-    "version": "1.0.7",
+    "version": "auto",
     "shortDescription": "<span class='small'>Attribute eines Artikels können kombiniert und den einzelnen Kombinationen kann <span class='font-weight-bolder'>Bestand, Artikelnummer, EAN und Bild</span> zugewiesen werden.</span>",
     "description": "</p><div class='mb-3'>Mit der <span class='text-danger font-weight-bold'>Attribut Kombinationen Verwaltung</span> ist es m&ouml;glich Attributkombinationen zu erstellen.<br />Den einzelnen Kombinationen kann <strong>Bestand, Artikelnummer, EAN und Bild</strong> zugewiesen werden.</div><div class='mb-3'>Es kann zum Beispiel ein T-Shirt, Gr&ouml;&szlig;e S, Farbe rot, Form Rundhals <span class='text-danger'>nicht ausgew&auml;hlt</span> werden, weil sich <span class='text-danger'>kein St&uuml;ck im Lager</span> befindet (Bild 1).</div><div class='mb-3'>So ist es auch machbar, dass zum Beispiel <span class='text-danger'>2 St&uuml;ck</span> T-Shirts, Gr&ouml;&szlig;e S, Farbe rot, Form Rundhals <span class='text-danger'>nicht bestellt</span> werden k&ouml;nnen, weil sich <span class='text-danger'>nur 1 St&uuml;ck im Lager</span> befindet (Bild 2).</div><div class='small mb-3'>Hinweis: F&uuml;r dieses Modul sind geringe Anpassungen im Template n&ouml;tig. Diese <strong>Anpassungen können manuell oder per Knopfdruck</strong> gemacht werden.</div><p>",
     "developer": "KarlK",
