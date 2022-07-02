@@ -42,7 +42,7 @@ class KKDefaultRestore
 
 		$data =	array(	'TPLFILE' => DIR_FS_CATALOG . 'templates/' . CURRENT_TEMPLATE . '/javascript/extra/sumoselect.js.php',
 						'SEARCHPATTERN' => $this->getSearchpatternPHP(),
-						'REPLACESTRING' => ($modifiedVersion == '2.0.7.0' ? '$(\'select:not([name=country])\').SumoSelect();' : '$(\'select\').SumoSelect();')."\n",
+						'REPLACESTRING' => (strpos($modifiedVersion, '2.0.7.') !== false ? '$(\'select:not([name=country])\').SumoSelect();' : '$(\'select\').SumoSelect();')."\n",
 				);
         return $data;
 

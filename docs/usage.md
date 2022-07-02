@@ -85,7 +85,7 @@ So ist es auch machbar, dass zum Beispiel `2 Stück` T-Shirts, Größe S, Farbe 
 
 Die **Attribut Kombinationen Verwaltung** benötigt *mod*ified eCommerce Shopsoftware **Version 2.0.1.0 oder höher**.
 
-Getestet wurde das Modul mit den stable Versionen "2.0.1.0", "2.0.2.0", "2.0.2.1", "2.0.2.2", "2.0.3.0", "2.0.4.0", "2.0.4.1", "2.0.4.2", "2.0.5.0", "2.0.5.1", "2.0.6.0", "2.0.7.0".
+Getestet wurde das Modul mit den stable Versionen "2.0.1.0", "2.0.2.0", "2.0.2.1", "2.0.2.2", "2.0.3.0", "2.0.4.0", "2.0.4.1", "2.0.4.2", "2.0.5.0", "2.0.5.1", "2.0.6.0", "2.0.7.0", "2.0.7.1".
 
 Diese Anleitung, Bilder und Beschreibungen beziehen sich auf die Version 2.0.5.1.
 
