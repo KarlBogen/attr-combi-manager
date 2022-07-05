@@ -27,7 +27,7 @@ use KarlK\ProductCombiManager\Classes\ProductCombi;
 		// Artikel markieren, falls Anzahl im Warenkorb den Bestand überschreitet
 		if (isset($hascombi)) {
 			$module_content[$i]['ATTRIBUTES'][$subindex]['VALUE_NAME'] = $attributes['products_options_values_name'];
-			if ($combi_out_of_stock > 0) $_SESSION['any_out_of_stock'] = 1;
+			if (isset($combi_out_of_stock) && $combi_out_of_stock > 0) $_SESSION['any_out_of_stock'] = 1;
 		}
 	}
 ?>

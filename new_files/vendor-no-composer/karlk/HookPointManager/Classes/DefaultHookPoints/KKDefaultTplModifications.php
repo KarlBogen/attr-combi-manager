@@ -45,6 +45,7 @@ class KKDefaultTplModifications
 
 			case '2.0.7.0':
 			case '2.0.7.1':
+			case '2.0.7.2':
 			default:
 				$ModData[] = $this->getSumoselectData2070();
 				$ModData[] = $this->getExtraDefaultData();

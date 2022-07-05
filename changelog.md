@@ -1,6 +1,11 @@
 UNRELEASED
 
 
+1.0.10 [05.07.2022]
+
+- Update für Shopversion 2.0.7.2
+
+
 1.0.9 [02.07.2022]
 
 - Update für Shopversion 2.0.7.1
