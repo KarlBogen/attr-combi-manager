@@ -43,16 +43,26 @@ class KKDefaultTplModifications
 				$TplModifyData = array_merge($ModData, $TplModData);
 				break;
 
+			case '3.0.0':
+				$ModData[] = $this->getSumoselectData300();
+				$ModData[] = $this->getSumoselectData300nova();
+				$TplModData300 = $this->getProductInfoData300();
+
 			case '2.0.7.0':
 			case '2.0.7.1':
 			case '2.0.7.2':
+			case '3.0.0':
 			default:
 				$ModData[] = $this->getSumoselectData2070();
 				$ModData[] = $this->getExtraDefaultData();
 				$ModData[] = $this->getGeneralBottomData();
 				$TplModData1 = $this->getProductInfoData2070();
 				$TplModData = $this->getProductInfoData();
-				$TplModifyData = array_merge($ModData, $TplModData1, $TplModData);
+        if(is_array($TplModData300)) {
+					$TplModifyData = array_merge($ModData, $TplModData1, $TplModData, $TplModData300);
+				} else {
+					$TplModifyData = array_merge($ModData, $TplModData1, $TplModData);
+				}
 				break;
 
 		}
@@ -99,6 +109,48 @@ class KKDefaultTplModifications
 		$code .= '    /* Original    $(\'select:not([name=country])\').SumoSelect(); */' . "\n";
 		$code .= '    $(\'select\').not(\'[name=country], .combi_id\').SumoSelect();' . "\n";
 		$code .= '    /* EOF Module "Attribute Kombination Manager" made by Karl */';
+        return $code;
+
+	}
+
+	protected function getSumoselectData300() {
+
+		$data =	array(	'TPLFILE' => DIR_FS_CATALOG . 'templates/' . CURRENT_TEMPLATE . '/javascript/extra/sumoselect.js.php',
+						'SEARCHSTRING' => '$(\'select:not([name=filter_sort]):not([name=filter_set]):not([name=currency]):not([name=categories_id]):not([name=gender]):not([id^=sel_]):not([id=ec_term])\').SumoSelect({search: true, searchText: "<?php echo TEXT_SUMOSELECT_SEARCH; ?>", noMatch: "<?php echo TEXT_SUMOSELECT_NO_RESULT; ?>"});',
+						'KEYPLUS' => 0,
+						'REPLACESTRING' => $this->getSumoselectString300(),
+				);
+        return $data;
+
+	}
+
+	protected function getSumoselectString300() {
+
+		$code = '    /* BOF Module "Attribute Kombination Manager made by Karl */' . "\n";
+		$code .= '    /* Original    $(\'select:not([name=filter_sort]):not([name=filter_set]):not([name=currency]):not([name=categories_id]):not([name=gender]):not([id^=sel_]):not([id=ec_term])\').SumoSelect({search: true, searchText: "<?php echo TEXT_SUMOSELECT_SEARCH; ?>", noMatch: "<?php echo TEXT_SUMOSELECT_NO_RESULT; ?>"}); */' . "\n";
+		$code .= '    $(\'select:not([name=filter_sort]):not(.combi_id):not([name=filter_set]):not([name=currency]):not([name=categories_id]):not([name=gender]):not([id^=sel_]):not([id=ec_term])\').SumoSelect({search: true, searchText: "<?php echo TEXT_SUMOSELECT_SEARCH; ?>", noMatch: "<?php echo TEXT_SUMOSELECT_NO_RESULT; ?>"});' . "\n";
+		$code .= '    /* EOF Module "Attribute Kombination Manager" made by Karl responsive */';
+        return $code;
+
+	}
+
+	protected function getSumoselectData300nova() {
+
+		$data =	array(	'TPLFILE' => DIR_FS_CATALOG . 'templates/' . CURRENT_TEMPLATE . '/javascript/extra/sumoselect.js.php',
+						'SEARCHSTRING' => '$(\'select:not([name=filter_sort]):not([name=filter_set]):not([name=currency]):not([name=categories_id]):not([name=gender]):not([name=language]):not([id^=sel_]):not([id=ec_term])\').SumoSelect({search: true, searchText: "<?php echo TEXT_SUMOSELECT_SEARCH; ?>", noMatch: "<?php echo TEXT_SUMOSELECT_NO_RESULT; ?>"});',
+						'KEYPLUS' => 0,
+						'REPLACESTRING' => $this->getSumoselectString300nova(),
+				);
+        return $data;
+
+	}
+
+	protected function getSumoselectString300nova() {
+
+		$code = '    /* BOF Module "Attribute Kombination Manager made by Karl */' . "\n";
+		$code .= '    /* Original    $(\'select:not([name=filter_sort]):not([name=filter_set]):not([name=currency]):not([name=categories_id]):not([name=gender]):not([name=language]):not([id^=sel_]):not([id=ec_term])\').SumoSelect({search: true, searchText: "<?php echo TEXT_SUMOSELECT_SEARCH; ?>", noMatch: "<?php echo TEXT_SUMOSELECT_NO_RESULT; ?>"}); */' . "\n";
+		$code .= '    $(\'select:not([name=filter_sort]):not(.combi_id):not([name=filter_set]):not([name=currency]):not([name=categories_id]):not([name=gender]):not([name=language]):not([id^=sel_]):not([id=ec_term])\').SumoSelect({search: true, searchText: "<?php echo TEXT_SUMOSELECT_SEARCH; ?>", noMatch: "<?php echo TEXT_SUMOSELECT_NO_RESULT; ?>"});' . "\n";
+		$code .= '    /* EOF Module "Attribute Kombination Manager" made by Karl nova */';
         return $code;
 
 	}
@@ -222,7 +274,7 @@ class KKDefaultTplModifications
 		$code .= '              {$MODULE_product_combi}' . "\n";
 		$code .= '            </div>' . "\n";
 		$code .= '          {/if}' . "\n";
-		$code .= '          {if isset($MODULE_product_options) && $MODULE_product_options != \'\' && $MODULE_product_combi == \'\'}' . "\n";
+		$code .= '          {if isset($MODULE_product_options) && $MODULE_product_options != \'\' && empty($MODULE_product_combi)}' . "\n";
 		$code .= '          {*if isset($MODULE_product_options) && $MODULE_product_options != \'\'*}' . "\n";
 		$code .= '          {* EOF Module "Attribute Kombination Manager" made by Karl *}';
         return $code;
@@ -247,9 +299,39 @@ class KKDefaultTplModifications
 	protected function getProductInfoString2070() {
 
 		$code = '      {* BOF Module "Attribute Kombination Manager made by Karl *}' . "\n";
-		$code .= '      {if isset($MODULE_product_options) && $MODULE_product_options != \'\' && $MODULE_product_combi == \'\'}' . "\n";
+		$code .= '      {if isset($MODULE_product_options) && $MODULE_product_options != \'\' && empty($MODULE_product_combi)}' . "\n";
 		$code .= '      {*if isset($MODULE_product_options) && $MODULE_product_options != \'\'*}' . "\n";
 		$code .= '      {* EOF Module "Attribute Kombination Manager" made by Karl *}';
+        return $code;
+
+	}
+
+	protected function getProductInfoData300() {
+
+		$data =	array();
+		$tpls = array('product_info_v1_tabs.html', 'product_info_v2_accordion.html', 'product_info_v3_plain.html');
+		foreach($tpls as $tpl) {
+			$data[] =	array(	'TPLFILE' => DIR_FS_CATALOG . 'templates/' . CURRENT_TEMPLATE . '/module/product_info/' . $tpl,
+								'SEARCHSTRING' => '{if isset($MODULE_product_options) && $MODULE_product_options != \'\'}{$MODULE_product_options}{/if}',
+								'KEYPLUS' => 0,
+								'REPLACESTRING' => $this->getProductInfoString300(),
+						);
+		}
+        return $data;
+
+	}
+
+	protected function getProductInfoString300() {
+
+		$code = '          {* BOF Module "Attribute Kombination Manager" made by Karl *}' . "\n";
+		$code .= '          {if isset($MODULE_product_combi) && $MODULE_product_combi != \'\'}' . "\n";
+		$code .= '            <div class="card bg-custom mb-2 p-2">' . "\n";
+		$code .= '              {$MODULE_product_combi}' . "\n";
+		$code .= '            </div>' . "\n";
+		$code .= '          {/if}' . "\n";
+		$code .= '          {if isset($MODULE_product_options) && $MODULE_product_options != \'\' && empty($MODULE_product_combi)}{$MODULE_product_options}{/if}' . "\n";
+		$code .= '          {*if isset($MODULE_product_options) && $MODULE_product_options != \'\'}{$MODULE_product_options}{/if*}' . "\n";
+		$code .= '          {* EOF Module "Attribute Kombination Manager" made by Karl *}';
         return $code;
 
 	}

@@ -111,8 +111,8 @@ function getData($datas){
 	$vpe_status = $params[4]; // get the value vpe_status
 	$vpe_value = $params[5]; // get the value vpe_value
 	$discount = $params[6]; // get the value dicount
-	$stock_check = $params[7] ? $params[7] : false; // get the value stock_check
-	$show_empty = $params[8] ? $params[8] : false; // get the value show_empty
+	$stock_check = isset($params[7]) ? $params[7] : false; // get the value stock_check
+	$show_empty = isset($params[8]) ? $params[8] : false; // get the value show_empty
 
 	$tmpquery = "SELECT options_values_ids FROM ".TABLE_PRODUCTS_OPTIONS_COMBI."	WHERE products_id = ".(int)$prod_id." LIMIT 1";
 	$tmpresult = xtc_db_query($tmpquery);

@@ -1,6 +1,10 @@
 UNRELEASED
 
 
+1.0.12 [03.12.2023]
+
+- Update für Shopversion 3.0.0
+
 1.0.11 [02.01.2023]
 
 - Fehler: Bestellung über Kombinationsbestand möglich, wenn Warenkorb nicht mehr aktualisiert wurde - behoben
@@ -8,7 +12,6 @@ UNRELEASED
 1.0.10 [05.07.2022]
 
 - Update für Shopversion 2.0.7.2
-
 
 1.0.9 [02.07.2022]
 

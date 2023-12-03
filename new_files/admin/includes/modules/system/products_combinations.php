@@ -26,16 +26,16 @@ class products_combinations {
 
 	public function __construct() {
 		$this->code = 'products_combinations';
-		$this->title = MODULE_PRODUCTS_COMBINATIONS_TEXT_TITLE . ' - Version: 1.0.11';
+		$this->title = MODULE_PRODUCTS_COMBINATIONS_TEXT_TITLE . ' - Version: 1.0.12';
 		$this->description = '';
 		$this->description .= MODULE_PRODUCTS_COMBINATIONS_TEXT_DESCRIPTION;
 		if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS')) {
 			$this->description .= '<a class="button btnbox but_green" style="text-align:center;" onclick="this.blur();" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=update') . '">Update</a><br /><br />';
 			// Button xtc_restock und Template ändern
-			$this->description .= '<a class="button btnbox but_green" style="text-align:center;" onclick="return confirmLink(\''. MODULE_PRODUCTS_COMBINATIONS_BUTTON_MODIFYTPL_CONFIRM .'\', \'\' ,this);" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=custom&func=moddifytpl') . '">'.MODULE_PRODUCTS_COMBINATIONS_BUTTON_MODIFYTPL.'</a><br />';
+			$this->description .= '<a class="button btnbox but_green" style="text-align:center;" onclick="return confirmLink(\''. sprintf(MODULE_PRODUCTS_COMBINATIONS_BUTTON_MODIFYTPL_CONFIRM, CURRENT_TEMPLATE) .'\', \'\' ,this);" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=custom&func=moddifytpl') . '">'.MODULE_PRODUCTS_COMBINATIONS_BUTTON_MODIFYTPL.'</a><br />';
 			$this->description .= MODULE_PRODUCTS_COMBINATIONS_BUTTON_MODIFYTPL_DESC;
 			// Button xtc_restock und Template wiederherstellen
-			$this->description .= '<a class="button btnbox but_red" style="text-align:center;" onclick="return confirmLink(\''. MODULE_PRODUCTS_COMBINATIONS_BUTTON_RESTORETPL_CONFIRM .'\', \'\' ,this);" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=custom&func=restoretpl') . '">'.MODULE_PRODUCTS_COMBINATIONS_BUTTON_RESTORETPL.'</a><br />';
+			$this->description .= '<a class="button btnbox but_red" style="text-align:center;" onclick="return confirmLink(\''. sprintf(MODULE_PRODUCTS_COMBINATIONS_BUTTON_RESTORETPL_CONFIRM, CURRENT_TEMPLATE) .'\', \'\' ,this);" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=custom&func=restoretpl') . '">'.MODULE_PRODUCTS_COMBINATIONS_BUTTON_RESTORETPL.'</a><br />';
 			$this->description .= MODULE_PRODUCTS_COMBINATIONS_BUTTON_RESTORETPL_DESC;
 		}
 		if (!$this->isMmlcInstalled()) {
@@ -57,13 +57,17 @@ class products_combinations {
 	}
 
 	public function check() {
-		if (!isset($this->_check)) {
-			$check_query = xtc_db_query("SELECT configuration_value
-										FROM " . TABLE_CONFIGURATION . "
-										WHERE configuration_key = 'MODULE_PRODUCTS_COMBINATIONS_STATUS'");
-		$this->_check = xtc_db_num_rows($check_query);
-		}
-		return $this->_check;
+    if (!isset($this->_check)) {
+      if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS')) {
+        $this->_check = true;
+      } else {
+        $check_query = xtc_db_query("SELECT configuration_value
+                                      FROM " . TABLE_CONFIGURATION . "
+                                      WHERE configuration_key = 'MODULE_PRODUCTS_COMBINATIONS_STATUS'");
+        $this->_check = xtc_db_num_rows($check_query);
+      }
+    }
+    return $this->_check;
 	}
     
 	public function install() {
@@ -482,6 +486,7 @@ class products_combinations {
 		$dirs_and_files[] = $shop_path.'includes/extra/application_bottom/product_combi_price_updater.php';
 		$dirs_and_files[] = $shop_path.'includes/extra/cart_actions/add_product_prepare_post/products_combi_add.php';
 		$dirs_and_files[] = $shop_path.'includes/extra/checkout/checkout_process_attributes/products_combi.php';
+		$dirs_and_files[] = $shop_path.'includes/extra/checkout/checkout_requirements/products_combi.php';
 		$dirs_and_files[] = $shop_path.'includes/extra/database_tables/products_combi_tables.php';
 		$dirs_and_files[] = $shop_path.'includes/extra/modules/order_details_cart_attributes/products_combi.php';
 		$dirs_and_files[] = $shop_path.'includes/extra/modules/order_details_cart_content/products_combi.php';

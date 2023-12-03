@@ -73,6 +73,7 @@ Abhängig vom genutzten Template sind Änderungen in den Dateien durchzuführen:
 *   [Anhang 2: tpl_modified](#user-content-anhang-2-tpl_modified)
 *   [Anhang 3: xtc5](#user-content-anhang-3-xtc5)
 *   [Anhang 4: bootstrap4](#user-content-anhang-4-bootstrap4)
+*   [Anhang 5: tpl_modified_nova](#user-content-anhang-5-tpl-modified-nova)
 
 <br />
 <a href="#user-content-attribut-kombinationen-verwaltung">↑ zurück nach oben</a>
@@ -97,6 +98,23 @@ $('select:not([name=country])').SumoSelect();
     /* Original    $('select:not([name=country])').SumoSelect(); */
     $('select').not('[name=country], .combi_id').SumoSelect();
     /* EOF Module "Attribute Kombination Manager" made by Karl */
+```
+
+**Ab Shopversion 3.0.0 zusätzlich**
+
+*Finde:*
+
+```javascript
+    $('select:not([name=filter_sort]):not([name=filter_set]):not([name=currency]):not([name=categories_id]):not([name=gender]):not([id^=sel_]):not([id=ec_term])').SumoSelect({search: true, searchText: "<?php echo TEXT_SUMOSELECT_SEARCH; ?>", noMatch: "<?php echo TEXT_SUMOSELECT_NO_RESULT; ?>"});
+```
+
+*Ersetze mit:*
+
+```javascript
+    /* BOF Module "Attribute Kombination Manager made by Karl */
+    /* Original    $('select:not([name=filter_sort]):not([name=filter_set]):not([name=currency]):not([name=categories_id]):not([name=gender]):not([id^=sel_]):not([id=ec_term])').SumoSelect({search: true, searchText: "<?php echo TEXT_SUMOSELECT_SEARCH; ?>", noMatch: "<?php echo TEXT_SUMOSELECT_NO_RESULT; ?>"}); */
+    $('select:not([name=filter_sort]):not(.combi_id):not([name=filter_set]):not([name=currency]):not([name=categories_id]):not([name=gender]):not([id^=sel_]):not([id=ec_term])').SumoSelect({search: true, searchText: "<?php echo TEXT_SUMOSELECT_SEARCH; ?>", noMatch: "<?php echo TEXT_SUMOSELECT_NO_RESULT; ?>"});
+    /* EOF Module "Attribute Kombination Manager" made by Karl responsive */
 ```
 
 **# /javascript/general_bottom.js.php**
@@ -434,6 +452,124 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
 
 **Achtung:**
 Bei eingeschaltetem Easyzoom muss im Systemmodul der Wert für "Wird ein Bootstrap-Template mit eingeschaltetem Bilder-Zoomeffekt genutzt?" auf "Ja" gestellt werden!
+
+<br />
+<a href="#user-content-attribut-kombinationen-verwaltung">↑ zurück nach oben</a>
+<br />
+
+<h3 id="user-content-anhang-5-tpl-modified-nova" style="padding-top: 60px; margin-top: -60px;">Anhang 5: TPL_MODIFIED_NOVA</h3>
+
+**# /javascript/extra/sumoselect.js.php**
+
+*Finde:*
+
+```javascript
+    $('select:not([name=filter_sort]):not([name=filter_set]):not([name=currency]):not([name=categories_id]):not([name=gender]):not([name=language]):not([id^=sel_]):not([id=ec_term])').SumoSelect({search: true, searchText: "<?php echo TEXT_SUMOSELECT_SEARCH; ?>", noMatch: "<?php echo TEXT_SUMOSELECT_NO_RESULT; ?>"});
+```
+
+*Ersetze mit:*
+
+```javascript
+    /* BOF Module "Attribute Kombination Manager made by Karl */
+    /* Original    $('select:not([name=filter_sort]):not([name=filter_set]):not([name=currency]):not([name=categories_id]):not([name=gender]):not([name=language]):not([id^=sel_]):not([id=ec_term])').SumoSelect({search: true, searchText: "<?php echo TEXT_SUMOSELECT_SEARCH; ?>", noMatch: "<?php echo TEXT_SUMOSELECT_NO_RESULT; ?>"}); */
+    $('select:not([name=filter_sort]):not(.combi_id):not([name=filter_set]):not([name=currency]):not([name=categories_id]):not([name=gender]):not([name=language]):not([id^=sel_]):not([id=ec_term])').SumoSelect({search: true, searchText: "<?php echo TEXT_SUMOSELECT_SEARCH; ?>", noMatch: "<?php echo TEXT_SUMOSELECT_NO_RESULT; ?>"});
+    /* EOF Module "Attribute Kombination Manager" made by Karl nova */
+```
+
+*Finde:*
+
+```javascript
+$('select:not([name=country])').SumoSelect();
+```
+
+*Ersetze mit:*
+
+```javascript
+    /* BOF Module "Attribute Kombination Manager" made by Karl */
+    /* Original    $('select:not([name=country])').SumoSelect(); */
+    $('select').not('[name=country], .combi_id').SumoSelect();
+    /* EOF Module "Attribute Kombination Manager" made by Karl */
+```
+
+**# /javascript/general_bottom.js.php**
+
+*Finde:*
+
+```php
+$script_min = DIR_TMPL_JS.'tpl_plugins.min.js';
+```
+
+*Füge davor ein:*
+
+```php
+/* BOF Module "Attribute Kombination Manager" made by Karl */
+if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'){
+  $script_array[] = DIR_TMPL_JS .'dependent-dropdown.min.js';
+  if ($_SESSION["language_code"]=='de') $script_array[] = DIR_TMPL_JS .'depdrop_locale_de.js';
+}
+/* EOF Module "Attribute Kombination Manager" made by Karl */
+```
+
+**# /javascript/extra/default.js.php**
+
+*Finde:*
+
+```javascript
+<script>
+```
+
+*Füge dahinter ein:*
+
+```javascript
+  /* BOF Module "Attribute Kombination Manager" made by Karl */
+  <?php if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'): ?>
+  $(document).ready(function(){
+    if (typeof jqueryReady !== 'undefined' && $.isFunction(jqueryReady)) {jqueryReady();}
+    /* alle Dropdowns müssen ausgewählt sein */
+    $("#cart_quantity").submit(function(event) {
+      var failed = false;
+      $(".combi_id option:selected").each(function(){
+        if (!$(this).val()){
+          failed = true;
+        }
+      });
+      if (failed == true){
+        if ($('.combi_stock').length && $('.combi_stock').text() == '0'){
+          alert("<?php echo COMBI_TEXT_CANT_BUY ?>");
+        } else {
+          alert("<?php echo COMBI_TEXT_SEL_ALL_OPTIONS ?>");
+        }
+        event.preventDefault();
+      }
+    });
+  });
+  <?php endif; ?>
+  /* EOF Module "Attribute Kombination Manager" made by Karl */
+```
+
+**# /module/product_info/product_info_v1_tabs.html**<br />
+**# /module/product_info/product_info_v2_accordion.html**
+**# /module/product_info/product_info_v3_plain.html**<br />
+
+*Finde:*
+
+```smarty
+          {if isset($MODULE_product_options) && $MODULE_product_options != ''}{$MODULE_product_options}{/if}
+```
+
+*Ersetze mit:*
+
+```smarty
+          {* BOF Module "Attribute Kombination Manager" made by Karl *}
+          {if isset($MODULE_product_combi) && $MODULE_product_combi != ''}
+            <div class="card bg-custom mb-2 p-2">
+              {$MODULE_product_combi}
+            </div>
+          {/if}
+          {if isset($MODULE_product_options) && $MODULE_product_options != '' && empty($MODULE_product_combi)}{$MODULE_product_options}{/if}
+          {*if isset($MODULE_product_options) && $MODULE_product_options != ''}{$MODULE_product_options}{/if*}
+          {* EOF Module "Attribute Kombination Manager" made by Karl *}
+```
 
 <br />
 <a href="#user-content-attribut-kombinationen-verwaltung">↑ zurück nach oben</a>

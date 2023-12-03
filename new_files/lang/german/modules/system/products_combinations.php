@@ -16,10 +16,10 @@ define('MODULE_PRODUCTS_COMBINATIONS_BUTTON_DELETE', 'Moduldateien l&ouml;schen'
 define('MODULE_PRODUCTS_COMBINATIONS_BUTTON_DELETE_DESC', '<u>Hinweis:</u><br />Es werden alle Moduldateien gel&ouml;scht, nachdem die Dateianpassungen wieder entfernt wurden!');
 define('MODULE_PRODUCTS_COMBINATIONS_BUTTON_MODIFYTPL', 'Templatedateien anpassen');
 define('MODULE_PRODUCTS_COMBINATIONS_BUTTON_MODIFYTPL_DESC', '<u>Hinweis:</u><br />Die <strong>Templatedateien des momentan aktiven Shoptemplates</strong> (Konfiguration -> Mein Shop -> Templateset) werden durchsucht und f&uuml;r das Modul angepasst.');
-define('MODULE_PRODUCTS_COMBINATIONS_BUTTON_MODIFYTPL_CONFIRM', 'Sollen die Templatedateien wirklich durchsucht und verändert werden?');
+define('MODULE_PRODUCTS_COMBINATIONS_BUTTON_MODIFYTPL_CONFIRM', 'Sollen die Dateien im Template <strong>%s</strong> wirklich durchsucht und verändert werden?');
 define('MODULE_PRODUCTS_COMBINATIONS_BUTTON_RESTORETPL', 'Template und Shopdatei - Anpassungen entfernen');
 define('MODULE_PRODUCTS_COMBINATIONS_BUTTON_RESTORETPL_DESC', '<u>Hinweis:</u><br />Mit dieser Funktion k&ouml;nnen Dateianpassungen wieder entfernt werden. Die ver&auml;nderten Dateien<br />- /admin/includes/modules/categories_view.php<br />- /admin/includes/modules/new_product.php<br />werden nicht zur&uuml;ckgesetzt!');
-define('MODULE_PRODUCTS_COMBINATIONS_BUTTON_RESTORETPL_CONFIRM', 'Sollen die Templatedateien wirklich durchsucht und Anpassungen entfernt werden?');
+define('MODULE_PRODUCTS_COMBINATIONS_BUTTON_RESTORETPL_CONFIRM', 'Sollen die Dateien im Shop und im Template <strong>%s</strong> wirklich durchsucht und Anpassungen entfernt werden?');
 define('MODULE_PRODUCTS_COMBINATIONS_STATUS_TITLE', 'Modul aktivieren?');
 define('MODULE_PRODUCTS_COMBINATIONS_STATUS_DESC', 'Im Adminbereich k&ouml;nnen Sie Attributkombinationen anlegen.<br />Im Shop werden dann in der Produktdetailansicht voneinander abh&auml;ngige Dropdownfelder angezeigt.<br />Es k&ouml;nnen nur vorher angelegte Kombinationen ausgew&auml;hlt und in den Warenkorb gelegt werden.<br />');
 define('MODULE_PRODUCTS_COMBINATIONS_OWN_MODEL_AND_EAN_TITLE', 'Sollen die Kombinationen eigene Artikelnummer und EAN erhalten?');

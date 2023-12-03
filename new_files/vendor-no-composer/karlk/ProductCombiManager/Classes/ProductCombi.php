@@ -276,7 +276,7 @@ public function getCombinationsListfromTable($combi_id=0, $prod_data = array()){
 		for($i=1; $i < $val_size;$i++){
 			$output .= '		$("#combi_id_'.($i+1).'").depdrop({'.PHP_EOL;
 			$output .= '			url: "'.DIR_WS_BASE.'ajax.php",'.PHP_EOL;
-			$output .= '			ext: {ext: "get_products_combi_data", type: "json", speed: 1},'.PHP_EOL;
+			$output .= '			ext: {ext: "get_products_combi_data", type: "json", speed: 1, '.(($i == ($val_size-1) && isset($init))? 'last: 1' : 'last: 0').'},'.PHP_EOL;
 			if ($_SESSION["language_code"]=='de') $output .= '			language: "de",'.PHP_EOL;
 			if ($i == ($val_size-1) && isset($init)) {
 				$output .= '			initialize: true,'.PHP_EOL;
@@ -354,9 +354,11 @@ public function getCombinationsListfromTable($combi_id=0, $prod_data = array()){
 //			$output .= '					});'.PHP_EOL;
 		} else {
 			if (MODULE_PRODUCTS_COMBINATIONS_CHANGE_IMAGE == 'true') {
-				$output .= '					var newhref = "'.DIR_WS_BASE.'images/product_images/popup_images/";'.PHP_EOL;
-				$output .= '					var newsrc = "'.DIR_WS_BASE.'images/product_images/info_images/";'.PHP_EOL;
-				$output .= '					if (data.image) {'.PHP_EOL;
+				$output .= '					if (data.image && $(".pd_image_small_container img[src*=\""+data.image+"\"]").length == 1) {'.PHP_EOL;
+				$output .= '						$(".pd_image_small_container img[src*=\""+data.image+"\"]").parents(".splide__slide").trigger("click");'.PHP_EOL;
+				$output .= '					} else {'.PHP_EOL;
+				$output .= '						var newhref = "'.DIR_WS_BASE.'images/product_images/popup_images/";'.PHP_EOL;
+				$output .= '						var newsrc = "'.DIR_WS_BASE.'images/product_images/info_images/";'.PHP_EOL;
 				$output .= '						$("#product_details .pd_big_image a").attr("href", newhref+data.image);'.PHP_EOL;
 				$output .= '						$("#product_details .pd_big_image img").attr("src", newsrc+data.image);'.PHP_EOL;
 				$output .= '					}'.PHP_EOL;
