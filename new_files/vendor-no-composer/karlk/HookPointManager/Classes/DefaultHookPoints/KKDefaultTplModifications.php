@@ -44,6 +44,8 @@ class KKDefaultTplModifications
 				break;
 
 			case '3.0.0':
+			case '3.0.1':
+			case '3.0.2':
 				$ModData[] = $this->getSumoselectData300();
 				$ModData[] = $this->getSumoselectData300nova();
 				$TplModData300 = $this->getProductInfoData300();
@@ -52,6 +54,8 @@ class KKDefaultTplModifications
 			case '2.0.7.1':
 			case '2.0.7.2':
 			case '3.0.0':
+			case '3.0.1':
+			case '3.0.2':
 			default:
 				$ModData[] = $this->getSumoselectData2070();
 				$ModData[] = $this->getExtraDefaultData();
@@ -287,7 +291,7 @@ class KKDefaultTplModifications
 		$tpls = array('product_info_tabs_v1.html', 'product_info_v1.html', 'product_info_x_accordion_v1.html');
 		foreach($tpls as $tpl) {
 			$data[] =	array(	'TPLFILE' => DIR_FS_CATALOG . 'templates/' . CURRENT_TEMPLATE . '/module/product_info/' . $tpl,
-								'SEARCHSTRING' => '{if $MODULE_product_options_template != \'multi_options_1.html\' && $MODULE_product_options_template|strpos:"dropdown" === false}',
+								'SEARCHSTRING' => array('{if $MODULE_product_options_template != \'multi_options_1.html\' && $MODULE_product_options_template|strpos:"dropdown" === false}', '{if $MODULE_product_options_template != \'multi_options_1.html\' && strpos($MODULE_product_options_template, \'dropdown\' === false}'),
 								'KEYPLUS' => -1,
 								'REPLACESTRING' => $this->getProductInfoString2070(),
 						);
