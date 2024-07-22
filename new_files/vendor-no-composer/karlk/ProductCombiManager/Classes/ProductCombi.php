@@ -195,7 +195,7 @@ public function getCombinationsListfromTable($combi_id=0, $prod_data = array()){
 	// Selectfeld 1 - Option vorbelegen, wenn Attribute in products_id vorhanden (Beispiel: "product_info.php?products_id=664{4}9{1}5")
 	if (strpos($_GET['products_id'], '{') !== false) {
         $data["products_id"] = $_GET['products_id'];
-		$combi_sel_array = preg_split('/[{}]/', $_GET['products_id'], null, PREG_SPLIT_NO_EMPTY);
+		$combi_sel_array = preg_split('/[{}]/', $_GET['products_id'], -1, PREG_SPLIT_NO_EMPTY);
 		array_shift($combi_sel_array);
 	}
 
@@ -352,6 +352,10 @@ public function getCombinationsListfromTable($combi_id=0, $prod_data = array()){
 //			$output .= '							$("#product-slider").royalSlider("goTo", index);'.PHP_EOL;
 //			$output .= '						}'.PHP_EOL;
 //			$output .= '					});'.PHP_EOL;
+		} elseif (MODULE_PRODUCTS_COMBINATIONS_BOOTSTRAP5 == 'true' && MODULE_PRODUCTS_COMBINATIONS_CHANGE_IMAGE == 'true') {
+			$output .= '					if (data.image && $(".pd_more_images img[src*=\""+data.image+"\"]").length == 1) {'.PHP_EOL;
+			$output .= '						$(".pd_more_images img[src*=\""+data.image+"\"]").parents(".swap").trigger("click");'.PHP_EOL;
+			$output .= '					}'.PHP_EOL;
 		} else {
 			if (MODULE_PRODUCTS_COMBINATIONS_CHANGE_IMAGE == 'true') {
 				$output .= '					if (data.image && $(".pd_image_small_container img[src*=\""+data.image+"\"]").length == 1) {'.PHP_EOL;

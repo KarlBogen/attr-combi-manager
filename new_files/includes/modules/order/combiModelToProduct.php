@@ -15,6 +15,14 @@
 
 class combiModelToProduct {  //Important same name as filename
 
+  var $code;
+  var $title;
+  var $description;
+  var $name;
+  var $sort_order;
+  var $enabled;
+  var $_check;
+
     //--- BEGIN DEFAULT CLASS METHODS ---//
     function __construct()
     {
@@ -77,7 +85,7 @@ class combiModelToProduct {  //Important same name as filename
 				$tmpAttrid = '';
 				$plh = '_';
 				$tmpId = $products_id;
-				$tmpList = preg_split('/[{}]/', $tmpId, null, PREG_SPLIT_NO_EMPTY);
+				$tmpList = preg_split('/[{}]/', $tmpId, -1, PREG_SPLIT_NO_EMPTY);
 				$tmpPid = $tmpList[0];
 				for($a=2; $a < sizeof($tmpList);$a+=2){
 					if ($a+1 == sizeof($tmpList)) $plh = '';

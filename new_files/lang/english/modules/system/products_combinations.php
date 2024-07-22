@@ -30,6 +30,8 @@ define('MODULE_PRODUCTS_COMBINATIONS_SHOW_EMPTY_COMBI_OPTION_TITLE', 'View combi
 define('MODULE_PRODUCTS_COMBINATIONS_SHOW_EMPTY_COMBI_OPTION_DESC', 'If you switch this function off, combinations without stock are hidden in the drop-down fields.<br /><strong>Only works if stock check is switched on!</strong><br />');
 define('MODULE_PRODUCTS_COMBINATIONS_CHANGE_IMAGE_TITLE', 'Change product image after selection?');
 define('MODULE_PRODUCTS_COMBINATIONS_CHANGE_IMAGE_DESC', 'If you activate this function, the combination image becomes the active article image after the selection has been made.<br />');
+define('MODULE_PRODUCTS_COMBINATIONS_BOOTSTRAP5_TITLE', 'Is a <strong>bootstrap5</strong> template used5?');
+define('MODULE_PRODUCTS_COMBINATIONS_BOOTSTRAP5_DESC', 'Javascript is changed for bootstrap5.<br />');
 define('MODULE_PRODUCTS_COMBINATIONS_BOOTSTRAP_TITLE', 'Is a bootstrap template used with activated image zoom effect?');
 define('MODULE_PRODUCTS_COMBINATIONS_BOOTSTRAP_DESC', 'Javascript is changed for bootstrap with zoom effect.<br />');
 define('MODULE_PRODUCTS_COMBINATIONS_PRICEUPDATER_ON_TITLE', '<br /><br />web0null_attribute_price_updater<br /><br />Priceupdater');

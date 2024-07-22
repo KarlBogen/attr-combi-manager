@@ -17,16 +17,17 @@ require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/karlk/autoload.php';
 
 class products_combinations {
 
-    public $code;
-    public $title;
-    public $description;
-    public $enabled;
-    public $sort_order;
-    public $keys;
+  var $code;
+  var $title;
+  var $description;
+  var $sort_order;
+  var $enabled;
+  var $properties;
+  var $_check;
 
 	public function __construct() {
 		$this->code = 'products_combinations';
-		$this->title = MODULE_PRODUCTS_COMBINATIONS_TEXT_TITLE . ' - Version: 1.0.13';
+		$this->title = MODULE_PRODUCTS_COMBINATIONS_TEXT_TITLE . ' - Version: 1.0.14';
 		$this->description = '';
 		$this->description .= MODULE_PRODUCTS_COMBINATIONS_TEXT_DESCRIPTION;
 		if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS')) {
@@ -80,6 +81,7 @@ class products_combinations {
 	    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_CHECK_COMBI_STOCK', 'true',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
 	    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_SHOW_EMPTY_COMBI_OPTION', 'true',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
 	    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_CHANGE_IMAGE', 'true',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
+	    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_BOOTSTRAP5', 'false',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
 	    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_BOOTSTRAP', 'false',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
 			// Preisupdater
 	    	xtc_db_query("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) VALUES ('MODULE_PRODUCTS_COMBINATIONS_PRICEUPDATER_ON', 'true',  '6', '1', 'xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
@@ -186,6 +188,9 @@ class products_combinations {
 		}
 		if (!defined('MODULE_PRODUCTS_COMBINATIONS_CHANGE_IMAGE')) {
 			xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, set_function, date_added) values ('MODULE_PRODUCTS_COMBINATIONS_CHANGE_IMAGE', 'true','6', '1','xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
+		}
+		if (!defined('MODULE_PRODUCTS_COMBINATIONS_BOOTSTRAP5')) {
+			xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, set_function, date_added) values ('MODULE_PRODUCTS_COMBINATIONS_BOOTSTRAP5', 'false','6', '1','xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
 		}
 		if (!defined('MODULE_PRODUCTS_COMBINATIONS_BOOTSTRAP')) {
 			xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, set_function, date_added) values ('MODULE_PRODUCTS_COMBINATIONS_BOOTSTRAP', 'false','6', '1','xtc_cfg_select_option(array(\'true\', \'false\'), ', now())");
@@ -318,6 +323,7 @@ class products_combinations {
     	$key[] = 'MODULE_PRODUCTS_COMBINATIONS_CHECK_COMBI_STOCK';
     	$key[] = 'MODULE_PRODUCTS_COMBINATIONS_SHOW_EMPTY_COMBI_OPTION';
     	$key[] = 'MODULE_PRODUCTS_COMBINATIONS_CHANGE_IMAGE';
+    	$key[] = 'MODULE_PRODUCTS_COMBINATIONS_BOOTSTRAP5';
     	$key[] = 'MODULE_PRODUCTS_COMBINATIONS_BOOTSTRAP';
     	$key[] = 'MODULE_PRODUCTS_COMBINATIONS_PRICEUPDATER_ON';
     	$key[] = 'MODULE_PRODUCTS_COMBINATIONS_ADDITIONAL';

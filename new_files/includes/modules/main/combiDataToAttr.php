@@ -17,6 +17,14 @@ use KarlK\ProductCombiManager\Classes\ProductCombi;
 
 class combiDataToAttr {  //Important same name as filename
 
+  var $code;
+  var $title;
+  var $description;
+  var $name;
+  var $sort_order;
+  var $enabled;
+  var $_check;
+
     //--- BEGIN DEFAULT CLASS METHODS ---//
     function __construct()
     {

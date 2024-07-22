@@ -87,6 +87,17 @@ function getImage($prod_id, $attribute_id){
 	$stock = $tmpdata["stock"] != '' ? $tmpdata["stock"] : '';
 	$image = $tmpdata["image"] != '' ? $tmpdata["image"] : '';
 
+			if (defined('IMAGE_TYPE_EXTENSION')
+				&& IMAGE_TYPE_EXTENSION != 'default'
+				&& $image != ''
+				)
+			{
+				$name_extension = substr($image, 0, strrpos($image, '.')).'.'.IMAGE_TYPE_EXTENSION;
+				if (is_file(DIR_FS_CATALOG.DIR_WS_THUMBNAIL_IMAGES.$name_extension)) {
+					$image = $name_extension;
+				}
+			}
+
 			$res =  array(
 				"options_ids"	=>  $options_ids,
 				"model"			=>  $model,
@@ -225,7 +236,7 @@ function getData($datas){
 	$combi_selected_array = array();
     $sel_combi = '';
 	if (strpos($prod_id, '{') !== false) {
-		$combi_sel_array = preg_split('/[{}]/', $prod_id, null, PREG_SPLIT_NO_EMPTY);
+		$combi_sel_array = preg_split('/[{}]/', $prod_id, -1, PREG_SPLIT_NO_EMPTY);
 		array_shift($combi_sel_array);
 		for ($i=0, $n=count($combi_sel_array); $i<$n; $i+=2) {
 			$combi_selected_array[] = $combi_sel_array[$i + 1];

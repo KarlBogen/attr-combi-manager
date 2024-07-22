@@ -30,6 +30,8 @@ define('MODULE_PRODUCTS_COMBINATIONS_SHOW_EMPTY_COMBI_OPTION_TITLE', 'Kombinatio
 define('MODULE_PRODUCTS_COMBINATIONS_SHOW_EMPTY_COMBI_OPTION_DESC', 'Wenn Sie diese Funktion ausschalten, werden Kombinationen ohne Bestand in den Dropdownfeldern ausgeblendet.<br /><strong>Funktioniert nur, wenn Bestandspr&uuml;fung eingeschaltet ist!</strong><br />');
 define('MODULE_PRODUCTS_COMBINATIONS_CHANGE_IMAGE_TITLE', 'Artikelbild nach fertiger Auswahl tauschen?');
 define('MODULE_PRODUCTS_COMBINATIONS_CHANGE_IMAGE_DESC', 'Wenn Sie diese Funktion einschalten, wird nach getroffener Auswahl das Kombinationsbild zum aktiven Artikelbild.<br />');
+define('MODULE_PRODUCTS_COMBINATIONS_BOOTSTRAP5_TITLE', 'Wird ein <strong>Bootstrap5</strong>-Template genutzt?');
+define('MODULE_PRODUCTS_COMBINATIONS_BOOTSTRAP5_DESC', 'F&uuml;r Bootstrap5 muss das Javascript ver&auml;ndert werden.<br />');
 define('MODULE_PRODUCTS_COMBINATIONS_BOOTSTRAP_TITLE', 'Wird ein Bootstrap-Template mit eingeschaltetem Bilder-Zoomeffekt genutzt?');
 define('MODULE_PRODUCTS_COMBINATIONS_BOOTSTRAP_DESC', 'F&uuml;r Bootstrap mit Zoomeffekt wird das Javascript ver&auml;ndert werden.<br />');
 define('MODULE_PRODUCTS_COMBINATIONS_PRICEUPDATER_ON_TITLE', '<br /><br />web0null_attribute_price_updater<br /><br />Preisupdater');

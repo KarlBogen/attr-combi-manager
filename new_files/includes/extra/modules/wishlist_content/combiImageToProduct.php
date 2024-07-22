@@ -28,7 +28,7 @@
 			$tmpAttrid = '';
 			$plh = '_';
 			$tmpId = $mydata["PRODUCTS_ID"];
-			$tmpList = preg_split('/[{}]/', $tmpId, null, PREG_SPLIT_NO_EMPTY);
+			$tmpList = preg_split('/[{}]/', $tmpId, -1, PREG_SPLIT_NO_EMPTY);
 			$tmpPid = $tmpList[0];
 			for($a=2; $a < sizeof($tmpList);$a+=2){
 				if ($a+1 == sizeof($tmpList)) $plh = '';
