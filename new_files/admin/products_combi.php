@@ -353,4 +353,3 @@ require('includes/javascript/products_combi.js.php');
 	// redirect falls Systemmodulstatus != true
 	xtc_redirect(xtc_href_link(FILENAME_START));
 }
-?>

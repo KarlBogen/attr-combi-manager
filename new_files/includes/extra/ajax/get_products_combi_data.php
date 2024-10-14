@@ -299,5 +299,3 @@ function removeElementWithValue($array, $key, $value){
      }
      return $array;
 }
-
-?>

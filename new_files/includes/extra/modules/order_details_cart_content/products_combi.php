@@ -52,4 +52,3 @@ if (STOCK_CHECK == 'true') {
 	}
 
 }
-?>

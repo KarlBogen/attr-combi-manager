@@ -24,4 +24,3 @@ use KarlK\ProductCombiManager\Classes\ProductCombi;
 		}
 
 	}
-?>

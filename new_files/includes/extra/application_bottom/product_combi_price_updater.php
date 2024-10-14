@@ -91,4 +91,3 @@ function CombiPriceUpdater() {
 <?php
   }
 }
-?>

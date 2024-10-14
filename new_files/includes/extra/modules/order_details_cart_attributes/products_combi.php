@@ -30,4 +30,3 @@ use KarlK\ProductCombiManager\Classes\ProductCombi;
 			if (isset($combi_out_of_stock) && $combi_out_of_stock > 0) $_SESSION['any_out_of_stock'] = 1;
 		}
 	}
-?>

@@ -204,9 +204,9 @@ public function getCombinationsListfromTable($combi_id=0, $prod_data = array()){
 
 		$output .= '<noscript>'.COMBI_JS_DISABLED.'</noscript>'.PHP_EOL;
 		$output .= '<div id="combination'.(int)$prod_data["pid"].'">'.PHP_EOL;
-		$output .= '<div class="combi-select options_row_multi form-group">'.PHP_EOL;
+		$output .= '<div class="combi-select options_row_multi form-group mb-3">'.PHP_EOL;
 		$output .= '	<div class="options_name control-label">'.$option_names[0].': </div>'.PHP_EOL;
-		$output .= '	<div class="options_select"><select id="combi_id_1" class="combi_id form-control form-control-sm input-sm" onchange="hideImage();">'.PHP_EOL;
+		$output .= '	<div class="options_select"><select id="combi_id_1" class="combi_id form-select form-control form-control-sm input-sm" onchange="hideImage();">'.PHP_EOL;
 		$output .= '		<option value="">'.PULL_DOWN_DEFAULT.' ...</option>'.PHP_EOL;
 		// 1. Selectfeld
         $init = false;
@@ -224,9 +224,9 @@ public function getCombinationsListfromTable($combi_id=0, $prod_data = array()){
 		$output .= '</div>'.PHP_EOL;
 		// alle weiteren Selectfelder
 		for($i=1; $i < $val_size;$i++){
-			$output .= '<div class="combi-select options_row_multi form-group">'.PHP_EOL;
+			$output .= '<div class="combi-select options_row_multi form-group mb-3">'.PHP_EOL;
 			$output .= '	<div class="options_name control-label">'.$option_names[$i].': </div>'.PHP_EOL;
-			$output .= '	<div class="options_select"><select id="combi_id_'.($i+1).'" class="combi_id form-control form-control-sm input-sm"';
+			$output .= '	<div class="options_select"><select id="combi_id_'.($i+1).'" class="combi_id form-select form-control form-control-sm input-sm"';
 			// beim letzten Selectfeld onchange einfügen
 			if ($i == ($val_size-1)) {
 				$output .= ' onchange="hideImage();getCombiImage();"';
@@ -426,4 +426,3 @@ protected function removeElementWithValue($array, $key, $value){
 }
 
 }
-?>

@@ -41,4 +41,3 @@ define('MODULE_PRODUCTS_COMBINATIONS_ADDITIONAL_DESC', 'Anzeige der Zusatzzeilen
 define('MODULE_PRODUCTS_COMBINATIONS_UPDATE_PRICE_TITLE', 'Preis neu berechnen');
 define('MODULE_PRODUCTS_COMBINATIONS_UPDATE_PRICE_DESC', '&Auml;ndert auch den Originalpreis im Template. Rechtlich abkl&auml;ren!<br />');
 define('MODULE_PRODUCTS_COMBINATIONS_REMOVE', '<b>Bitte beachten:</b> Alle bisher erstellten und gespeicherten Produktkombinationen werden gelöscht!');
-?>

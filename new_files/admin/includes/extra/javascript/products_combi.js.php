@@ -23,7 +23,7 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
 					$(this).find('tr').each(function(){
 						$(this).find("input.ChkBox.select_all").remove();
 						if ($(this).find('td').hasClass('is_combi_val')) {$(this).find("input.ChkBox").addClass("hidden");}
-						$(this).find('input[name*="_stock"]').replaceWith('<?php echo PRODUCTS_COMBI_STOCK; ?>');
+						$(this).find('input[name*="_stock"]').attr('disabled', false).prop('type', 'hidden').after('<?php echo PRODUCTS_COMBI_STOCK; ?>');
 					});
 				});
 				$('head').append('<style type="text/css">#attributes input.hidden.ChkBox[type="checkbox"] + em {background:none !important;}#attributes input.hidden.ChkBox[type="checkbox"] {pointer-events: none !important;cursor: none;}</style>');
@@ -33,4 +33,3 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
 <?php
 	}
 }
-?>

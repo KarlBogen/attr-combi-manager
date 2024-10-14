@@ -31,7 +31,7 @@ class KKDefaultHookPoints
             'hash' => '250b8d593baced8fb40a213d922f0b57',
             'line' => 718,
             'include' => 'includes/extra/hpm/categories_view/small_buttons/'
-        ], ['3.1.0']);
+        ], ['3.1.0', '3.1.1']);
 
         $hookPointManager->registerHookPoint([
             'name' => 'hpm-default-admin-categories-view-small-buttons',
@@ -130,7 +130,7 @@ class KKDefaultHookPoints
             'hash' => '250b8d593baced8fb40a213d922f0b57',
             'line' => 1022,
             'include' => 'includes/extra/hpm/categories_view/side_buttons/'
-        ], ['3.1.0']);
+        ], ['3.1.0', '3.1.1']);
 
         $hookPointManager->registerHookPoint([
             'name' => 'hpm-default-admin-categories-view-side-buttons',
@@ -229,7 +229,7 @@ class KKDefaultHookPoints
             'hash' => '8860e648d0485f6f0fab18f830add1be',
             'line' => 279,
             'include' => 'includes/extra/hpm/new_product/buttons/'
-        ], ['3.0.0', '3.0.1', '3.0.2', '3.1.0']);
+        ], ['3.0.0', '3.0.1', '3.0.2', '3.1.0', '3.1.1']);
 
         $hookPointManager->registerHookPoint([
             'name' => 'hpm-default-admin-new-product-buttons',

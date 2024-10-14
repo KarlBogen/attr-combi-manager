@@ -16,6 +16,15 @@ defined('_VALID_XTC') or die('Direct Access to this location is not allowed.');
 
 class combiRemoveProduct {  //Important same name as filename
 
+    var $code;
+    var $name;
+    var $title;
+    var $description;
+    var $enabled;
+    var $sort_order;
+    var $translate;
+    var $_check;
+
     //--- BEGIN DEFAULT CLASS METHODS ---//
     function __construct()
     {
@@ -39,8 +48,12 @@ class combiRemoveProduct {  //Important same name as filename
 
     function check() {
         if (!isset($this->_check)) {
-          $check_query = xtc_db_query("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = '".$this->name."_STATUS'");
-          $this->_check = xtc_db_num_rows($check_query);
+          if (defined($this->name.'_STATUS')) {
+            $this->_check = true;
+          } else {
+            $check_query = xtc_db_query("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = '".$this->name."_STATUS'");
+            $this->_check = xtc_db_num_rows($check_query);
+          }
         }
         return $this->_check;
     }
@@ -73,4 +86,3 @@ class combiRemoveProduct {  //Important same name as filename
 		}
 	}
 }
-?>

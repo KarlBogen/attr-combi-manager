@@ -48,8 +48,12 @@ class combiDataToProduct {  //Important same name as filename
 
     function check() {
         if (!isset($this->_check)) {
-          $check_query = xtc_db_query("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = '".$this->name."_STATUS'");
-          $this->_check = xtc_db_num_rows($check_query);
+          if (defined($this->name.'_STATUS')) {
+            $this->_check = true;
+          } else {
+            $check_query = xtc_db_query("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = '".$this->name."_STATUS'");
+            $this->_check = xtc_db_num_rows($check_query);
+          }
         }
         return $this->_check;
     }
@@ -119,4 +123,3 @@ class combiDataToProduct {  //Important same name as filename
 		return $products_data;
     }
 }
-?>

@@ -40,4 +40,3 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
     	echo '&nbsp;&nbsp;<a class="button but_green" href="'.xtc_href_link(FILENAME_PRODUCTS_COMBI, "cPath=". $cPath . $catfunc->page_parameter.'action=edit&oldaction=new_product&pID='.$pInfo->products_id).'">' . PRODUCTS_COMBI_NEW . '</a>';
 	}
 }
-?>

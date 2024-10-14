@@ -31,4 +31,3 @@ define('COMBI_HOOKPOINT_MANAGER_TPLFILE_SEARCHSTRING_NOTFOUND', 'Searchstring in
 define('COMBI_HOOKPOINT_MANAGER_TPLFILE_MODIFIED', 'The file <strong>%s</strong> has been modified!');
 define('COMBI_HOOKPOINT_MANAGER_TPLFILE_NOTMODIFIED', 'The file <strong>% s </strong> did not contain the original module modifications!');
 define('COMBI_HOOKPOINT_MANAGER_TPLFILE_RESTORED', 'The modifications in the file <strong>% s </strong> have been removed!');
-?>

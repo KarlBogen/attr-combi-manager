@@ -13,4 +13,3 @@
 define('TABLE_PRODUCTS_OPTIONS_COMBI', 'products_options_combi');
 define('TABLE_PRODUCTS_OPTIONS_COMBI_VALUES', 'products_options_combi_values');
 define('TABLE_PRODUCTS_OPTIONS_COMBI_VALUES_2', 'products_options_combi_values_2');
-?>

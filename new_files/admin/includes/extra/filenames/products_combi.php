@@ -11,5 +11,3 @@
 -------------------------------------------------------------- */
 
 define('FILENAME_PRODUCTS_COMBI','products_combi.php');
-
-?>

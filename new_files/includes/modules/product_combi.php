@@ -30,5 +30,3 @@ $ProductCombi = new ProductCombi();
 		$output = $ProductCombi->getCombinationsListfromTable($combi_id, $prod_data);
 		$info_smarty->assign('MODULE_product_combi', $output);
 	}
-
-?>

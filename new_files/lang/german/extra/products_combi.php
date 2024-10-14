@@ -22,4 +22,3 @@ define('COMBI_TEXT_ATTRIBUTE_PRICE_UPDATER_A', 'In dieser Ausf&uuml;hrung:');
 define('COMBI_TEXT_ATTRIBUTE_PRICE_UPDATER_B', 'Preis/Artikel');
 define('COMBI_TXT_ONLY', '<span class="small_price">Jetzt nur</span> ');
 define('COMBI_TXT_INSTEAD', '<span class="small_price">Unser bisheriger Preis</span> ');
-?>

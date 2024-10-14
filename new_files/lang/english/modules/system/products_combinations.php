@@ -41,4 +41,3 @@ define('MODULE_PRODUCTS_COMBINATIONS_ADDITIONAL_DESC', 'Display of additional li
 define('MODULE_PRODUCTS_COMBINATIONS_UPDATE_PRICE_TITLE', 'Recalculate price');
 define('MODULE_PRODUCTS_COMBINATIONS_UPDATE_PRICE_DESC', 'Also changes the original price in the template. Declare legally!<br />');
 define('MODULE_PRODUCTS_COMBINATIONS_REMOVE', '<b>Bitte beachten:</b> Alle bisher erstellten und gespeicherten Produktkombinationen werden gelöscht!');
-?>

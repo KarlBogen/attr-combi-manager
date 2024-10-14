@@ -53,5 +53,3 @@ define('COMBI_IMAGE_LINK_ERROR', 'There was an error, please try again!');
 define('COMBI_EXISTS_TOGETEHER', 'This combination already exists!');
 define('COMBI_NO_ROW_SELECTED', 'Any row is selected!');
 define('COMBI_NO_COMBI_ACTIVE', 'One comination have to be active!');
-
-?>

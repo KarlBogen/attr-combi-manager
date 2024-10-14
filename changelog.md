@@ -2,6 +2,11 @@ UNRELEASED
 
 
 
+1.0.15 [14.10.2024]
+
+- Update für Shopversion 3.1.1
+- PHP 8.3 kompatibel
+
 1.0.14 [22.07.2024]
 
 - Update für Shopversion 3.1.0
