@@ -2,6 +2,10 @@ UNRELEASED
 
 
 
+1.0.16 [05.11.2024]
+
+- Update für Shopversion 3.1.2
+
 1.0.15 [14.10.2024]
 
 - Update für Shopversion 3.1.1

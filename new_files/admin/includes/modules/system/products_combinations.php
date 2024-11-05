@@ -27,7 +27,7 @@ class products_combinations {
 
 	public function __construct() {
 		$this->code = 'products_combinations';
-		$this->title = MODULE_PRODUCTS_COMBINATIONS_TEXT_TITLE . ' - Version: 1.0.15';
+		$this->title = MODULE_PRODUCTS_COMBINATIONS_TEXT_TITLE . ' - Version: 1.0.16';
 		$this->description = '';
 		$this->description .= MODULE_PRODUCTS_COMBINATIONS_TEXT_DESCRIPTION;
 		if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS')) {
@@ -246,7 +246,11 @@ class products_combinations {
 	public function remove() {
 		// alle Datenbankeinträge entfernen
 		xtc_db_query("DELETE FROM ".TABLE_CONFIGURATION." WHERE configuration_key in ('" . implode("', '", $this->keys()) . "')");
-		xtc_db_query("ALTER TABLE ".TABLE_ADMIN_ACCESS." DROP `products_combi`");
+		$query = xtc_db_query("SHOW COLUMNS FROM " . TABLE_ADMIN_ACCESS . " LIKE 'products_combi'");
+		$exist = xtc_db_num_rows($query);
+		if ($exist > 0) {
+		  xtc_db_query("ALTER TABLE ".TABLE_ADMIN_ACCESS." DROP `products_combi`");
+		}
 
 		xtc_db_query("DROP TABLE IF EXISTS `products_options_combi`");
 		xtc_db_query("DROP TABLE IF EXISTS `products_options_combi_values`");
@@ -284,6 +288,7 @@ class products_combinations {
 			$this->remove();
 			$this->restoreAllFiles();
 			$this->removeAllFiles();
+			xtc_redirect(xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system'));
 		}
 
 	}
@@ -517,9 +522,21 @@ class products_combinations {
 		$dirs_and_files[] = $shop_path.'templates/bootstrap4/javascript/dependent-dropdown.js';
 		$dirs_and_files[] = $shop_path.'templates/bootstrap4/javascript/dependent-dropdown.min.js';
 
+		$dirs_and_files[] = $shop_path.'templates/bootstrap5/javascript/depdrop_locale_de.js';
+		$dirs_and_files[] = $shop_path.'templates/bootstrap5/javascript/dependent-dropdown.js';
+		$dirs_and_files[] = $shop_path.'templates/bootstrap5/javascript/dependent-dropdown.min.js';
+
+		$dirs_and_files[] = $shop_path.'templates/bootstrap5a/javascript/depdrop_locale_de.js';
+		$dirs_and_files[] = $shop_path.'templates/bootstrap5a/javascript/dependent-dropdown.js';
+		$dirs_and_files[] = $shop_path.'templates/bootstrap5a/javascript/dependent-dropdown.min.js';
+
 		$dirs_and_files[] = $shop_path.'templates/tpl_modified/javascript/depdrop_locale_de.js';
 		$dirs_and_files[] = $shop_path.'templates/tpl_modified/javascript/dependent-dropdown.js';
 		$dirs_and_files[] = $shop_path.'templates/tpl_modified/javascript/dependent-dropdown.min.js';
+
+		$dirs_and_files[] = $shop_path.'templates/tpl_modified_nova/javascript/depdrop_locale_de.js';
+		$dirs_and_files[] = $shop_path.'templates/tpl_modified_nova/javascript/dependent-dropdown.js';
+		$dirs_and_files[] = $shop_path.'templates/tpl_modified_nova/javascript/dependent-dropdown.min.js';
 
 		$dirs_and_files[] = $shop_path.'templates/tpl_modified_responsive/javascript/depdrop_locale_de.js';
 		$dirs_and_files[] = $shop_path.'templates/tpl_modified_responsive/javascript/dependent-dropdown.js';
@@ -556,11 +573,11 @@ class products_combinations {
 		if (is_dir($dir)) {
 			foreach (scandir($dir) as $file){
 				if (!in_array($file, array('.','..'))) {
-					echo $dir . ' ist nicht leer!<br>';
+					//echo $dir . ' ist nicht leer!<br>';
 					return false;
 				}
 			}
-			echo $dir . ' ist leer!<br>';
+			//echo $dir . ' ist leer!<br>';
 			rmdir($dir);
 			return true;
 		}
