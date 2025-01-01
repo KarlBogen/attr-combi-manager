@@ -78,6 +78,7 @@ if(isset($_POST['action'])){
 			break;
 		// Nicht Speichern beim Verlassen - Kombiliste editieren
 		case 'only_redirect':
+      if (empty($_POST["combi_value_id"])) $ProductCombiAdmin->deleteCombinationsTable($_POST["combi_id"]);
     		xtc_redirect(xtc_href_link($backfile, $backlink),'NONSSL');
 			break;
 		// Speichern beim Verlassen - Kombiliste editieren
