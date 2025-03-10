@@ -1,6 +1,7 @@
 UNRELEASED
 
 
+- Barrierefreiheit - Label-For hinzugefügt
 - Fehler beim ersten Anlegen von Kombinationen, wenn "Speichern" und in der folgenden Bestätigung "NEIN" geklickt wird - behoben
 
 
