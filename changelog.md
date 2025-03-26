@@ -1,9 +1,12 @@
 UNRELEASED
 
 
+
+1.0.17 [25.03.2025]
+
+- Update für Shopversion 3.1.3
 - Barrierefreiheit - Label-For hinzugefügt
 - Fehler beim ersten Anlegen von Kombinationen, wenn "Speichern" und in der folgenden Bestätigung "NEIN" geklickt wird - behoben
-
 
 1.0.16 [05.11.2024]
 

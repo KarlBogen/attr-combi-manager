@@ -49,6 +49,7 @@ class KKDefaultTplModifications
 			case '3.1.0':
 			case '3.1.1':
 			case '3.1.2':
+			case '3.1.3':
 				$ModData[] = $this->getSumoselectData300();
 				$ModData[] = $this->getSumoselectData300nova();
 				$TplModData300 = $this->getProductInfoData300();
@@ -62,6 +63,7 @@ class KKDefaultTplModifications
 			case '3.1.0':
 			case '3.1.1':
 			case '3.1.2':
+			case '3.1.3':
 			default:
 				$ModData[] = $this->getSumoselectData2070();
 				$ModData[] = $this->getExtraDefaultData();

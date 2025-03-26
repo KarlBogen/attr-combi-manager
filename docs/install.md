@@ -74,6 +74,7 @@ Abhängig vom genutzten Template sind Änderungen in den Dateien durchzuführen:
 *   [Anhang 3: xtc5](#user-content-anhang-3-xtc5)
 *   [Anhang 4: bootstrap4](#user-content-anhang-4-bootstrap4)
 *   [Anhang 5: tpl_modified_nova](#user-content-anhang-5-tpl-modified-nova)
+*   [Anhang 6: bootstrap5](#user-content-anhang-6-bootstrap5)
 
 <br />
 <a href="#user-content-attribut-kombinationen-verwaltung">↑ zurück nach oben</a>
@@ -568,6 +569,92 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
           {/if}
           {if isset($MODULE_product_options) && $MODULE_product_options != '' && empty($MODULE_product_combi)}{$MODULE_product_options}{/if}
           {*if isset($MODULE_product_options) && $MODULE_product_options != ''}{$MODULE_product_options}{/if*}
+          {* EOF Module "Attribute Kombination Manager" made by Karl *}
+```
+
+<br />
+<a href="#user-content-attribut-kombinationen-verwaltung">↑ zurück nach oben</a>
+<br />
+
+<h3 id="user-content-anhang-6-bootstrap5" style="padding-top: 60px; margin-top: -60px;">Anhang 6: BOOTSTRAP5 und BOOTSTRAP5a</h3>
+
+**# /javascript/general_bottom.js.php**
+
+*Finde:*
+
+```php
+$script_min = DIR_TMPL_JS.'tpl_plugins.min.js';
+```
+
+*Füge davor ein:*
+
+```php
+/* BOF Module "Attribute Kombination Manager" made by Karl */
+if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'){
+  $script_array[] = DIR_TMPL_JS .'dependent-dropdown.min.js';
+  if ($_SESSION["language_code"]=='de') $script_array[] = DIR_TMPL_JS .'depdrop_locale_de.js';
+}
+/* EOF Module "Attribute Kombination Manager" made by Karl */
+```
+
+**# /javascript/extra/default.js.php**
+
+*Finde:*
+
+```javascript
+<script>
+```
+
+*Füge dahinter ein:*
+
+```javascript
+  /* BOF Module "Attribute Kombination Manager" made by Karl */
+  <?php if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true'): ?>
+  $(document).ready(function(){
+    if (typeof jqueryReady !== 'undefined' && $.isFunction(jqueryReady)) {jqueryReady();}
+    /* alle Dropdowns müssen ausgewählt sein */
+    $("#cart_quantity").submit(function(event) {
+      var failed = false;
+      $(".combi_id option:selected").each(function(){
+        if (!$(this).val()){
+          failed = true;
+        }
+      });
+      if (failed == true){
+        if ($('.combi_stock').length && $('.combi_stock').text() == '0'){
+          alert("<?php echo COMBI_TEXT_CANT_BUY ?>");
+        } else {
+          alert("<?php echo COMBI_TEXT_SEL_ALL_OPTIONS ?>");
+        }
+        event.preventDefault();
+      }
+    });
+  });
+  <?php endif; ?>
+  /* EOF Module "Attribute Kombination Manager" made by Karl */
+```
+
+**# /module/product_info/product_info_v1_tabs.html**<br />
+**# /module/product_info/product_info_v2_accordion.html**
+**# /module/product_info/product_info_v3_plain.html**<br />
+
+*Finde:*
+
+```smarty
+          {if isset($MODULE_product_options) && $MODULE_product_options != ''}
+```
+
+*Ersetze mit:*
+
+```smarty
+          {* BOF Module "Attribute Kombination Manager" made by Karl *}
+          {if isset($MODULE_product_combi) && $MODULE_product_combi != ''}
+            <div class="card bg-custom mb-2 p-2">
+              {$MODULE_product_combi}
+            </div>
+          {/if}
+          {if isset($MODULE_product_options) && $MODULE_product_options != '' && $MODULE_product_combi == ''}
+          {*if isset($MODULE_product_options) && $MODULE_product_options != ''*}
           {* EOF Module "Attribute Kombination Manager" made by Karl *}
 ```
 

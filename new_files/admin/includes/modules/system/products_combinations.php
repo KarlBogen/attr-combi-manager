@@ -27,7 +27,7 @@ class products_combinations {
 
 	public function __construct() {
 		$this->code = 'products_combinations';
-		$this->title = MODULE_PRODUCTS_COMBINATIONS_TEXT_TITLE . ' - Version: 1.0.16';
+		$this->title = MODULE_PRODUCTS_COMBINATIONS_TEXT_TITLE . ' - Version: 1.0.17';
 		$this->description = '';
 		$this->description .= MODULE_PRODUCTS_COMBINATIONS_TEXT_DESCRIPTION;
 		if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS')) {
@@ -70,7 +70,7 @@ class products_combinations {
     }
     return $this->_check;
 	}
-    
+
 	public function install() {
 		defined('PROJECT_VERSION_NO') or define('PROJECT_VERSION_NO', PROJECT_MAJOR_VERSION . '.' . PROJECT_MINOR_VERSION);
 		// #webald - 2020-11-24 - Prüfung Mindestversion, sonst keine Installation
