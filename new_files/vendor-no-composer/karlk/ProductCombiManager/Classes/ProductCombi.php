@@ -120,7 +120,7 @@ public function getCombinationsListfromTable($combi_id=0, $prod_data = array()){
 
 	// Attributspreise und -prefixe holen
     $opt_vals = array();
-	$tmpquery = "SELECT options_id, options_values_id, options_values_price, price_prefix, attributes_vpe_value FROM ".TABLE_PRODUCTS_ATTRIBUTES." WHERE products_id = ".$data["products_id"];
+	$tmpquery = "SELECT options_id, options_values_id, options_values_price, price_prefix, attributes_vpe_value, weight_prefix FROM ".TABLE_PRODUCTS_ATTRIBUTES." WHERE products_id = ".$data["products_id"];
 	$tmpresult = xtc_db_query($tmpquery);
 
 	for($i=0;$tmpdata = xtc_db_fetch_array($tmpresult);$i++){
@@ -146,7 +146,19 @@ public function getCombinationsListfromTable($combi_id=0, $prod_data = array()){
 
 		$opt_vals[$tmpdata['options_values_id']] = array('opt_price_name' => $opt_price_name);
 
-		// Daten für Preisupdater zusammensetzen
+    // Attribut-VPE-Wert wird mit Hilfe des Gewichts-Prefix berechnet
+    // das JavaScript rechnet immer Artikel-VPE-Wert + Attribut-VPE-Wert
+    $attr_vpe_value = $tmpdata['attributes_vpe_value'];
+    switch ($tmpdata['weight_prefix']) {
+      case '-':
+        $attr_vpe_value = -1 * abs($tmpdata['attributes_vpe_value']);
+        break;
+      case '=':
+        $attr_vpe_value = $tmpdata['attributes_vpe_value'] - $vpe_value;
+        break;
+    }
+
+    // Daten für Preisupdater zusammensetzen
 		$JSON_ATTRDATA[$tmpdata['options_values_id']] = str_replace(
 			'"', '&quot;', json_encode(
 				[
@@ -158,8 +170,8 @@ public function getCombinationsListfromTable($combi_id=0, $prod_data = array()){
 					'prefix'       => $tmpdata['price_prefix'],
 					'aprice'       => $xtPrice->xtcFormat($price, false),
 					'vpetext'      => $products_vpe,
-					'vpevalue'     => (($vpe_status && (double)$vpe_value) ? (double)$vpe_value : false),
-					'attrvpevalue' => (($vpe_status && (double)$tmpdata['attributes_vpe_value']) ? (double)$tmpdata['attributes_vpe_value'] : false),
+					'vpevalue'     => (($vpe_status && (double)$vpe_value) ? (double)$vpe_value : 0),
+					'attrvpevalue' => (($vpe_status && (double)$attr_vpe_value) ? (double)$attr_vpe_value : 0),
 					'onlytext'     => isset($json_onlytext) ? $json_onlytext : COMBI_TXT_ONLY,
 					'protext'      => isset($json_protext) ? $json_protext : TXT_PER,
 					'insteadtext'  => isset($json_insteadtext) ? $json_insteadtext : COMBI_TXT_INSTEAD,

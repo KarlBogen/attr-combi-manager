@@ -155,13 +155,14 @@ function getData($datas){
 
 	// Attributspreise und -prefixe holen
     $opt_vals = array();
-	$tmpquery = "SELECT options_id, options_values_id, options_values_price, price_prefix, attributes_vpe_value FROM ".TABLE_PRODUCTS_ATTRIBUTES." WHERE products_id = ".(int)$prod_id;
+	$tmpquery = "SELECT options_id, options_values_id, options_values_price, price_prefix, attributes_vpe_value, weight_prefix FROM ".TABLE_PRODUCTS_ATTRIBUTES." WHERE products_id = ".(int)$prod_id;
 	$tmpresult = xtc_db_query($tmpquery);
 
 	for($i=0;$tmpdata = xtc_db_fetch_array($tmpresult);$i++){
 		$opt_vals[$tmpdata['options_values_id']] = array(	'options_values_price' => $tmpdata['options_values_price'],
 															'attributes_vpe_value' => $tmpdata['attributes_vpe_value'],
-															'price_prefix' => $tmpdata['price_prefix']
+															'price_prefix' => $tmpdata['price_prefix'],
+															'weight_prefix' => $tmpdata['weight_prefix']
 														);
 	}
 
@@ -201,6 +202,18 @@ function getData($datas){
 					$opt_price_name = $price != 0 ? '  '.$opt_prefix.' '.html_entity_decode($xtPrice->xtcFormat($price, true)) : '';
 				}
 
+        // Attribut-VPE-Wert wird mit Hilfe des Gewichts-Prefix berechnet
+        // das JavaScript rechnet immer Artikel-VPE-Wert + Attribut-VPE-Wert
+        $attr_vpe_value = $opt_vals[$val_ids[$data_size]]['attributes_vpe_value'];
+        switch ($opt_vals[$val_ids[$data_size]]['weight_prefix']) {
+          case '-':
+            $attr_vpe_value = -1 * abs($opt_vals[$val_ids[$data_size]]['attributes_vpe_value']);
+            break;
+          case '=':
+            $attr_vpe_value = $opt_vals[$val_ids[$data_size]]['attributes_vpe_value'] - $vpe_value;
+            break;
+        }
+
 				// Daten für Preisupdater zusammensetzen
 				$JSON_ATTRDATA[$val_ids[$data_size]] = json_encode(
 					[
@@ -212,8 +225,8 @@ function getData($datas){
 						'prefix'       => $opt_vals[$val_ids[$data_size]]['price_prefix'],
 						'aprice'       => $xtPrice->xtcFormat($price, false),
 						'vpetext'      => $products_vpe,
-						'vpevalue'     => (($vpe_status && (double)$vpe_value) ? (double)$vpe_value : false),
-						'attrvpevalue' => (($vpe_status && (double)$opt_vals[$val_ids[$data_size]]['attributes_vpe_value']) ? (double)$opt_vals[$val_ids[$data_size]]['attributes_vpe_value'] : false),
+						'vpevalue'     => (($vpe_status && (double)$vpe_value) ? (double)$vpe_value : 0),
+						'attrvpevalue' => (($vpe_status && (double)$attr_vpe_value) ? (double)$attr_vpe_value : 0),
 						'onlytext'     => isset($json_onlytext) ? $json_onlytext : COMBI_TXT_ONLY,
 						'protext'      => isset($json_protext) ? $json_protext : TXT_PER,
 						'insteadtext'  => isset($json_insteadtext) ? $json_insteadtext : COMBI_TXT_INSTEAD,
