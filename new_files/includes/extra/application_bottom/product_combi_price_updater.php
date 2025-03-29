@@ -63,7 +63,7 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
           }
           if (viewAdditional) {
             $('div[id^="combination' + data.pid + '"] .combiPriceUpdater span.cuPrice').html('&nbsp;' + symbolLeft + newPrice + symbolRight);
-            if (data.vpevalue !== false) {
+            if (data.vpevalue != 0) {
               $('div[id^="combination' + data.pid + '"] .combiPriceUpdater span.cuVpePrice').html(symbolLeft + newVpePrice + symbolRight + data.protext + data.vpetext);
             } else {
               $('div[id^="combination' + data.pid + '"] .combiPriceUpdater span.cuVpePrice').html('');
@@ -73,7 +73,7 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
             $('.pd_price .standard_price').html(symbolLeft + newPrice + symbolRight);
             $('.pd_price .new_price').html(data.onlytext + symbolLeft + newPrice + symbolRight);
             $('.pd_price .old_price').html(data.insteadtext + symbolLeft + oldPrice + symbolRight);
-            if (data.vpevalue !== false) {
+            if (data.vpevalue != 0) {
               $('.pd_summarybox .pd_vpe').html(symbolLeft + newVpePrice + symbolRight + data.protext + data.vpetext);
               $('.pd_price .vpe').html(symbolLeft + newVpePrice + symbolRight + data.protext + data.vpetext);
             }
