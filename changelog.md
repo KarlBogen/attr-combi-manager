@@ -1,5 +1,9 @@
 UNRELEASED
 
+
+1.0.19 [15.05.2025]
+- Update für Shopversion 3.1.4
+- Preisaktualisierung an Shopberechnung angepasst
 - Meldungen "constant already defined" behoben
 
 1.0.18 [29.03.2025]

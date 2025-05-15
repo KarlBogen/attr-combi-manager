@@ -47,7 +47,7 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
                 }
               }
               if (data.attrvpevalue != 0) {
-                attrvpevalue = data.attrvpevalue;
+                attrvpevalue += data.attrvpevalue;
               }
             }
           });
