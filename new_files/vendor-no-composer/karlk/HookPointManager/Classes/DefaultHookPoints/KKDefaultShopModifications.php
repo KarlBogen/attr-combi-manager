@@ -117,7 +117,7 @@ class KKDefaultShopModifications
 		$code .= '          $combi_attr_id[] = $orders_attributes["orders_products_options_values_id"];' . "\n";
 		$code .= '        }' . "\n";
 		$code .= '      }' . "\n";
-		$code .= '      if (count($combi_attr_id) >= 2) {' . "\n";
+		$code .= '      if (is_array($combi_attr_id) && count($combi_attr_id) >= 2) {' . "\n";
 		$code .= '        /* $combi_attr_id zusammenbauen damit wir mit der attribute_id der Kombi vergleichen können */' . "\n";
 		$code .= '        $tmpAttrid = \'\';' . "\n";
 		$code .= '        $plh = \'_\';' . "\n";
