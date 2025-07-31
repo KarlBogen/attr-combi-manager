@@ -27,7 +27,7 @@ class products_combinations {
 
 	public function __construct() {
 		$this->code = 'products_combinations';
-		$this->title = MODULE_PRODUCTS_COMBINATIONS_TEXT_TITLE . ' - Version: 1.0.20';
+		$this->title = MODULE_PRODUCTS_COMBINATIONS_TEXT_TITLE . ' - Version: 1.0.21';
 		$this->description = '';
 		$this->description .= MODULE_PRODUCTS_COMBINATIONS_TEXT_DESCRIPTION;
 		if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS')) {

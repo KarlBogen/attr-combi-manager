@@ -1,6 +1,9 @@
 UNRELEASED
 
 
+1.0.21 [31.07.2025]
+- Update für Shopversion 3.1.5
+
 1.0.19 [15.05.2025]
 - Update für Shopversion 3.1.4
 - Preisaktualisierung an Shopberechnung angepasst
