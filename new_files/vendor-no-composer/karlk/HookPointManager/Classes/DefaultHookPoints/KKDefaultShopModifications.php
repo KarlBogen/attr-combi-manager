@@ -48,6 +48,7 @@ class KKDefaultShopModifications
       case '3.1.3':
       case '3.1.4':
       case '3.1.5':
+      case '3.1.6':
       default:
         // Ist im Adminbereich Konfiguration -> Lagerverwaltungs Optionen -> Warenmenge abziehen auf "Ja"
         $ModData[] = $this->getXtcRestockData();
