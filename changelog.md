@@ -1,6 +1,9 @@
 UNRELEASED
 
 
+- Backup- und Restore-Button bei Systemmodul entfernen
+
+
 1.0.22 [24.09.2025]
 - Update für Shopversion 3.1.6
 
