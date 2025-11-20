@@ -38,6 +38,7 @@ class products_combinations {
 			// Button xtc_restock und Template wiederherstellen
 			$this->description .= '<a class="button btnbox but_red" style="text-align:center;" onclick="return confirmLink(\''. sprintf(MODULE_PRODUCTS_COMBINATIONS_BUTTON_RESTORETPL_CONFIRM, CURRENT_TEMPLATE) .'\', \'\' ,this);" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=custom&func=restoretpl') . '">'.MODULE_PRODUCTS_COMBINATIONS_BUTTON_RESTORETPL.'</a><br />';
 			$this->description .= MODULE_PRODUCTS_COMBINATIONS_BUTTON_RESTORETPL_DESC;
+      $this->properties = array('process_key' => false);
 		}
 		if (!$this->isMmlcInstalled()) {
 			$this->description .= '<a class="button btnbox but_red" style="text-align:center;" onclick="return confirmLink(\''. MODULE_PRODUCTS_COMBINATIONS_REMOVE .'\', \'\' ,this);" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=custom&func=delfiles') . '">'.MODULE_PRODUCTS_COMBINATIONS_BUTTON_DELETE.'</a><br />';

@@ -34,18 +34,4 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
     </script>
   <?php
   }
-  if (strpos($_SERVER['PHP_SELF'], 'module_export.php') !== false && !empty($_GET['module']) && strpos($_GET['module'], 'products_combinations') !== false) {
-  ?>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $("a.btnbox[href*='action=backup']").remove();
-        if ($("div").hasClass("error_message")) {
-          $("a.btnbox[href*='action=restore']").replaceWith('<div class="error_message"><strong>Update</strong><br>Nutzen Sie nur den grünen Update-Button!<br>Only use the green Update-Button!</div>');
-        } else {
-          $("a.btnbox[href*='action=restore']").remove();
-        }
-      });
-    </script>
-<?php
-  }
 }
