@@ -28,6 +28,15 @@ class KKDefaultHookPoints
             'name' => 'hpm-default-admin-categories-view-small-buttons',
             'module' => 'robinthehood/hook-point-manager',
             'file' => 'includes/modules/categories_view.php',
+            'hash' => '0b1a129b0ad555d5a318b395fb9896b6',
+            'line' => 714,
+            'include' => 'includes/extra/hpm/categories_view/small_buttons/'
+        ], ['3.2.0']);
+
+        $hookPointManager->registerHookPoint([
+            'name' => 'hpm-default-admin-categories-view-small-buttons',
+            'module' => 'robinthehood/hook-point-manager',
+            'file' => 'includes/modules/categories_view.php',
             'hash' => 'b957a828b863628ca8c4670b9e3e400c',
             'line' => 714,
             'include' => 'includes/extra/hpm/categories_view/small_buttons/'
@@ -131,6 +140,15 @@ class KKDefaultHookPoints
             'line' => 632,
             'include' => 'includes/extra/hpm/categories_view/small_buttons/'
         ], ['2.0.0.0']);
+
+        $hookPointManager->registerHookPoint([
+            'name' => 'hpm-default-admin-categories-view-side-buttons',
+            'module' => 'robinthehood/hook-point-manager',
+            'file' => 'includes/modules/categories_view.php',
+            'hash' => '0b1a129b0ad555d5a318b395fb9896b6',
+            'line' => 1019,
+            'include' => 'includes/extra/hpm/categories_view/side_buttons/'
+        ], ['3.2.0']);
 
         $hookPointManager->registerHookPoint([
             'name' => 'hpm-default-admin-categories-view-side-buttons',
@@ -247,7 +265,7 @@ class KKDefaultHookPoints
             'hash' => '8860e648d0485f6f0fab18f830add1be',
             'line' => 279,
             'include' => 'includes/extra/hpm/new_product/buttons/'
-        ], ['3.0.0', '3.0.1', '3.0.2', '3.1.0', '3.1.1', '3.1.2', '3.1.3', '3.1.4', '3.1.5', '3.1.6']);
+        ], ['3.0.0', '3.0.1', '3.0.2', '3.1.0', '3.1.1', '3.1.2', '3.1.3', '3.1.4', '3.1.5', '3.1.6', '3.2.0']);
 
         $hookPointManager->registerHookPoint([
             'name' => 'hpm-default-admin-new-product-buttons',
