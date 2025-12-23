@@ -1,4 +1,5 @@
 <?php
+
 namespace KarlK\HookPointManager\Classes\DefaultHookPoints;
 
 /*
@@ -10,8 +11,8 @@ namespace KarlK\HookPointManager\Classes\DefaultHookPoints;
 class KKDefaultShopModifications
 {
 
-    public function getModifyData($modifiedVersion)
-    {
+  public function getModifyData($modifiedVersion)
+  {
     $ModData = array();
 
     switch ($modifiedVersion) {
@@ -53,63 +54,65 @@ class KKDefaultShopModifications
         // Ist im Adminbereich Konfiguration -> Lagerverwaltungs Optionen -> Warenmenge abziehen auf "Ja"
         $ModData[] = $this->getXtcRestockData();
         break;
-
     }
 
-        return $ModData;
-
-    }
-
-  protected function getMainClassData1() {
-
-    $data =	array(	'TPLFILE' => DIR_FS_CATALOG . DIR_WS_CLASSES . 'main.php',
-            'SEARCHSTRING' => 'return xtc_db_fetch_array($attributes);',
-            'KEYPLUS' => 0,
-            'REPLACESTRING' => $this->getMainClassString1(),
-        );
-        return $data;
-
+    return $ModData;
   }
 
-  protected function getMainClassString1() {
+  protected function getMainClassData1()
+  {
+
+    $data =  array(
+      'TPLFILE' => DIR_FS_CATALOG . DIR_WS_CLASSES . 'main.php',
+      'SEARCHSTRING' => 'return xtc_db_fetch_array($attributes);',
+      'KEYPLUS' => 0,
+      'REPLACESTRING' => $this->getMainClassString1(),
+    );
+    return $data;
+  }
+
+  protected function getMainClassString1()
+  {
 
     $code = '    return $attributes;' . "\n";
     $code .= '    /* EOF Module "Attribute Kombination Manager" made by Karl */';
-        return $code;
-
+    return $code;
   }
 
-  protected function getMainClassData2() {
+  protected function getMainClassData2()
+  {
 
-    $data =	array(	'TPLFILE' => DIR_FS_CATALOG . DIR_WS_CLASSES . 'main.php',
-            'SEARCHSTRING' => 'return $attributes;',
-            'KEYPLUS' => -3,
-            'REPLACESTRING' => $this->getMainClassString2(),
-        );
-        return $data;
-
+    $data =  array(
+      'TPLFILE' => DIR_FS_CATALOG . DIR_WS_CLASSES . 'main.php',
+      'SEARCHSTRING' => 'return $attributes;',
+      'KEYPLUS' => -3,
+      'REPLACESTRING' => $this->getMainClassString2(),
+    );
+    return $data;
   }
 
-  protected function getMainClassString2() {
+  protected function getMainClassString2()
+  {
 
     $code = '    /* BOF Module "Attribute Kombination Manager" made by Karl */' . "\n";
     $code .= '    $attributes = xtc_db_fetch_array($attributes);' . "\n";
-        return $code;
-
+    return $code;
   }
 
-  protected function getXtcRestockData() {
+  protected function getXtcRestockData()
+  {
 
-    $data =	array(	'TPLFILE' => DIR_FS_INC . 'xtc_restock_order.inc.php',
-            'SEARCHSTRING' => '$products_update = false;',
-            'KEYPLUS' => 2,
-            'REPLACESTRING' => $this->getXtcRestockString(),
-        );
-        return $data;
-
+    $data =  array(
+      'TPLFILE' => DIR_FS_INC . 'xtc_restock_order.inc.php',
+      'SEARCHSTRING' => '$products_update = false;',
+      'KEYPLUS' => 2,
+      'REPLACESTRING' => $this->getXtcRestockString(),
+    );
+    return $data;
   }
 
-  protected function getXtcRestockString() {
+  protected function getXtcRestockString()
+  {
 
     $code = '/* BOF Module "Attribute Kombination Manager" made by Karl */' . "\n";
     $code .= '/* Original' . "\n";
@@ -146,7 +149,6 @@ class KKDefaultShopModifications
     $code .= '        }' . "\n";
     $code .= '/* EOF Module "Attribute Kombination Manager" made by Karl */';
 
-        return $code;
-
+    return $code;
   }
 }

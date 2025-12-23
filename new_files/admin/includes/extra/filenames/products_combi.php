@@ -10,4 +10,4 @@
 	Released under the GNU General Public License
 -------------------------------------------------------------- */
 
-define('FILENAME_PRODUCTS_COMBI','products_combi.php');
+define('FILENAME_PRODUCTS_COMBI', 'products_combi.php');

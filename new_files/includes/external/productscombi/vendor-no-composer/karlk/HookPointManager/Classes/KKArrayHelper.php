@@ -17,18 +17,18 @@ namespace KarlK\HookPointManager\Classes;
 
 class KKArrayHelper
 {
-    public static function insertAfter(array $array, $afterIndex, $newIndex, $newValue)
-    {
-        if (array_key_exists($afterIndex, $array)) {
-            $newArray = [];
-            foreach ($array as $index => $value) {
-                $newArray[$index] = $value;
-                if ($index === $afterIndex) {
-                    $newArray[$newIndex] = $newValue;
-                }
-            }
-            return $newArray;
+  public static function insertAfter(array $array, $afterIndex, $newIndex, $newValue)
+  {
+    if (array_key_exists($afterIndex, $array)) {
+      $newArray = [];
+      foreach ($array as $index => $value) {
+        $newArray[$index] = $value;
+        if ($index === $afterIndex) {
+          $newArray[$newIndex] = $newValue;
         }
-        return false;
+      }
+      return $newArray;
     }
+    return false;
+  }
 }

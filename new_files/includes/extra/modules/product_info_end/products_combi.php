@@ -14,13 +14,12 @@ use KarlK\ProductCombiManager\Classes\ProductCombi;
 
 // prüft, ob das Produkt eine Kombination hat und lädt dann nötige Datei
 
-	// prüfen, ob Systemmodul installiert und Status true ist
-	if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true') {
+// prüfen, ob Systemmodul installiert und Status true ist
+if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true') {
 
-		require_once DIR_FS_DOCUMENT_ROOT . 'vendor-no-composer/karlk/autoload.php';
-        $ProductCombi = new ProductCombi();
-		if ($ProductCombi->hasProductCombi($product->pID)) {
-			include (DIR_WS_MODULES.'product_combi.php');
-		}
-
-	}
+  require_once DIR_FS_EXTERNAL . 'productscombi/vendor-no-composer/karlk/autoload.php';
+  $ProductCombi = new ProductCombi();
+  if ($ProductCombi->hasProductCombi($product->pID)) {
+    include(DIR_WS_MODULES . 'product_combi.php');
+  }
+}

@@ -3,6 +3,9 @@ UNRELEASED
 
 
 
+
+- PHP-Klassen nach "includes/external/productscombi/" verschoben
+
 1.0.24 [20.12.2025]
 - Update für Shopversion 3.2.1
 

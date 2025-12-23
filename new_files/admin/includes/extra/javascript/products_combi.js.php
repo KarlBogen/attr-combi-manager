@@ -32,6 +32,6 @@ if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIO
         }
       });
     </script>
-  <?php
+<?php
   }
 }
