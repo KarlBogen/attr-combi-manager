@@ -2,7 +2,7 @@ UNRELEASED
 
 
 
-
+- Button "Bearbeiten" im Systemmodul hinzugefügt
 
 1.0.25 [30.01.2026]
 - Update für Shopversion 3.3.0

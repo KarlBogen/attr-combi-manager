@@ -32,6 +32,7 @@ class products_combinations
     $this->code = 'products_combinations';
     $this->title = MODULE_PRODUCTS_COMBINATIONS_TEXT_TITLE . ' - Version: 1.0.25';
     $this->description = '';
+    $this->description .= '<a class="button btnbox" style="text-align:center;" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=edit') . '">' . BUTTON_EDIT . '</a><br />';
     $this->description .= MODULE_PRODUCTS_COMBINATIONS_TEXT_DESCRIPTION;
     if (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS')) {
       $this->description .= '<a class="button btnbox but_green" style="text-align:center;" onclick="this.blur();" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=update') . '">Update</a><br /><br />';
