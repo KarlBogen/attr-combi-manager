@@ -1,7 +1,7 @@
 UNRELEASED
 
-
-
+- automatische Templateänderungen angepasst
+- Neue Option im Systemmodul "Dateien löschen, Tabellen beibehalten"
 - Button "Bearbeiten" im Systemmodul hinzugefügt
 
 1.0.25 [30.01.2026]

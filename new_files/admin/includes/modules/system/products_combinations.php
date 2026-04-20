@@ -45,13 +45,15 @@ class products_combinations
       $this->properties = array('process_key' => false);
     }
     if (!$this->isMmlcInstalled()) {
+      $this->description .= '<a class="button btnbox but_red" style="text-align:center;" onclick="return confirmLink(\'' . MODULE_PRODUCTS_COMBINATIONS_DONTREMOVETABLE . '\', \'\' ,this);" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=custom&func=delfilesnotable') . '">' . MODULE_PRODUCTS_COMBINATIONS_BUTTON_DELETE_NOTABLE . '</a><br />';
+      $this->description .= MODULE_PRODUCTS_COMBINATIONS_BUTTON_DELETE_NOTABLE_DESC;
       $this->description .= '<a class="button btnbox but_red" style="text-align:center;" onclick="return confirmLink(\'' . MODULE_PRODUCTS_COMBINATIONS_REMOVE . '\', \'\' ,this);" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=custom&func=delfiles') . '">' . MODULE_PRODUCTS_COMBINATIONS_BUTTON_DELETE . '</a><br />';
       $this->description .= MODULE_PRODUCTS_COMBINATIONS_BUTTON_DELETE_DESC;
     }
     $this->sort_order = defined('MODULE_PRODUCTS_COMBINATIONS_SORT_ORDER') ? MODULE_PRODUCTS_COMBINATIONS_SORT_ORDER : 0;
     $this->enabled = (defined('MODULE_PRODUCTS_COMBINATIONS_STATUS') && MODULE_PRODUCTS_COMBINATIONS_STATUS == 'true') ? true : false;
 
-    $this->properties['remove'] = array('text' => MODULE_PRODUCTS_COMBINATIONS_REMOVE);
+    $this->properties['remove'] = array('text' => MODULE_PRODUCTS_COMBINATIONS_DONTREMOVETABLE);
   }
 
   public function process($file) {}
@@ -265,10 +267,6 @@ class products_combinations
       xtc_db_query("ALTER TABLE " . TABLE_ADMIN_ACCESS . " DROP `products_combi`");
     }
 
-    xtc_db_query("DROP TABLE IF EXISTS `products_options_combi`");
-    xtc_db_query("DROP TABLE IF EXISTS `products_options_combi_values`");
-    xtc_db_query("DROP TABLE IF EXISTS `products_options_combi_values_2`");
-
     // KKHookpointManager
     xtc_db_query("DROP TABLE IF EXISTS `kk_hook_point`");
 
@@ -296,10 +294,20 @@ class products_combinations
     if (isset($_GET['func']) && strip_tags($_GET['func']) == 'restoretpl') {
       $this->restoreAllFiles();
     }
+    // Datentabellen beibehalten, alle anderen Eintragungen und Dateien löschen - nur bei Installation ohne MMLC
+    if (isset($_GET['func']) && strip_tags($_GET['func']) == 'delfilesnotable') {
+      // Systemmodule deinstallieren
+      $this->remove();
+      $this->restoreAllFiles();
+      $this->removeAllFiles();
+      xtc_redirect(xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system'));
+    }
     // alle Eintragungen und Dateien löschen - nur bei Installation ohne MMLC
     if (isset($_GET['func']) && strip_tags($_GET['func']) == 'delfiles') {
       // Systemmodule deinstallieren
       $this->remove();
+      xtc_db_query("DROP TABLE IF EXISTS `products_options_combi`");
+      xtc_db_query("DROP TABLE IF EXISTS `products_options_combi_values_2`");
       $this->restoreAllFiles();
       $this->removeAllFiles();
       xtc_redirect(xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system'));

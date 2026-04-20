@@ -237,7 +237,7 @@ class KKDefaultTplModifications
 
     $data =  array(
       'TPLFILE' => DIR_FS_CATALOG . 'templates/' . CURRENT_TEMPLATE . '/javascript/general_bottom.js.php',
-      'SEARCHSTRING' => '$script_min = DIR_TMPL_JS.\'tpl_plugins.min.js\';',
+      'SEARCHSTRING' => array('$script_min = DIR_TMPL_JS.\'tpl_plugins.min.js\';', '$script_min = DIR_TMPL_JS . \'tpl_plugins.min.js\';'),
       'KEYPLUS' => 0,
       'REPLACESTRING' => $this->getGeneralBottomString(),
     );
