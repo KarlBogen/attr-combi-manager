@@ -1,5 +1,6 @@
 UNRELEASED
 
+- angepasst an das Bootstrap5-Modul BS5_AGI_REDUCE_CART
 - automatische Templateänderungen angepasst
 - Neue Option im Systemmodul "Dateien löschen, Tabellen beibehalten"
 - Button "Bearbeiten" im Systemmodul hinzugefügt
